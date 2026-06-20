@@ -1,0 +1,8 @@
+.my-navbar{
+    background-color: red;
+    align-items: center;
+}
+
+.nav-item :hover{
+    background-color: rgb(242, 21, 21);
+}
