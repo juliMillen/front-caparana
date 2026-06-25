@@ -8,6 +8,7 @@ import { ExecutivesComponent } from './components/executives/executives.componen
 import { ReportsComponent } from './components/reports/reports.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -18,6 +19,7 @@ export const routes: Routes = [
     {path:'discipline/:id',component:DisciplinesComponent},
     {path:'report',component:ReportsComponent},
     {path:'report/:id',component:ReportsComponent},
+    {path:'gallery',component:GalleryComponent},
     {path:'executive',component:ExecutivesComponent},
     {path:'executive/:id',component:ExecutivesComponent},
     {path:'player',component:PlayersComponent},
