@@ -7,8 +7,10 @@ import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { ExecutivesComponent } from './components/executives/executives.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routes: Routes = [
+    {path:'',component:HomeComponent},
     {path: 'club', component:ClubComponent},
     {path:'categority',component:CategoritiesComponent},
     {path:'categority/:id',component:CategoritiesComponent},

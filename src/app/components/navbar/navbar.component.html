@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg my-navbar">
   <div class="container justify-content-center">
-    <a class="navbar-brand" href="#">CAP</a>
+    <a class="navbar-brand" href="#">
+      <img src="logo-cap.ico" alt="Logo CAP" width="45" height="50" class="d-inline-block align-text-top">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,20 +11,17 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/">Inicio</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/club">Club</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/executive">Ejecutivos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/categority">Categorias</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/discipline">Disciplinas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/player">Jugadores</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dorpdown-toggle" href="#" id="navbarDropdownClub" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Club
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownClub">
+            <li><hr class="dropdown-divider"></li> <li><a class="dropdown-item" routerLink="/categority">Categorias</a></li>
+            <li><hr class="dropdown-divider"></li> <li><a class="dropdown-item" routerLink="/discipline">Disciplinas</a></li>
+            <li><hr class="dropdown-divider"></li> <li><a class="dropdown-item" routerLink="/executive">Ejecutivos</a></li>
+            <li><hr class="dropdown-divider"></li> <li><a class="dropdown-item" routerLink="/club">Historia</a></li>
+            <li><hr class="dropdown-divider"></li> <li><a class="dropdown-item" routerLink="/player">Jugadores</a></li>
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/report">Noticias</a>
