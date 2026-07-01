@@ -1,8 +1,14 @@
-.my-navbar{
-    background-color: red;
-    align-items: center;
+.my-navbar .nav-link {
+  color: #c81212 !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  margin: 0 0.15rem;
+  border-radius: 6px;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.nav-item :hover{
-    background-color: rgb(242, 21, 21);
+.my-navbar .nav-link:hover,
+.my-navbar .nav-link:focus {
+  color: #a10e0e !important;
+  background-color: rgba(200, 18, 18, 0.08);
 }
