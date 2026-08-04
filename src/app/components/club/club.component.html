@@ -1,54 +1,27 @@
-<div class="container my-5">
+<div class="container my-5" *ngIf="club">
 <h1 class="text-danger fw-bold mb-4">Historia</h1>
-<p class="lead text-secondary mb-5">El club nació gracias a un grupo de jóvenes apasionados por el fútbol bajo el nombre inicial de Paraná Foot Ball Club. En aquel entonces adoptaron la histórica camiseta a rayas verticales rojas y blancas. Su apodo de "El Decano" responde a su longevidad como club pionero en la ciudad, mientras que "El Gato" es un homenaje a Pedro Mutio, un jugador y socio fundador histórico que da nombre a su estadio</p>
+<p class="lead text-secondary mb-5">{{club.history}}</p>
 <hr class="my-5">
-<h2 class="text-danger fw-bold mb-4">Hitos</h2>
-<div class="row g-4 mb-5">
-    <div class="col-md-4">
-        <div class="p-3 border-start border-danger border-3 h-100">
-            <h5 class="fw-bold">Decada de 1970</h5>
-            <p class="text-muted">Vivió una de sus épocas doradas, destacándose en el plano regional y clasificando para disputar el antiguo Torneo Nacional de Primera División</p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="p-3 border-start border-danger border-3 h-100">
-            <h5 class="fw-bold"> Ascenso Nacionales</h5>
-            <p class="text-muted">En 2014, el club obtuvo un ascenso histórico a la Primera B Nacional, categoría en la cual se mantuvo durante tres años hasta 201</p>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="p-3 border-start border-danger border-3 h-100">
-            <h5 class="fw-bold">Actualidad</h5>
-            <p class="text-muted">El "Gato" es uno de los grandes protagonistas de la Liga Paranaense de Fútbol, compitiendo activamente en torneos organizados por el Consejo Federal y animando los clásicos regionales frente a clubes como Patronato.</p>
-        </div>
-    </div>
 </div>
 <hr class="my-5">
 <h3 class="text-danger fw-bold mb-4">Colores Y Estadio</h3>
 <div class="row g-5 mb-5">
     <div class="col-md-6">
         <h5 class="fw-bold text-uppercase text-secondary mb-3">Nuestros Colores</h5>
-        <p>Históricamente, el "Gato" adoptó desde sus inicios la camiseta con rayas verticales rojas y blancas, colores que lo acompañaron por décadas. Sin embargo, en 1949, el club modificó sus tonos al blanco con una franja horizontal celeste, representando el Río Paraná</p>
+        <p>{{club.colorsHistory}}</p>
     </div>
     <div class="col-md-6">
         <h5 class="fw-bold text-uppercase text-secondary mb-3">Estadio</h5>
-        <p>La cancha del Club Atlético Paraná, conocida oficialmente como el Estadio Pedro Mutio, fue inaugurada en 1919 y está ubicada en calle José Ruperto Pérez 273 en la ciudad de Paraná. Lleva el nombre de Pedro Mutio, destacado socio fundador y referente histórico de la institución</p>
+        <p>stadiumHistory</p>
     </div>
 </div>
 <hr class="my-5">
 <h4 class="text-danger fw-bold mb-4">Campeonatos</h4>
 <div class="row layout-campeonatos">
-    <div class="col-12 mb-4 pb-3 border-bottom">
-        <h5 class="fw-bold text-dark">Titulos de la Liga Paranaense de Futbol</h5>
-        <p class="text-muted fs-5">21 campeonatos de Primera A (destacando las coronas recientes en 2017, 2020, además de una Supercopa).</p>
-    </div>
-    <div class="col-12 mb-4 pb-3 border-bottom">
-        <h5 class="fw-bold text-dark">Ascensos Nacionales</h5>
-        <p class="text-muted fs-5">Campeón del Torneo Argentino B en la temporada 2013/14 y logros históricos para ascender al Torneo Federal A y a la Primera B Nacional.</p>
-    </div>
-    <div class="col-12 mb-4">
-        <h5 class="fw-bold text-dark">Copas Regionales</h5>
-        <p class="text-muted fs-5">Títulos históricos en la Copa del Centenario (1910), Copa Ernesto Montiel (1918) y Copa Gath y Cháves (1924), entre otros.</p>
-    </div>
+    <ul>
+        <li *ngFor="let titulos of club.titulos">
+           {{titulos}} 
+        </li>
+    </ul>
 </div>
 </div>

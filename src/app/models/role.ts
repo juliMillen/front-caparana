@@ -1,2 +1,2 @@
-export class Role {
+export interface Role {
 }

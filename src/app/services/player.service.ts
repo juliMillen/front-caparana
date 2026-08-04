@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PlayerServiceService {
+export class PlayerService {
 
   private apiUrl= environment + '/player'
   constructor(private http:HttpClient) { }

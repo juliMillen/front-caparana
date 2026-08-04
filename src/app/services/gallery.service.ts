@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GalleryServiceService {
+export class GalleryService {
 
   private apiUrl= environment + '/gallery'
   constructor(private http:HttpClient) { }

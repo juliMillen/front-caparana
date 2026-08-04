@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DisciplineServiceService {
+export class DisciplineService {
 
   private apiUrl = environment.apiUrl + '/discipline'
   constructor(private http:HttpClient) { }

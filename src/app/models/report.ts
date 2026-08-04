@@ -1,8 +1,8 @@
-export class Report {
+export interface Report {
 
-    idReport!:number
-    title!:string
-    description!:string
-    publicationDate!:Date
-    urlImage!:string
+    idReport:number
+    title:string
+    description:string
+    publicationDate:Date
+    urlImage:string
 }

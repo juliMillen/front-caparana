@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class DirectiveServiceService {
+export class DirectiveService{
 
 private apiUrl = environment.apiUrl + '/executive'
 

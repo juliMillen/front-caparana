@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PhotoServiceService {
+export class PhotoService {
 
   private apiUrl =environment.apiUrl + '/photo'
   constructor(private http:HttpClient) { }

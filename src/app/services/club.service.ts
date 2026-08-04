@@ -7,7 +7,7 @@ import { Club } from '../models/club';
 @Injectable({
   providedIn: 'root'
 })
-export class ClubServiceService {
+export class ClubService {
 
   private apiUrl = environment.apiUrl + '/club'
 
@@ -18,7 +18,7 @@ export class ClubServiceService {
   }
 
   createClub(club:Club):Observable<Club>{
-    return this.http.post<Club>(`${this.apiUrl}/`,club);
+    return this.http.post<Club>(`${this.apiUrl}`,club);
   }
 
   updateClub(id:number,club:Club):Observable<Club>{

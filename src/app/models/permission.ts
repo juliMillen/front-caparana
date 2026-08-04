@@ -1,2 +1,2 @@
-export class Permission {
+export interface Permission {
 }
