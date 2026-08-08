@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Club } from '../../models/club';
 import { ClubService } from '../../services/club.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-club',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './club.component.html',
   styleUrl: './club.component.css'
 })
