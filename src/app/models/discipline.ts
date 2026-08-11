@@ -2,7 +2,7 @@ export interface Discipline {
     idDiscipline:number;
     nameDiscipline:string;
     description:string;
-    schedule:Date;
+    schedule:string;
     professorAsig:string;
     ubication:string;
 }
