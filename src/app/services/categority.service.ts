@@ -7,7 +7,7 @@ import { Categority } from '../models/categority';
 @Injectable({
   providedIn: 'root'
 })
-export class CategorityServiceService {
+export class CategorityService {
 
   private apiUrl= environment.apiUrl + '/categority'
 

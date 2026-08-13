@@ -1,68 +1,35 @@
-<div class="container my-5">
-  <h1 class="text-danger fw-bold mb-5 text-center">Categorías y Planteles</h1>
-
-  <div class="mb-5 pb-4 border-bottom">
-    <h2 class="text-danger fw-bold mb-4 text-uppercase fs-3">Categoría Femenina</h2>
-
+<div class="container my-5"> <!-- Encabezado -->
+  <div class="text-center mb-5">
+    <h1 class="display-5 fw-bold text-danger">Categorías y Planteles</h1>
+    <p class="text-muted">Conocé los jugadores que integran cada categoría del club</p>
+  </div> <!-- Categorías -->
+  <div *ngFor="let category of categorities" class="category-section mb-5">
+    <div class="category-header d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h2 class="text-danger fw-bold text-uppercase mb-1"> {{ category.nameCategority }} </h2> <small class="text-muted"> {{
+          category.playerList?.length || 0 }} jugadores </small>
+      </div> <span class="badge bg-danger fs-6 px-3 py-2"> {{ category.nameCategority }} </span>
+    </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-      
-      <div class="col">
-        <div class="card h-100 shadow-sm border-0 text-center">
-          <div class="p-3 bg-light text-center">
-            <img src="assets/img/placeholder-jugador.jpg" class="img-fluid rounded-circle border border-2 border-danger mx-auto" alt="Nombre Jugadora" style="width: 120px; height: 120px; object-fit: cover;">
-          </div>
-          <div class="card-body pt-0">
-            <h5 class="card-title fw-bold mb-1">Nombre Jugadora 1</h5>
-            <p class="card-text text-muted small mb-0">Posición / Detalle</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card h-100 shadow-sm border-0 text-center">
-          <div class="p-3 bg-light text-center">
-            <img src="assets/img/placeholder-jugador.jpg" class="img-fluid rounded-circle border border-2 border-danger mx-auto" alt="Nombre Jugadora" style="width: 120px; height: 120px; object-fit: cover;">
-          </div>
-          <div class="card-body pt-0">
-            <h5 class="card-title fw-bold mb-1">Nombre Jugadora 2</h5>
-            <p class="card-text text-muted small mb-0">Posición / Detalle</p>
+      <div class="col" *ngFor="let player of category.playerList">
+        <div class="card player-card h-100 border-0 shadow-sm text-center">
+          <div class="player-image-wrapper"> <img [src]="player.urlImage || 'assets/img/placeholder-jugador.jpg'"
+              [alt]="player.name" class="player-image"> </div>
+          <div class="card-body">
+            <h5 class="fw-bold mb-1">{{ player.name }}</h5>
+            <p class="text-muted small mb-3"> {{ player.position }} </p>
+            <div class="border-top pt-3"> <small class="text-secondary"> {{ player.num? ('Camiseta #' +
+                player.num) : 'Plantel oficial' }} </small> </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
-  <div class="mb-5 pb-4">
-    <h2 class="text-danger fw-bold mb-4 text-uppercase fs-3">Juveniles Sub-17</h2>
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-      
-      <div class="col">
-        <div class="card h-100 shadow-sm border-0 text-center">
-          <div class="p-3 bg-light text-center">
-            <img src="assets/img/placeholder-jugador.jpg" class="img-fluid rounded-circle border border-2 border-danger mx-auto" alt="Nombre Jugador" style="width: 120px; height: 120px; object-fit: cover;">
-          </div>
-          <div class="card-body pt-0">
-            <h5 class="card-title fw-bold mb-1">Nombre Jugador 1</h5>
-            <p class="card-text text-muted small mb-0">Posición / Detalle</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card h-100 shadow-sm border-0 text-center">
-          <div class="p-3 bg-light text-center">
-            <img src="assets/img/placeholder-jugador.jpg" class="img-fluid rounded-circle border border-2 border-danger mx-auto" alt="Nombre Jugador" style="width: 120px; height: 120px; object-fit: cover;">
-          </div>
-          <div class="card-body pt-0">
-            <h5 class="card-title fw-bold mb-1">Nombre Jugador 2</h5>
-            <p class="card-text text-muted small mb-0">Posición / Detalle</p>
-          </div>
-        </div>
-      </div>
-
+  <!-- Estado vacío -->
+  <div *ngIf="categorities.length === 0" class="text-center py-5">
+    <div class="p-5 rounded-4 bg-light">
+      <h4 class="text-muted mb-2">No hay categorías disponibles</h4>
+      <p class="text-secondary mb-0"> Los planteles aparecerán aquí cuando estén cargados. </p>
     </div>
   </div>
-
 </div>
