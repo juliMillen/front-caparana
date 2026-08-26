@@ -1,4 +1,3 @@
-import { Categority } from "./categority"
 
 export interface Player {
     idPlayer:number
@@ -7,5 +6,4 @@ export interface Player {
     position:string
     num:number
     urlImage:string
-    categority?: Categority[];
 }

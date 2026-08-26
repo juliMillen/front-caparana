@@ -25,6 +25,7 @@ export class CategoritiesComponent implements OnInit {
  getCategorities():void{
   this.categorityService.getCategorities().subscribe({
     next:(data) =>{
+      console.log("Categorias recibidas: ",data)
       this.categorities = data;
     },
     error: (err) =>{
@@ -32,5 +33,6 @@ export class CategoritiesComponent implements OnInit {
     }
   })
  }
+
 
 }

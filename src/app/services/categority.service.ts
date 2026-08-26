@@ -14,7 +14,7 @@ export class CategorityService {
   constructor(private http:HttpClient) { }
 
   getCategorities(): Observable<Categority[]>{
-    return this.http.get<Categority[]>(`${this.apiUrl}/`);
+    return this.http.get<Categority[]>(`${this.apiUrl}`);
   }
 
   getCategorityById(idCategority:number):Observable<Categority>{
