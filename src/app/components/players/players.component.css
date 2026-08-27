@@ -1,0 +1,86 @@
+/* Separación general entre las posiciones */
+.mb-5.pb-4.border-bottom {
+  padding-top: 20px;
+  border-color: rgba(220, 53, 69, 0.2) !important;
+}
+
+/* Título de cada posición */
+.mb-5.pb-4.border-bottom h2 {
+  position: relative;
+  display: inline-block;
+  letter-spacing: 0.5px;
+  margin-bottom: 28px !important;
+}
+
+/* Línea decorativa debajo del título */
+.mb-5.pb-4.border-bottom h2::after {
+  content: "";
+  display: block;
+  width: 45px;
+  height: 3px;
+  background-color: #dc3545;
+  margin-top: 8px;
+  border-radius: 10px;
+}
+
+/* Tarjeta del jugador */
+.card {
+  overflow: hidden;
+  border-radius: 16px !important;
+  background-color: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Efecto al pasar el mouse */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Contenedor de la imagen */
+.card .p-3.bg-light {
+  padding: 24px !important;
+  background-color: #f8f9fa !important;
+}
+
+/* Imagen del jugador */
+.card img {
+  transition: transform 0.3s ease;
+}
+
+/* Zoom suave de la imagen */
+.card:hover img {
+  transform: scale(1.05);
+}
+
+/* Nombre del jugador */
+.card-title {
+  color: #212529;
+  font-size: 1.05rem;
+}
+
+/* Posición */
+.card-text {
+  font-size: 0.9rem;
+}
+
+/* Cuerpo de la tarjeta */
+.card-body {
+  padding: 18px 15px 20px;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 576px) {
+  .mb-5.pb-4.border-bottom h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .card .p-3.bg-light {
+    padding: 20px !important;
+  }
+
+  .card img {
+    width: 105px !important;
+    height: 105px !important;
+  }
+}

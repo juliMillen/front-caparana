@@ -1,36 +1,77 @@
 <ng-container *ngIf="club as c">
-  <div class="container my-5">
-    <h1 class="text-danger fw-bold mb-4">Historia</h1>
-    <p class="lead text-secondary mb-5">Fecha de fundacion: {{c.fundationDate | date:'dd/MM/yyyy'}}</p>
-    <p class="lead text-secondary mb-5">{{ c.history }}</p>
-    <hr class="my-5">
+
+  <div class="container my-5 club-history">
+
+    <!-- Historia -->
+    <section class="history-section">
+      <h1 class="text-danger fw-bold mb-4">Historia</h1>
+
+      <p class="foundation-date">
+        Fecha de fundación:
+        <strong>{{ c.fundationDate | date:'dd/MM/yyyy' }}</strong>
+      </p>
+
+      <p class="history-text">
+        {{ c.history }}
+      </p>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Colores y estadio -->
+    <section class="club-details">
+
+      <h3 class="text-danger fw-bold mb-4">
+        Colores y estadio
+      </h3>
+
+      <div class="row g-4">
+
+        <div class="col-md-6">
+          <div class="detail-card h-100">
+            <h5 class="fw-bold text-uppercase text-secondary mb-3">
+              Nuestros colores
+            </h5>
+
+            <p class="mb-0">
+              {{ c.colorsHistory }}
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="detail-card h-100">
+            <h5 class="fw-bold text-uppercase text-secondary mb-3">
+              Estadio
+            </h5>
+
+            <p class="mb-0">
+              {{ c.stadiumHistory }}
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- Campeonatos -->
+    <section class="titles-section">
+
+      <h4 class="text-danger fw-bold mb-4">
+        Campeonatos
+      </h4>
+
+      <ul class="titles-list">
+        <li *ngFor="let title of c.titles">
+          {{ title }}
+        </li>
+      </ul>
+
+    </section>
+
   </div>
 
-  <hr class="my-5">
-  <h3 class="text-danger fw-bold mb-4">Colores y estadio</h3>
-
-  <div class="row g-5 mb-5">
-    <div class="col-md-6">
-      <h5 class="fw-bold text-uppercase text-secondary mb-3">
-        Nuestros colores
-      </h5>
-      <p>{{ c.colorsHistory }}</p>
-    </div>
-
-    <div class="col-md-6">
-      <h5 class="fw-bold text-uppercase text-secondary mb-3">
-        Estadio
-      </h5>
-      <p>{{ c.stadiumHistory }}</p>
-    </div>
-  </div>
-
-  <hr class="my-5">
-  <h4 class="text-danger fw-bold mb-4">Campeonatos</h4>
-
-  <ul>
-    <li *ngFor="let title of c.titles">
-      {{ title }}
-    </li>
-  </ul>
 </ng-container>

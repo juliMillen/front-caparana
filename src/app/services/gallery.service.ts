@@ -12,6 +12,10 @@ export class GalleryService {
   private apiUrl= environment + '/gallery'
   constructor(private http:HttpClient) { }
 
+
+    getGalleryById(idGallery:number):Observable<Gallery>{
+      return this.http.get<Gallery>(`${this.apiUrl}/${idGallery}`);
+    }
   
     createGallery(gallery:Gallery):Observable<Gallery>{
       return this.http.post<Gallery>(`${this.apiUrl}/`,gallery);

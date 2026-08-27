@@ -25,8 +25,9 @@ export class CategoritiesComponent implements OnInit {
  getCategorities():void{
   this.categorityService.getCategorities().subscribe({
     next:(data) =>{
-      console.log("Categorias recibidas: ",data)
-      this.categorities = data;
+      this.categorities = data.filter(
+        category => category.nameCategority !== "Plantel Profesional"
+      );
     },
     error: (err) =>{
       console.error('Error al cargar las categorias',err);

@@ -1,42 +1,113 @@
 <div class="container my-5 my-gallery">
+
   <div class="row justify-content-center">
+
     <div class="col-lg-8 col-md-10 col-12">
-      
-      <div id="carouselGaleriaClub" class="carousel slide shadow rounded overflow-hidden" data-bs-ride="carousel">
-        
+
+      <div
+        id="carouselGaleriaClub"
+        class="carousel slide shadow rounded overflow-hidden"
+        data-bs-ride="carousel"
+        *ngIf="gallery?.photos?.length"
+      >
+
+        <!-- Indicadores -->
         <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselGaleriaClub" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselGaleriaClub" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselGaleriaClub" data-bs-slide-to="2" aria-label="Slide 3"></button>
+
+          <button
+            *ngFor="let photo of gallery.photos; let i = index"
+            type="button"
+            data-bs-target="#carouselGaleriaClub"
+            [attr.data-bs-slide-to]="i"
+            [class.active]="i === 0"
+            [attr.aria-current]="i === 0 ? 'true' : null"
+            [attr.aria-label]="'Slide ' + (i + 1)"
+          >
+          </button>
+
         </div>
 
+
+        <!-- Fotos -->
         <div class="carousel-inner">
-          
-          <div class="carousel-item active">
-            <img src="images/foto1-prueba.jpg" class="d-block w-100 img-carousel-fixed" alt="Equipo Parana">
-          </div>
-          
-          <div class="carousel-item">
-            <img src="images/foto2-prueba.jpg" class="d-block w-100 img-carousel-fixed" alt="Equipo Parana 2">
-          </div>
-          
-          <div class="carousel-item">
-            <img src="images/foto3-prueba.jpg" class="d-block w-100 img-carousel-fixed" alt="Equipo Parana 3">
+
+          <div
+            *ngFor="let photo of gallery.photos; let i = index"
+            class="carousel-item"
+            [class.active]="i === 0"
+          >
+
+            <img
+              [src]="photo.urlImage || 'assets/img/placeholder-foto.jpg'"
+              [alt]="photo.description || 'Foto de la galería'"
+              class="d-block w-100 img-carousel-fixed"
+            >
+
           </div>
 
         </div>
 
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselGaleriaClub" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Anterior</span>
+
+        <!-- Anterior -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselGaleriaClub"
+          data-bs-slide="prev"
+        >
+
+          <span
+            class="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+
+          <span class="visually-hidden">
+            Anterior
+          </span>
+
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselGaleriaClub" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Siguiente</span>
+
+
+        <!-- Siguiente -->
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselGaleriaClub"
+          data-bs-slide="next"
+        >
+
+          <span
+            class="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+
+          <span class="visually-hidden">
+            Siguiente
+          </span>
+
         </button>
 
       </div>
 
+
+      <!-- Sin fotos -->
+      <div
+        *ngIf="gallery && gallery.photos.length === 0"
+        class="text-center py-5"
+      >
+
+        <h4 class="text-muted">
+          No hay fotos disponibles
+        </h4>
+
+        <p class="text-secondary">
+          Las fotos aparecerán aquí cuando sean cargadas.
+        </p>
+
+      </div>
+
     </div>
+
   </div>
+
 </div>

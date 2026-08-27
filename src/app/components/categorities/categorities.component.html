@@ -16,7 +16,7 @@
           <div class="player-image-wrapper"> <img [src]="player.urlImage || 'assets/img/placeholder-jugador.jpg'"
               [alt]="player.name" class="player-image"> </div>
           <div class="card-body">
-            <h5 class="fw-bold mb-1">{{ player.name }}</h5>
+            <h5 class="fw-bold mb-1">{{ player.name }} {{player.surname}}</h5>
             <p class="text-muted small mb-3"> {{ player.position }} </p>
             <div class="border-top pt-3"> <small class="text-secondary"> {{ player.num? ('Camiseta #' +
                 player.num) : 'Plantel oficial' }} </small> </div>

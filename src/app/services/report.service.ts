@@ -13,7 +13,7 @@ export class ReportService {
   constructor(private http:HttpClient) { }
 
     getReports(): Observable<Report[]>{
-      return this.http.get<Report[]>(`${this.apiUrl}/`);
+      return this.http.get<Report[]>(`${this.apiUrl}`);
     }
   
     getReportyById(idReport:number):Observable<Report>{

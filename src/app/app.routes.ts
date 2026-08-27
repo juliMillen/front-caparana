@@ -19,7 +19,7 @@ export const routes: Routes = [
     {path:'discipline/:id',component:DisciplinesComponent},
     {path:'report',component:ReportsComponent},
     {path:'report/:id',component:ReportsComponent},
-    {path:'gallery',component:GalleryComponent},
+    {path:'gallery/id',component:GalleryComponent},
     {path:'executive',component:ExecutivesComponent},
     {path:'executive/:id',component:ExecutivesComponent},
     {path:'player',component:PlayersComponent},

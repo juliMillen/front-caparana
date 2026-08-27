@@ -1,73 +1,77 @@
 <section class="container my-5">
-  <div class="text-center mb-4">
-    <h2>Últimas Noticias</h2>
+
+  <!-- Encabezado -->
+  <div class="text-center mb-5">
+    <h2 class="text-danger fw-bold">Últimas Noticias</h2>
     <hr class="w-25 mx-auto text-danger" style="height: 3px;">
   </div>
 
-  <div class="row g-4"> <div class="col-lg-4 col-md-6 col-12">
-      <div class="card h-100 shadow-sm">
-        <img src="images/foto1-prueba.jpg" class="card-img-top" alt="Noticia 1">
-        <div class="card-body">
-          <h5 class="card-title">Título Noticia 1</h5>
-          <p class="card-text">Breve descripción o copete de la noticia para enganchar al lector...</p>
-          <a href="#" class="btn btn-outline-dark btn-sm">Leer más</a>
+  <!-- Noticias -->
+  <div class="row g-4">
+
+    <div
+      class="col-lg-4 col-md-6 col-12"
+      *ngFor="let report of reports"
+    >
+
+      <div class="card news-card h-100 border-0 shadow-sm">
+
+        <!-- Imagen -->
+        <div class="news-image-wrapper">
+          <img
+            [src]="report.urlImage || 'assets/img/placeholder-noticia.jpg'"
+            [alt]="report.title"
+            class="card-img-top news-image"
+          >
         </div>
+
+        <!-- Contenido -->
+        <div class="card-body d-flex flex-column">
+
+          <p class="news-date mb-2">
+            {{ report.publicationDate | date:'dd/MM/yyyy' }}
+          </p>
+
+          <h5 class="card-title fw-bold">
+            {{ report.title }}
+          </h5>
+
+          <p class="card-text text-secondary">
+            {{ report.description }}
+          </p>
+
+          <!-- Empuja el botón hacia abajo -->
+          <div class="mt-auto pt-3">
+            <a
+              [routerLink]="['/report', report.idReport]"
+              class="btn btn-outline-danger btn-sm"
+            >
+              Leer más
+            </a>
+          </div>
+
+        </div>
+
       </div>
+
     </div>
 
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card h-100 shadow-sm">
-        <img src="images/foto2-prueba.jpg" class="card-img-top" alt="Noticia 2">
-        <div class="card-body">
-          <h5 class="card-title">Título Noticia 2</h5>
-          <p class="card-text">Breve descripción o copete de la noticia para enganchar al lector...</p>
-          <a href="#" class="btn btn-outline-dark btn-sm">Leer más</a>
-        </div>
-      </div>
-    </div>
+  </div>
 
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card h-100 shadow-sm">
-        <img src="images/foto3-prueba.jpg" class="card-img-top" alt="Noticia 3">
-        <div class="card-body">
-          <h5 class="card-title">Título Noticia 3</h5>
-          <p class="card-text">Breve descripción o copete de la noticia para enganchar al lector...</p>
-          <a href="#" class="btn btn-outline-dark btn-sm">Leer más</a>
-        </div>
-      </div>
-    </div>
+  <!-- Estado vacío -->
+  <div
+    *ngIf="reports.length === 0"
+    class="text-center py-5"
+  >
+    <div class="p-5 rounded-4 bg-light">
+      <h4 class="text-muted mb-2">
+        No hay noticias disponibles
+      </h4>
 
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card h-100 shadow-sm">
-        <img src="images/foto1-prueba.jpg" class="card-img-top" alt="Noticia 4">
-        <div class="card-body">
-          <h5 class="card-title">Título Noticia 4</h5>
-          <p class="card-text">Breve descripción o copete de la noticia...</p>
-          <a href="#" class="btn btn-outline-dark btn-sm">Leer más</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card h-100 shadow-sm">
-        <img src="images/foto2-prueba.jpg" class="card-img-top" alt="Noticia 5">
-        <div class="card-body">
-          <h5 class="card-title">Título Noticia 5</h5>
-          <p class="card-text">Breve descripción o copete de la noticia...</p>
-          <a href="#" class="btn btn-outline-dark btn-sm">Leer más</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-md-6 col-12">
-      <div class="card h-100 shadow-sm">
-        <img src="images/foto3-prueba.jpg" class="card-img-top" alt="Noticia 6">
-        <div class="card-body">
-          <h5 class="card-title">Título Noticia 6</h5>
-          <p class="card-text">Breve descripción o copete de la noticia...</p>
-          <a href="#" class="btn btn-outline-dark btn-sm">Leer más</a>
-        </div>
-      </div>
+      <p class="text-secondary mb-0">
+        Las noticias aparecerán aquí cuando sean publicadas.
+      </p>
     </div>
   </div>
+
 </section>

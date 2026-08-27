@@ -3,6 +3,6 @@ export interface Report {
     idReport:number
     title:string
     description:string
-    publicationDate:Date
+    publicationDate:string
     urlImage:string
 }

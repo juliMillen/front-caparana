@@ -1,0 +1,117 @@
+.club-history {
+  max-width: 1000px;
+}
+
+/* Historia */
+.history-section {
+  padding: 20px 0;
+}
+
+.foundation-date {
+  color: #6c757d;
+  font-size: 1.05rem;
+  margin-bottom: 30px;
+}
+
+.foundation-date strong {
+  color: #343a40;
+}
+
+.history-text {
+  color: #495057;
+  font-size: 1.1rem;
+  line-height: 1.9;
+  text-align: justify;
+}
+
+/* Separadores */
+.section-divider {
+  margin: 50px 0;
+  border: 0;
+  border-top: 2px solid rgba(220, 53, 69, 0.15);
+}
+
+/* Detalles del club */
+.club-details h3,
+.titles-section h4 {
+  letter-spacing: 0.3px;
+}
+
+/* Tarjetas de colores y estadio */
+.detail-card {
+  padding: 28px;
+  border-radius: 14px;
+  background-color: #f8f9fa;
+  border-left: 4px solid #dc3545;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.detail-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.detail-card h5 {
+  letter-spacing: 0.5px;
+}
+
+.detail-card p {
+  color: #495057;
+  line-height: 1.7;
+}
+
+/* Campeonatos */
+.titles-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.titles-list li {
+  position: relative;
+  padding: 15px 20px 15px 45px;
+  margin-bottom: 12px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  color: #495057;
+  font-weight: 500;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.titles-list li::before {
+  content: "🏆";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.titles-list li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+
+  .club-history {
+    padding: 0 15px;
+  }
+
+  .history-text {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .section-divider {
+    margin: 35px 0;
+  }
+
+  .detail-card {
+    padding: 22px;
+  }
+
+  .titles-list li {
+    padding-left: 42px;
+  }
+}
