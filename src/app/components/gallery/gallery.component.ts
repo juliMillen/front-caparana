@@ -26,7 +26,7 @@ export class GalleryComponent implements OnInit{
         this.gallery = data;
       },
       error: (err) => {
-        console.log("Error al cargar galeria");
+        console.log("Error al cargar galeria",err);
       }
   });
  }

@@ -1,0 +1,63 @@
+.sponsors-title {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* Tarjeta de cada sponsor */
+.sponsor-card {
+  height: 130px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid #e9e9e9;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Logo */
+.sponsor-image {
+  max-width: 85%;
+  max-height: 85px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.25s ease;
+}
+
+/* Efecto al pasar el mouse */
+.sponsor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+}
+
+.sponsor-card:hover .sponsor-image {
+  transform: scale(1.05);
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+  .sponsor-card {
+    height: 120px;
+    padding: 15px;
+  }
+
+  .sponsor-image {
+    max-height: 75px;
+  }
+}
+
+/* Celulares */
+@media (max-width: 576px) {
+  .sponsor-card {
+    height: 110px;
+    padding: 12px;
+  }
+
+  .sponsor-image {
+    max-width: 90%;
+    max-height: 70px;
+  }
+}

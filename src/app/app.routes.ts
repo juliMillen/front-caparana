@@ -9,6 +9,14 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
+import { LogginComponent } from './components/loggin/loggin.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { DisciplinesAdminComponent } from './components/admin/disciplines-admin/disciplines-admin.component';
+import { ExecutivesAdminComponent } from './components/admin/executives-admin/executives-admin.component';
+import { GalleryAdminComponent } from './components/admin/gallery-admin/gallery-admin.component';
+import { PlayersAdminComponent } from './components/admin/players-admin/players-admin.component';
+import { ReportsAdminComponent } from './components/admin/reports-admin/reports-admin.component';
+import { SponsorsAdminComponent } from './components/admin/sponsors-admin/sponsors-admin.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -26,6 +34,14 @@ export const routes: Routes = [
     {path:'player/id',component:PlayersComponent},
     {path:'sponsor',component:SponsorsComponent},
     {path:'sponsor/id',component:SponsorsComponent},
-    {path:'footer',component:FooterComponent}
+    {path:'footer',component:FooterComponent},
+    {path:'login',component:LogginComponent},
+    {path:'dashboard',component:DashboardComponent},
+    {path:'disciplines-admin',component:DisciplinesAdminComponent},
+    {path:'executives-admin',component:ExecutivesAdminComponent},
+    {path:'gallery-admin',component:GalleryAdminComponent},
+    {path:'players-admin',component:PlayersAdminComponent},
+    {path:'reports-admin',component:ReportsAdminComponent},
+    {path:'sponsors-admin',component:SponsorsAdminComponent}
 
 ];

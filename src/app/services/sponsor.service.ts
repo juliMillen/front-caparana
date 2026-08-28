@@ -21,7 +21,7 @@ export class SponsorService {
     }
   
     createSponsor(sponsor:Sponsor):Observable<Sponsor>{
-      return this.http.post<Sponsor>(`${this.apiUrl}/`,Sponsor);
+      return this.http.post<Sponsor>(`${this.apiUrl}/`,sponsor);
     }
   
     updateSponsor(idSponsor:number, sponsor:Sponsor):Observable<Sponsor>{

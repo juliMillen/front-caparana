@@ -1,20 +1,38 @@
-<div class="container text-center my-5"> <h3 class="mb-4 text-muted text-uppercase" style="font-size: 1.2rem; letter-spacing: 2px;">Sponsors</h3>
-  
-  <div class="row align-items-center justify-content-center g-4"> <div class="col-6 col-md-3">
-      <img src="images/imagesbanco.png" class="img-fluid w-75 mx-auto d-block" alt="Imagen logo Banco Entre Rios">
-    </div>
-    
-    <div class="col-6 col-md-3">
-      <img src="images/parana-image.png" class="img-fluid w-75 mx-auto d-block" alt="Imagen Logo Paraná">
-    </div>
-    
-    <div class="col-6 col-md-3">
-      <img src="images/Liga_Paranaense_de_Fútbol.png" class="img-fluid w-75 mx-auto d-block" alt="Imagen logo Liga Paranaense">
-    </div>
-    
-    <div class="col-6 col-md-3">
-      <img src="images/images.jpg" class="img-fluid w-75 mx-auto d-block" alt="Imagen logo JuliCrocs">
+<div class="container text-center my-5">
+
+  <h3 class="mb-4 text-muted text-uppercase sponsors-title">
+    Sponsors
+  </h3>
+
+  <div class="row align-items-center justify-content-center g-4">
+
+    <div
+      class="col-6 col-md-3"
+      *ngFor="let sponsor of sponsors"
+    >
+
+      <div class="sponsor-card">
+
+        <img
+          [src]="sponsor.urlImage || 'assets/img/placeholder-sponsor.jpg'"
+          [alt]="'Logo de ' + sponsor.name"
+          class="img-fluid sponsor-image"
+        >
+
+      </div>
+
     </div>
 
   </div>
+
+  <div
+    *ngIf="sponsors.length === 0"
+    class="py-4"
+  >
+    <p class="text-muted mb-0">
+      No hay sponsors disponibles.
+    </p>
+  </div>
+
 </div>
+
