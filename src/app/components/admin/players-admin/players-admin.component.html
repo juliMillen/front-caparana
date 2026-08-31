@@ -1,1 +1,68 @@
-<p>players-admin works!</p>
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-danger fw-bold">Administrar Jugadores</h1>
+
+        <button class="btn btn-primary">Agregar</button>
+    </div>
+
+     <!-- Buscadores -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-6">
+            <label for="searchId" class="form-label fw-semibold">
+                Buscar por ID
+            </label>
+
+            <input
+                type="number"
+                id="searchId"
+                class="form-control"
+                placeholder="Ingrese el ID del jugador"
+                [(ngModel)]="searchId"
+                >
+        </div>
+
+        <div class="col-md-6">
+            <label for="searchSurname" class="form-label fw-semibold">
+                Buscar por apellido
+            </label>
+
+            <input
+                type="text"
+                id="searchSurname"
+                class="form-control"
+                placeholder="Ingrese el apellido"
+                [(ngModel)]="searchSurname"
+                >
+        </div>
+         <button class="btn btn-success btn-sm" (click)="filterPlayers()">Buscar</button>
+
+    </div>
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-danger">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Posicion</th>
+                    <th scope="col">Numero</th>
+                    <th scope="col" class="text-center">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let player of filteredPlayers">
+                    <td>{{player.name}}</td>
+                    <td>{{player.surname}}</td>
+                    <td>{{player.position}}</td>
+                    <td>{{player.num}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-outline-success">Editar</button>
+                        <button class="btn btn-outline-danger btn-sm">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

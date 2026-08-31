@@ -16,23 +16,30 @@
             Club
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownClub">
-            <li><a class="dropdown-item" routerLink="/categority">Categorías</a></li>
-            <li><a class="dropdown-item" routerLink="/discipline">Disciplinas</a></li>
-            <li><a class="dropdown-item" routerLink="/executive">Ejecutivos</a></li>
-            <li><a class="dropdown-item" routerLink="/club">Historia</a></li>
-            <li><a class="dropdown-item" routerLink="/player">Jugadores</a></li>
+            <li><a class="dropdown-item" [routerLink]="getCategoriesRoute()">Categorías</a></li>
+            <li><a class="dropdown-item" [routerLink]="getDisciplinesRoute()">Disciplinas</a></li>
+            <li><a class="dropdown-item" [routerLink]="getExecutivesRoute()">Ejecutivos</a></li>
+            <li><a class="dropdown-item" [routerLink]="getClubRoute()">Historia</a></li>
+            <li><a class="dropdown-item" [routerLink]="getPlayersRoute()">Jugadores</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/report">Noticias</a>
+          <a class="nav-link" [routerLink]="getReportsRoute()">Noticias</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/gallery/1">Galería</a>
+          <a class="nav-link" [routerLink]="getGalleryRoute()">Galería</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/sponsor">Sponsors</a>
+          <a class="nav-link" [routerLink]="getSponsorsRoute()">Sponsors</a>
         </li>
       </ul>
+      <button
+  *ngIf="isAdmin"
+  type="button"
+  class="btn btn-outline-danger"
+  (click)="logout()">
+  Cerrar sesión
+</button>
     </div>
   </div>
 </nav>

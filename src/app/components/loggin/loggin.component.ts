@@ -53,7 +53,7 @@ formLoginReac(){
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         this.authService.guardarToken(response.token);
-        this.router.navigate(["/dashboard"])
+        this.router.navigate(["/admin/dashboard"])
       },
       error: (err) =>{
         this.loading = false;

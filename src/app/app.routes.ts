@@ -17,6 +17,8 @@ import { GalleryAdminComponent } from './components/admin/gallery-admin/gallery-
 import { PlayersAdminComponent } from './components/admin/players-admin/players-admin.component';
 import { ReportsAdminComponent } from './components/admin/reports-admin/reports-admin.component';
 import { SponsorsAdminComponent } from './components/admin/sponsors-admin/sponsors-admin.component';
+import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
+import { CategoritiesAdminComponent } from './components/admin/categorities-admin/categorities-admin.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -36,12 +38,16 @@ export const routes: Routes = [
     {path:'sponsor/id',component:SponsorsComponent},
     {path:'footer',component:FooterComponent},
     {path:'login',component:LogginComponent},
+    {path:'admin',component: AdminLayoutComponent, children: [
     {path:'dashboard',component:DashboardComponent},
+    {path:'club-admin',component:ClubComponent},
     {path:'disciplines-admin',component:DisciplinesAdminComponent},
     {path:'executives-admin',component:ExecutivesAdminComponent},
     {path:'gallery-admin',component:GalleryAdminComponent},
     {path:'players-admin',component:PlayersAdminComponent},
     {path:'reports-admin',component:ReportsAdminComponent},
-    {path:'sponsors-admin',component:SponsorsAdminComponent}
+    {path:'sponsors-admin',component:SponsorsAdminComponent},
+    {path:'categorities-admin',component:CategoritiesAdminComponent}
+    ]}
 
 ];

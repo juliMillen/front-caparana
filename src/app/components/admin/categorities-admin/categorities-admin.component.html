@@ -1,1 +1,27 @@
-<p>categorities-admin works!</p>
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-danger fw-bold">Administrar Categorias</h1>
+
+        <button class="btn btn-primary">Agregar</button>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-danger">
+                <tr>
+                    <th scope="col">Categoria</th>
+                    <th scope="col" class="text-center">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let cate of categorities">
+                    <td>{{cate.nameCategority}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-outline-danger btn-sm">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

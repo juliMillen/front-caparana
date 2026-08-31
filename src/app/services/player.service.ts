@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class PlayerService {
 
-  private apiUrl= environment + '/player'
+  private apiUrl= environment.apiUrl + '/player'
   constructor(private http:HttpClient) { }
 
     getPlayers(): Observable<Player[]>{
-      return this.http.get<Player[]>(`${this.apiUrl}/`);
+      return this.http.get<Player[]>(`${this.apiUrl}`);
     }
   
     getPlayerById(idPlayer:number):Observable<Player>{
