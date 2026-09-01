@@ -1,0 +1,67 @@
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Ejecutivo</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="executiveForm" novalidate (ngSubmit)="createExecutive()">
+
+            <!--NAME-->
+          <div class="mb-3">
+            <label class="form-label">Nombre del Ejecutivo: </label>
+            <input type="text" class="form-control" formControlName="nameExecutive" name="nameExecutive" [ngClass]="{
+              'is-invalid': executiveForm.get('nameExecutive')?.invalid && executiveForm.get('nameExecutive')?.touched,
+              'is-valid': executiveForm.get('nameExecutive')?.valid && executiveForm.get('nameExecutive')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="executiveForm.get('nameExecutive')?.errors?.['required']">
+              El nombre es obligatorio
+            </div>
+          </div>
+
+          <!--SURNAME-->
+            <div class="mb-3">
+            <label class="form-label">Apellido del Ejecutivo: </label>
+            <input type="text" class="form-control" formControlName="surnameExecutive" name="surnameExecutive" [ngClass]="{
+              'is-invalid': executiveForm.get('surnameExecutive')?.invalid && executiveForm.get('surnameExecutive')?.touched,
+              'is-valid': executiveForm.get('surnameExecutive')?.valid && executiveForm.get('surnameExecutive')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="executiveForm.get('surnameExecutive')?.errors?.['required']">
+              El apellido es obligatorio
+            </div>
+          </div>
+
+          <!--POSITION-->
+            <div class="mb-3">
+            <label class="form-label">Posicion del Ejecutivo: </label>
+            <input type="text" class="form-control" formControlName="positionExecutive" name="positionExecutive" [ngClass]="{
+              'is-invalid': executiveForm.get('positionExecutive')?.invalid && executiveForm.get('positionExecutive')?.touched,
+              'is-valid': executiveForm.get('positionExecutive')?.valid && executiveForm.get('positionExecutive')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="executiveForm.get('positionExecutive')?.errors?.['required']">
+              La posicion es obligatoria
+            </div>
+          </div>
+
+
+          <!--IMAGE-->
+            <div class="form-group mb-3">
+            <input type="file" class="form-control-file" id="urlImage">
+            </div>
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
