@@ -70,13 +70,13 @@ export class ExecutivesAdminComponent implements OnInit{
     })
   }
 
-  eliminatedExecutive(idExecutive:number):void{
+  deleteExecutive(idExecutive:number):void{
     this.executivesService.deleteExecutive(idExecutive).subscribe({
       next:() =>{
         this.executives = this.executives.filter(e => e.idExecutive !== idExecutive)
       },
       error: (err) => {
-        console.error("Error al eliminar ejecutivo");
+        console.error("Error al eliminar ejecutivo",err);
       }
     })
   }

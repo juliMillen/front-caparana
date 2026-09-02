@@ -1,0 +1,81 @@
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Categoria</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="playerForm" novalidate (ngSubmit)="createPlayer()">
+
+            <!--NAME-->
+          <div class="mb-3">
+            <label class="form-label">Nombre: </label>
+            <input type="text" class="form-control" formControlName="name" name="name" [ngClass]="{
+              'is-invalid': playerForm.get('name')?.invalid && playerForm.get('name')?.touched,
+              'is-valid': playerForm.get('name')?.valid && playerForm.get('name')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="playerForm.get('name')?.errors?.['required']">
+              El nombre es obligatorio
+            </div>
+          </div>
+
+            <!--SURNAME-->
+          <div class="mb-3">
+            <label class="form-label">Apellido: </label>
+            <input type="text" class="form-control" formControlName="surname" name="surname" [ngClass]="{
+              'is-invalid': playerForm.get('surname')?.invalid && playerForm.get('surname')?.touched,
+              'is-valid': playerForm.get('surname')?.valid && playerForm.get('surname')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="playerForm.get('surname')?.errors?.['required']">
+              El apellido es obligatorio
+            </div>
+          </div>
+
+         <!--POSICION-->
+          <div class="mb-3">
+            <label class="form-label">Posicion: </label>
+            <input type="text" class="form-control" formControlName="position" name="position" [ngClass]="{
+              'is-invalid': playerForm.get('position')?.invalid && playerForm.get('position')?.touched,
+              'is-valid': playerForm.get('position')?.valid && playerForm.get('position')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="playerForm.get('position')?.errors?.['required']">
+              La posicion es obligatoria
+            </div>
+          </div>
+
+
+            <!--NUMERO-->
+          <div class="mb-3">
+            <label class="form-label">Numero camiseta: </label>
+            <input type="number" class="form-control" formControlName="num" name="num" [ngClass]="{
+              'is-invalid': playerForm.get('num')?.invalid && playerForm.get('num')?.touched,
+              'is-valid': playerForm.get('num')?.valid && playerForm.get('num')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="playerForm.get('num')?.errors?.['required']">
+              Debe ingresar el numero de camiseta
+            </div>
+          </div>
+
+            <!--IMAGE-->
+            <div class="form-group mb-3">
+            <input type="file" class="form-control-file" id="urlImage">
+            </div>
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-success">Aceptar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

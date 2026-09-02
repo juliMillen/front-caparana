@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="text-danger fw-bold">Administrar Disciplinas</h1>
 
-        <button class="btn btn-primary">Agregar</button>
+        <button class="btn btn-primary" (click)="openModal()">Agregar</button>
     </div>
 
     <div class="table-responsive shadow-sm rounded">
@@ -26,11 +26,15 @@
                     <td>{{disci.professorAsig}}</td>
                     <td>{{disci.ubication}}</td>
                     <td class="text-center">
-                        <button class="btn btn-outline-success">Editar</button>
-                        <button class="btn btn-outline-danger btn-sm">Eliminar</button>
+                        <button class="btn btn-outline-success" (click)="openEditModal()">Editar</button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteDiscipline(disci.idDiscipline)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<app-discipline-form *ngIf="showModal" (disciplineCreated)="createDiscipline($event)" (closedModal)="closeModal()">
+
+</app-discipline-form>

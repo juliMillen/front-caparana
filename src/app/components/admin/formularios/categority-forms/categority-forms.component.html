@@ -1,1 +1,37 @@
-<p>categority-forms works!</p>
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Categoria</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="categorityForm" novalidate (ngSubmit)="createCategority()">
+
+            <!--NAME-->
+          <div class="mb-3">
+            <label class="form-label">Nombre Categoria: </label>
+            <input type="text" class="form-control" formControlName="nameCategority" name="nameCategority" [ngClass]="{
+              'is-invalid': categorityForm.get('nameCategority')?.invalid && categorityForm.get('nameCategority')?.touched,
+              'is-valid': categorityForm.get('nameCategority')?.valid && categorityForm.get('nameCategority')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="categorityForm.get('nameCategority')?.errors?.['required']">
+              El nombre es obligatorio
+            </div>
+          </div>
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+            <button type="button" class="btn btn-primary">Agregar Jugador</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

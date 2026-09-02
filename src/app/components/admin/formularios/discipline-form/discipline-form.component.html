@@ -1,0 +1,88 @@
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Disciplina</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="disciplineForm" novalidate (ngSubmit)="createDiscipline()">
+
+            <!--NAME-->
+          <div class="mb-3">
+            <label class="form-label">Nombre Disciplina: </label>
+            <input type="text" class="form-control" formControlName="nameDiscipline" name="nameDiscipline" [ngClass]="{
+              'is-invalid': disciplineForm.get('nameDiscipline')?.invalid && disciplineForm.get('nameDiscipline')?.touched,
+              'is-valid': disciplineForm.get('nameDiscipline')?.valid && disciplineForm.get('nameDiscipline')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="disciplineForm.get('nameDiscipline')?.errors?.['required']">
+              El nombre es obligatorio
+            </div>
+          </div>
+
+          <!--DESCRIPTION-->
+            <div class="mb-3">
+            <label class="form-label">Descripcion: </label>
+            <input type="text" class="form-control" formControlName="description" name="description" [ngClass]="{
+              'is-invalid': disciplineForm.get('description')?.invalid && disciplineForm.get('description')?.touched,
+              'is-valid': disciplineForm.get('description')?.valid && disciplineForm.get('description')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="disciplineForm.get('description')?.errors?.['required']">
+              La descripcion es obligatoria
+            </div>
+          </div>
+
+          <!--SHEDULES-->
+            <div class="mb-3">
+            <label class="form-label">Horarios: </label>
+            <input type="text" class="form-control" formControlName="schedule" name="schedule" [ngClass]="{
+              'is-invalid': disciplineForm.get('shedule')?.invalid && disciplineForm.get('schedule')?.touched,
+              'is-valid': disciplineForm.get('schedule')?.valid && disciplineForm.get('schedule')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="disciplineForm.get('schedule')?.errors?.['required']">
+              Debe ingresar el horario en que se dicta la disciplina
+            </div>
+          </div>
+
+            <!--PROFESSOR ASIGN-->
+            <div class="mb-3">
+            <label class="form-label">Profesor Asignado: </label>
+            <input type="text" class="form-control" formControlName="professorAsig" name="professorAsig" [ngClass]="{
+              'is-invalid': disciplineForm.get('professorAsig')?.invalid && disciplineForm.get('professorAsig')?.touched,
+              'is-valid': disciplineForm.get('professorAsig')?.valid && disciplineForm.get('professorAsig')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="disciplineForm.get('professorAsig')?.errors?.['required']">
+              Debe ingresar un profesor asignado a la disciplina
+            </div>
+          </div>
+
+            <!--UBICATION-->
+            <div class="mb-3">
+            <label class="form-label">Ubicación: </label>
+            <input type="text" class="form-control" formControlName="ubication" name="ubication" [ngClass]="{
+              'is-invalid': disciplineForm.get('ubication')?.invalid && disciplineForm.get('ubication')?.touched,
+              'is-valid': disciplineForm.get('ubication')?.valid && disciplineForm.get('ubication')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="disciplineForm.get('ubication')?.errors?.['required']">
+              La ubicacion es obligatoria
+            </div>
+          </div>
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
