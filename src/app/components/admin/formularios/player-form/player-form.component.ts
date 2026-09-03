@@ -29,7 +29,37 @@ export class PlayerFormComponent implements OnInit{
   }
 
   createPlayer(){
-    
+    if(this.playerForm.invalid){
+      this.playerForm.markAllAsTouched();
+      return;
+    }
+
+    const player: Player = {
+      idPlayer: 0,
+      name:this.playerForm.value.name,
+      surname:this.playerForm.value.surname,
+      position:this.playerForm.value.position,
+      num:this.playerForm.value.num,
+      urlImage:this.playerForm.value.urlImage
+    };
+    this.playerCreated.emit(player);
+  }
+
+  updatePlayer():void{
+    if(this.playerForm.invalid){
+      this.playerForm.markAllAsTouched();
+      return;
+    }
+
+    const playerUpdated: Player = {
+      idPlayer:0,
+      name:this.playerForm.value.name,
+      surname:this.playerForm.value.surname,
+      position:this.playerForm.value.position,
+      num:this.playerForm.value.num,
+      urlImage:this.playerForm.value.urlImage
+    };
+    this.playerUpdated.emit(playerUpdated);
   }
 
 

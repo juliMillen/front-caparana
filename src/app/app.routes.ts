@@ -19,6 +19,7 @@ import { ReportsAdminComponent } from './components/admin/reports-admin/reports-
 import { SponsorsAdminComponent } from './components/admin/sponsors-admin/sponsors-admin.component';
 import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
 import { CategoritiesAdminComponent } from './components/admin/categorities-admin/categorities-admin.component';
+import { ClubAdminComponent } from './components/admin/club-admin/club-admin.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -40,7 +41,7 @@ export const routes: Routes = [
     {path:'login',component:LogginComponent},
     {path:'admin',component: AdminLayoutComponent, children: [
     {path:'dashboard',component:DashboardComponent},
-    {path:'club-admin',component:ClubComponent},
+    {path:'club-admin',component:ClubAdminComponent},
     {path:'disciplines-admin',component:DisciplinesAdminComponent},
     {path:'executives-admin',component:ExecutivesAdminComponent},
     {path:'gallery-admin',component:GalleryAdminComponent},

@@ -1,0 +1,101 @@
+/* Fondo que cubre toda la pantalla */
+.modal {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Contenedor del modal */
+.modal-dialog {
+  max-width: 550px;
+}
+
+/* Contenido */
+.modal-content {
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Encabezado */
+.modal-header {
+  background-color: #c90000;
+  color: white;
+  border-bottom: none;
+  padding: 18px 24px;
+}
+
+/* Título */
+.modal-title {
+  font-weight: bold;
+  color:black;
+}
+
+/* Botón X */
+.modal-header .btn-close {
+  filter: brightness(0) invert(1);
+  opacity: 1;
+}
+
+.modal-header .btn-close:hover {
+  opacity: 0.8;
+}
+
+/* Cuerpo */
+.modal-body {
+  background-color: white;
+  padding: 25px;
+}
+
+/* Labels */
+.form-label {
+  color: #222;
+  font-weight: 600;
+}
+
+/* Inputs */
+.form-control {
+  background-color: white;
+  border: 1px solid #ced4da;
+  border-radius: 7px;
+  padding: 10px 12px;
+}
+
+/* Input cuando recibe el foco */
+.form-control:focus {
+  border-color: #c90000;
+  box-shadow: 0 0 0 0.2rem rgba(201, 0, 0, 0.15);
+}
+
+/* Input de archivo */
+input[type="file"] {
+  cursor: pointer;
+}
+
+/* Footer */
+.modal-footer {
+  background-color: white;
+  border-top: 1px solid #eee;
+  padding: 15px 25px;
+}
+
+/* Botón cancelar */
+.btn-danger {
+  background-color: #c90000;
+  border-color: #c90000;
+}
+
+.btn-danger:hover {
+  background-color: #a80000;
+  border-color: #a80000;
+}
+
+/* Botón guardar */
+.btn-success {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+.btn-success:hover {
+  background-color: #146c43;
+  border-color: #146c43;
+}

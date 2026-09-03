@@ -9,7 +9,7 @@
       <div class="modal-body">
         <form [formGroup]="categorityForm" novalidate (ngSubmit)="createCategority()">
 
-            <!--NAME-->
+          <!--NAME-->
           <div class="mb-3">
             <label class="form-label">Nombre Categoria: </label>
             <input type="text" class="form-control" formControlName="nameCategority" name="nameCategority" [ngClass]="{
@@ -21,12 +21,24 @@
               El nombre es obligatorio
             </div>
           </div>
+          <!--VISTA DE JUGADORES AGREGADOS-->
 
+          <div class="mb-3" *ngIf="players.length > 0">
+            <label class="form-label fw-bold">
+              Jugadores Agregados:
+            </label>
 
-
+            <div *ngFor="let player of players" class="border rounded p-2 mb-2">
+              <strong>{{player.name}} {{player.surname}}</strong>
+              <br>
+              <small>
+                {{player.position}} - {{player.num}}
+              </small>
+            </div>
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
-            <button type="button" class="btn btn-primary">Agregar Jugador</button>
+            <button type="button" class="btn btn-primary" (click)="openPlayerModal()">Agregar Jugador</button>
             <button type="submit" class="btn btn-success">Guardar</button>
           </div>
         </form>
@@ -35,3 +47,7 @@
     </div>
   </div>
 </div>
+
+<app-player-form *ngIf="showPlayerModal" (playerCreated)="createPlayer($event)" (closedModal)="closePlayerModal()">
+
+</app-player-form>

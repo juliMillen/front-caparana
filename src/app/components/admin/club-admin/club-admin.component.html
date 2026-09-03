@@ -1,1 +1,52 @@
-<p>club-admin works!</p>
+<div class="container my-5">
+
+  <h1 class="text-danger fw-bold mb-4">
+    Administración del Club
+  </h1>
+
+  <div *ngIf="club" class="card shadow">
+
+    <div class="card-body">
+
+      <h3 class="card-title">
+        {{ club.name }}
+      </h3>
+
+      <p class="card-text">
+        <strong>Fecha de fundación:</strong>
+        {{ club.fundationDate }}
+      </p>
+
+      <p class="card-text">
+        <strong>Historia:</strong>
+        {{ club.history }}
+      </p>
+
+      <p class="card-text">
+        <strong>Historia del estadio:</strong>
+        {{ club.stadiumHistory }}
+      </p>
+
+      <p class="card-text">
+        <strong>Historia de los colores:</strong>
+        {{ club.colorsHistory }}
+      </p>
+
+      <button
+        class="btn btn-outline-success"
+        (click)="openModal()">
+        Editar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<app-club-form
+  *ngIf="showModal"
+  [club]="club"
+  (clubUpdated)="updateClub($event)"
+  (closedModal)="closeModal()">
+</app-club-form>

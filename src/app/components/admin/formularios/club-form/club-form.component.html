@@ -1,1 +1,63 @@
-<p>club-form works!</p>
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Actualizar Datos:</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form [formGroup]="clubForm" novalidate (ngSubmit)="updateClub()">
+
+          <!-- History -->
+          <div class="mb-3">
+            <label for="form-label">Historia</label>
+            <textarea class="form-control" formControlName="history" name="history" rows="6" [ngClass]="{
+              'is-invalid': clubForm.get('history')?.invalid && clubForm.get('history')?.touched,
+              'is-valid': clubForm.get('history')?.valid && clubForm.get('history')?.touched
+            }"></textarea>
+          </div>
+
+
+          <!-- Colors History -->
+          <div class="mb-3">
+            <label class="form-label">Historia Colores:</label>
+            <textarea class="form-control" formControlName="colorsHistory" name="colorsHistory" rows="6" [ngClass]="{
+            'is-invalid': clubForm.get('colorsHistory')?.invalid && clubForm.get('colorsHistory')?.touched,
+            'is-valid': clubForm.get('colorsHistory')?.valid && clubForm.get('colorsHistory')?.touched
+            }"></textarea>
+          </div>
+
+
+          <!-- Stadium History -->
+          <div class="mb-3">
+            <label class="form-label">Historia del Estadio:</label>
+
+            <textarea class="form-control" formControlName="stadiumHistory" name="stadiumHistory" rows="6" [ngClass]="{
+              'is-invalid': clubForm.get('stadiumHistory')?.invalid && clubForm.get('stadiumHistory')?.touched,
+              'is-valid': clubForm.get('stadiumHistory')?.valid && clubForm.get('stadiumHistory')?.touched
+              }"></textarea>
+          </div>
+
+
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">
+              Cancelar
+            </button>
+
+            <button type="submit" class="btn btn-success">
+              Guardar
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
