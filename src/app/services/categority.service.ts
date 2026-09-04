@@ -22,14 +22,14 @@ export class CategorityService {
   }
 
   createCategority(categority:Categority):Observable<Categority>{
-    return this.http.post<Categority>(`${this.apiUrl}/`,categority);
+    return this.http.post<Categority>(`${this.apiUrl}/create`,categority);
   }
 
   updateCategority(idCategority:number, categority:Categority):Observable<Categority>{
-    return this.http.patch<Categority>(`${this.apiUrl}/${idCategority}`,categority);
+    return this.http.patch<Categority>(`${this.apiUrl}/update/${idCategority}`,categority);
   }
 
   deleteCategority(idCategority:number):Observable<Categority>{
-    return this.http.delete<Categority>(`${this.apiUrl}/${idCategority}`);
+    return this.http.delete<Categority>(`${this.apiUrl}/delete/${idCategority}`);
   }
 }

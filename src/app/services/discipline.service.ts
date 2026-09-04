@@ -21,14 +21,14 @@ export class DisciplineService {
     }
   
     createDiscipline(discipline:Discipline):Observable<Discipline>{
-      return this.http.post<Discipline>(`${this.apiUrl}/`,discipline);
+      return this.http.post<Discipline>(`${this.apiUrl}/create`,discipline);
     }
   
     updateDiscipline(idDiscipline:number, discipline:Discipline):Observable<Discipline>{
-      return this.http.patch<Discipline>(`${this.apiUrl}/${idDiscipline}`,discipline);
+      return this.http.patch<Discipline>(`${this.apiUrl}/update/${idDiscipline}`,discipline);
     }
   
     deleteDiscipline(idDiscipline:number):Observable<Discipline>{
-      return this.http.delete<Discipline>(`${this.apiUrl}/${idDiscipline}`);
+      return this.http.delete<Discipline>(`${this.apiUrl}/delete/${idDiscipline}`);
     }
 }

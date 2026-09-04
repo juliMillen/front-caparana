@@ -22,14 +22,14 @@ private apiUrl = environment.apiUrl + '/executive'
     }
   
     createExecutive(executive:Executive):Observable<Executive>{
-      return this.http.post<Executive>(`${this.apiUrl}/`,executive);
+      return this.http.post<Executive>(`${this.apiUrl}/create`,executive);
     }
   
     updateExecutive(idExecutive:number, executive:Executive):Observable<Executive>{
-      return this.http.patch<Executive>(`${this.apiUrl}/${idExecutive}`,executive);
+      return this.http.patch<Executive>(`${this.apiUrl}/update/${idExecutive}`,executive);
     }
   
     deleteExecutive(idExecutive:number):Observable<Executive>{
-      return this.http.delete<Executive>(`${this.apiUrl}/${idExecutive}`);
+      return this.http.delete<Executive>(`${this.apiUrl}/delete/${idExecutive}`);
     }
 }

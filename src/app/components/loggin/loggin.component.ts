@@ -51,8 +51,11 @@ formLoginReac(){
     this.errorMessage='';
 
     this.authService.login(this.loginForm.value).subscribe({
-      next: (response) => {
-        this.authService.guardarToken(response.token);
+      next: (response) => { 
+
+        this.authService.guardarToken(response.jwt);
+
+
         this.router.navigate(["/admin/dashboard"])
       },
       error: (err) =>{

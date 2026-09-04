@@ -22,6 +22,6 @@ export class ClubService {
   }
 
   updateClub(id:number,club:Club):Observable<Club>{
-    return this.http.patch<Club>(`${this.apiUrl}/${id}`,club);
+    return this.http.patch<Club>(`${this.apiUrl}/update/${id}`,club);
   }
 }

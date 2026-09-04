@@ -44,9 +44,9 @@ export class ClubFormComponent implements OnInit{
       idClub: this.club.idClub,
       name:this.club.name,
       fundationDate:this.club.fundationDate,
-      history:this.club.history,
-      colorsHistory:this.club.colorsHistory,
-      stadiumHistory:this.club.stadiumHistory,
+      history:this.clubForm.value.history,
+      colorsHistory:this.clubForm.value.colorsHistory,
+      stadiumHistory:this.clubForm.value.stadiumHistory,
       titles: this.club.titles,
       urlImageShield:this.club.urlImageShield,
       urlImageStadium:this.club.urlImageStadium
