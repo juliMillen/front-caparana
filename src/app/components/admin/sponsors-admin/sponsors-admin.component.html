@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="text-danger fw-bold">Administrar Sponsors</h1>
 
-        <button class="btn btn-primary">Agregar</button>
+        <button class="btn btn-primary" (click)="openModal()">Agregar</button>
     </div>
 
     <div class="table-responsive shadow-sm rounded">
@@ -18,10 +18,16 @@
                 <tr *ngFor="let sponsor of sponsors">
                     <td>{{sponsor.name}}</td>
                     <td class="text-center">
-                        <button class="btn btn-outline-danger btn-sm">Eliminar</button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteSponsor(sponsor.idSponsor)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<app-sponsor-forms
+*ngIf="showModal"
+(sponsorCreate)="createSponsor($event)"
+(closedModal)="closeModal()"
+></app-sponsor-forms>

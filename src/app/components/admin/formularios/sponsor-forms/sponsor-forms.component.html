@@ -1,1 +1,42 @@
-<p>sponsor-forms works!</p>
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Sponsor</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="sponsorForm" novalidate (ngSubmit)="createSponsor()">
+
+            <!--NAME-->
+          <div class="mb-3">
+            <label class="form-label">Nombre: </label>
+            <input type="text" class="form-control" formControlName="name" name="name" [ngClass]="{
+              'is-invalid': sponsorForm.get('name')?.invalid && sponsorForm.get('name')?.touched,
+              'is-valid': sponsorForm.get('name')?.valid && sponsorForm.get('name')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="sponsorForm.get('name')?.errors?.['required']">
+              El nombre es obligatorio
+            </div>
+          </div>
+
+
+            <!--IMAGE-->
+            <div class="form-group mb-3">
+            <input type="file" class="form-control" id="urlImage" accept="image/*" (change)="onFileSelected($event)">
+            </div>
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-success">Aceptar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

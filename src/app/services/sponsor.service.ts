@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class SponsorService {
 
-  private apiUrl= environment + '/sponsor'
+  private apiUrl= environment.apiUrl + '/sponsor'
   constructor(private http:HttpClient) { }
 
     getSponsors(): Observable<Sponsor[]>{
-      return this.http.get<Sponsor[]>(`${this.apiUrl}/`);
+      return this.http.get<Sponsor[]>(`${this.apiUrl}`);
     }
   
     getSponsorById(idSponsor:number):Observable<Sponsor>{
@@ -21,14 +21,11 @@ export class SponsorService {
     }
   
     createSponsor(sponsor:Sponsor):Observable<Sponsor>{
-      return this.http.post<Sponsor>(`${this.apiUrl}/`,sponsor);
+      return this.http.post<Sponsor>(`${this.apiUrl}/create`,sponsor);
     }
   
-    updateSponsor(idSponsor:number, sponsor:Sponsor):Observable<Sponsor>{
-      return this.http.patch<Sponsor>(`${this.apiUrl}/${idSponsor}`,sponsor);
-    }
   
     deleteSponsor(idSponsor:number):Observable<Sponsor>{
-      return this.http.delete<Sponsor>(`${this.apiUrl}/${idSponsor}`);
+      return this.http.delete<Sponsor>(`${this.apiUrl}/delete/${idSponsor}`);
     }
 }

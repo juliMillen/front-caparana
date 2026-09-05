@@ -28,7 +28,7 @@ export class DisciplinesAdminComponent implements OnInit {
         this.disciplines = data;
       },
       error:(err)=>{
-        console.error("Error al obtener disciplinas");
+        console.error("Error al obtener disciplinas",err);
       }
     })
   }
@@ -52,7 +52,7 @@ export class DisciplinesAdminComponent implements OnInit {
         this.showModal = false;
       },
       error: (err) => {
-        console.error("Error al crear la disciplina", err);
+        console.error('Error al crear la disciplina', err);
       }
     })
   }
@@ -65,7 +65,7 @@ export class DisciplinesAdminComponent implements OnInit {
         this.showModal = false;
       },
       error:(err) => {
-        console.error("Error al actualizar la disciplina",err);
+        console.error('Error al actualizar la disciplina',err);
       }
     })
   }
@@ -78,7 +78,7 @@ export class DisciplinesAdminComponent implements OnInit {
         )
       },
       error: (err) => {
-        console.error("Error al eliminar la disciplina",err);
+        console.error('Error al eliminar la disciplina',err);
       }
     })
   }
