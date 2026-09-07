@@ -27,12 +27,6 @@
   transform: scale(1.04);
 }
 
-/* Fecha */
-.news-date {
-  color: #dc3545;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
 
 /* Título */
 .news-card .card-title {
@@ -40,10 +34,6 @@
   line-height: 1.35;
 }
 
-/* Descripción */
-.news-card .card-text {
-  line-height: 1.6;
-}
 
 /* Botón */
 .news-card .btn {

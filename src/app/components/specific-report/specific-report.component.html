@@ -1,0 +1,42 @@
+<!-- specific-report.component.html -->
+<section class="container my-5">
+
+  <div *ngIf="loading" class="report-loading text-center py-5">
+    <p>Cargando noticia...</p>
+  </div>
+
+  <div *ngIf="error" class="report-error text-center py-5">
+    <h4>No se pudo cargar la noticia</h4>
+  </div>
+
+  <div *ngIf="report && !loading" class="row justify-content-center report-detail">
+    <div class="col-lg-8 col-12">
+
+      <a routerLink="/reports" class="btn btn-outline-secondary btn-sm btn-back mb-4">
+        &larr; Volver a noticias
+      </a>
+
+      <div class="report-image-wrapper mb-4" style="height: 400px;">
+        <img
+          [src]="report.urlImage || 'assets/img/placeholder-noticia.jpg'"
+          [alt]="report.title"
+          class="report-image"
+        >
+      </div>
+
+      <p class="report-date mb-2">
+        {{ report.publicationDate | date:'dd/MM/yyyy' }}
+      </p>
+
+      <h2 class="fw-bold text-danger mb-3 report-title">
+        {{ report.title }}
+      </h2>
+
+      <p class="fs-5 report-description" style="white-space: pre-line;">
+        {{ report.description }}
+      </p>
+
+    </div>
+  </div>
+
+</section>
