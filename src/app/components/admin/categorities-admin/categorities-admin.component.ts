@@ -52,4 +52,16 @@ export class CategoritiesAdminComponent implements OnInit {
     this.showModal = false;
   }
 
+  deleteCategority(idCategority:number):void{
+    this.categorityService.deleteCategority(idCategority).subscribe({
+      next:() => {
+        this.categorities = this.categorities.filter(e=> e.idCategority !== idCategority);
+      },
+      error:(err) => {
+        console.error('Error al eliminar categoria', err);
+      }
+      
+    })
+  }
+
 }

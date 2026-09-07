@@ -42,16 +42,23 @@ export class SponsorsAdminComponent implements OnInit {
     this.showModal = false;
   }
 
-  createSponsor(sponsor:Sponsor):void{
-    this.sponsorService.createSponsor(sponsor).subscribe({
+  createSponsor(data: {sponsor: Sponsor, file:File | null}):void{
+    const formData = new FormData();
+    formData.append('name', data.sponsor.name);
+
+    if(data.file){
+      formData.append('image',data.file);
+    }
+
+    this.sponsorService.createSponsor(formData).subscribe({
       next:(data) => {
         this.sponsors.push(data);
         this.showModal = false;
       },
-      error: (err) => {
-        console.error('Error al crear el sponsor',err);
+      error:(err) => {
+        console.error('Error al crear Sponsor', err);
       }
-    })
+    });
   }
 
   deleteSponsor(idSponsor:number):void{

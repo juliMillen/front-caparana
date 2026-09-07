@@ -18,7 +18,7 @@
                 <tr *ngFor="let cate of categorities">
                     <td>{{cate.nameCategority}}</td>
                     <td class="text-center">
-                        <button class="btn btn-outline-danger btn-sm">Eliminar</button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteCategority(cate.idCategority)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>

@@ -14,7 +14,7 @@ export class SponsorFormsComponent implements OnInit{
   sponsorForm!: FormGroup;
   selectedFile: File | null = null;
 
-  @Output() sponsorCreate = new EventEmitter<Sponsor>();
+  @Output() sponsorCreate = new EventEmitter<{sponsor:Sponsor, file:File | null}>();
   @Output() closedModal = new EventEmitter<void>();
 
   constructor(private fb: FormBuilder){
@@ -36,9 +36,12 @@ export class SponsorFormsComponent implements OnInit{
     const sponsor: Sponsor = {
       idSponsor: 0,
       name: this.sponsorForm.value.name,
-      urlImage: this.sponsorForm.value.urlImage
+      urlImage: ''
     };
-    this.sponsorCreate.emit(sponsor);
+    this.sponsorCreate.emit({
+      sponsor: sponsor,
+      file: this.selectedFile
+    });
   }
 
   closeModal():void{
@@ -51,6 +54,7 @@ export class SponsorFormsComponent implements OnInit{
     const input = event.target as HTMLInputElement;
     if(input.files && input.files.length > 0){
       this.selectedFile = input.files[0];
+      console.log('Archivo seleccionado: ',this.selectedFile);
     }
   }
 }

@@ -20,8 +20,8 @@ export class SponsorService {
       return this.http.get<Sponsor>(`${this.apiUrl}/${idSponsor}`);
     }
   
-    createSponsor(sponsor:Sponsor):Observable<Sponsor>{
-      return this.http.post<Sponsor>(`${this.apiUrl}/create`,sponsor);
+    createSponsor(formData:FormData):Observable<Sponsor>{
+      return this.http.post<Sponsor>(`${this.apiUrl}/create`,formData);
     }
   
   
