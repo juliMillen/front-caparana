@@ -21,8 +21,8 @@ private apiUrl = environment.apiUrl + '/executive'
       return this.http.get<Executive>(`${this.apiUrl}/${idExecutive}`);
     }
   
-    createExecutive(executive:Executive):Observable<Executive>{
-      return this.http.post<Executive>(`${this.apiUrl}/create`,executive);
+    createExecutive(formData:FormData):Observable<Executive>{
+      return this.http.post<Executive>(`${this.apiUrl}/create`,formData);
     }
   
     updateExecutive(idExecutive:number, executive:Executive):Observable<Executive>{

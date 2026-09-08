@@ -12,8 +12,9 @@ import { Player } from '../../../../models/player';
 export class PlayerFormComponent implements OnInit{
 
   playerForm!:FormGroup;
+  selectedFile: File | null = null;
 
-  @Output() playerCreated= new EventEmitter<Player>();
+  @Output() playerCreated= new EventEmitter<{player:Player,file:File | null}>();
   @Output() playerUpdated = new EventEmitter<Player>();
   @Output() closedModal = new EventEmitter<void>();
 
@@ -40,9 +41,12 @@ export class PlayerFormComponent implements OnInit{
       surname:this.playerForm.value.surname,
       position:this.playerForm.value.position,
       num:this.playerForm.value.num,
-      urlImage:this.playerForm.value.urlImage
+      urlImage:''
     };
-    this.playerCreated.emit(player);
+    this.playerCreated.emit({
+      player: player,
+      file:this.selectedFile
+    });
   }
 
   updatePlayer():void{
@@ -66,6 +70,14 @@ export class PlayerFormComponent implements OnInit{
     closeModal():void{
     this.playerForm.reset();
     this.closedModal.emit();
+  }
+
+  onFileSelected(event:Event):void{
+    const input = event.target as HTMLInputElement;
+    if(input.files && input.files.length > 0){
+      this.selectedFile = input.files[0];
+      console.log('Archivo seleccionado: ',this.selectedFile);
+    }
   }
 
 }

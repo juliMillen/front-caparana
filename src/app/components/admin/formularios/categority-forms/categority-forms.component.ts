@@ -42,8 +42,17 @@ export class CategorityFormsComponent implements OnInit{
     this.categorityCreated.emit(categority);
   }
 
-  createPlayer(player:Player):void{
-    this.players.push(player);
+  createPlayer(data:{player:Player, file:File | null}):void{
+    const formData = new FormData;
+    formData.append('name',data.player.name);
+    formData.append('surname',data.player.surname);
+    formData.append('position',data.player.position);
+    formData.append('num',data.player.num.toString());
+
+    if(data.file){
+      formData.append('image',data.file);
+    }
+    this.players.push(data.player);
     this.showPlayerModal = false;
   }
 

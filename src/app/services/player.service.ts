@@ -20,8 +20,8 @@ export class PlayerService {
       return this.http.get<Player>(`${this.apiUrl}/${idPlayer}`);
     }
   
-    createPlayer(player:Player):Observable<Player>{
-      return this.http.post<Player>(`${this.apiUrl}/`,player);
+    createPlayer(formData:FormData):Observable<Player>{
+      return this.http.post<Player>(`${this.apiUrl}/`,formData);
     }
   
     updatePlayer(idPlayer:number, player:Player):Observable<Player>{

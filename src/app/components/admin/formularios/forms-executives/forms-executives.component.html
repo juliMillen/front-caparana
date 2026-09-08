@@ -51,7 +51,7 @@
 
           <!--IMAGE-->
             <div class="form-group mb-3">
-            <input type="file" class="form-control-file" id="urlImage">
+            <input type="file" class="form-control" id="urlImage" accept="image/*" (change)="onFileSelected($event)">
             </div>
 
 

@@ -45,8 +45,16 @@ export class ExecutivesAdminComponent implements OnInit{
     this.showModal = false;
   }
 
-  createExecutive(executive:Executive):void{
-    this.executivesService.createExecutive(executive).subscribe({
+  createExecutive(data: {executive:Executive, file:File | null}):void{
+    const formData = new FormData();
+    formData.append('name', data.executive.name);
+    formData.append('surname',data.executive.surname);
+    formData.append('position',data.executive.position);
+    if(data.file){
+      formData.append('image',data.file);
+    }
+
+    this.executivesService.createExecutive(formData).subscribe({
       next:(data) =>{
         this.executives.push(data);
         this.showModal = false;
