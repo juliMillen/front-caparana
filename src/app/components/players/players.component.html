@@ -6,7 +6,7 @@
     <div class="col" *ngFor="let player of getPlayersByPosition(position)">
       <div class="card h-100 shadow-sm border-0 text-center">
         <div class="p-3 bg-light text-center">
-          <img [src]="player.urlImage || 'assets/img/placeholder-jugador.jpg'"
+          <img [src]="player.urlImage"
             [alt]="player.name + ' ' + player.surname"
             class="img-fluid rounded-circle border border-2 border-danger mx-auto"
             style="width: 120px; height: 120px; object-fit: cover;">
