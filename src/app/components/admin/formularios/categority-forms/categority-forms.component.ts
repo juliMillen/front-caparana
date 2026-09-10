@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Categority } from '../../../../models/categority';
 import { Player } from '../../../../models/player';
 import { PlayerFormComponent } from "../player-form/player-form.component";
+import { CategorityService } from '../../../../services/categority.service';
+import { PlayerService } from '../../../../services/player.service';
 
 @Component({
   selector: 'app-categority-forms',
@@ -16,11 +18,12 @@ export class CategorityFormsComponent implements OnInit{
   categorityForm!: FormGroup;
   players: Player[] = [];
   showPlayerModal: boolean = false;
+  createdCategority: Categority | null = null;
 
   @Output() categorityCreated = new EventEmitter<Categority>();
   @Output() closedModal = new EventEmitter<void>();
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private categorityService:CategorityService, private playerService:PlayerService){}
 
   ngOnInit(): void {
     this.categorityForm = this.fb.group({
@@ -37,12 +40,23 @@ export class CategorityFormsComponent implements OnInit{
     const categority:Categority = {
       idCategority: 0,
       nameCategority:this.categorityForm.value.nameCategority,
-      playerList: this.players
+      playerList:[]
     };
-    this.categorityCreated.emit(categority);
+    this.categorityService.createCategority(categority).subscribe({
+      next:(data) =>{
+        this.createdCategority = data;
+        console.log('Categoria creada: ',data);
+      },
+      error:(err) => {
+        console.error('Error al crear categoria',err);
+      }
+    });
   }
 
   createPlayer(data:{player:Player, file:File | null}):void{
+
+    if(!this.createdCategority) return;
+
     const formData = new FormData;
     formData.append('name',data.player.name);
     formData.append('surname',data.player.surname);
@@ -52,8 +66,16 @@ export class CategorityFormsComponent implements OnInit{
     if(data.file){
       formData.append('image',data.file);
     }
-    this.players.push(data.player);
-    this.showPlayerModal = false;
+    this.playerService.createPlayer(this.createdCategority.idCategority,formData).subscribe({
+      next:(data) => {
+        this.players.push(data);
+        console.log('Jugador agregado: ',data);
+        this.showPlayerModal = false;
+      },
+      error:(err) =>{
+        console.error('Error al crear jugador',err);
+      }
+    });
   }
 
   openPlayerModal():void{
@@ -64,9 +86,18 @@ export class CategorityFormsComponent implements OnInit{
     this.showPlayerModal = false;
   }
 
+  finish():void{
+    if(this.createdCategority){
+      this.createdCategority.playerList = this.players;
+      this.categorityCreated.emit(this.createdCategority);
+    }
+    this.closeModal();
+  }
+
   closeModal():void{
     this.categorityForm.reset();
     this.players = [];
+    this.createdCategority = null;
     this.closedModal.emit();
   }
 

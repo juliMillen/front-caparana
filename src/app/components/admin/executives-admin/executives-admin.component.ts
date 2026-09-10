@@ -60,7 +60,7 @@ export class ExecutivesAdminComponent implements OnInit{
         this.showModal = false;
       },
       error: (err) =>{
-        console.error("Error al crear el ejecutivo", err);
+        console.error('Error al crear el ejecutivo', err);
       }
     })
   
@@ -73,7 +73,7 @@ export class ExecutivesAdminComponent implements OnInit{
         this.showModal = false;
       },
       error:(err) => {
-        console.error("Error al actualizar ejecutivo", err);
+        console.error('Error al actualizar ejecutivo', err);
       }
     })
   }
@@ -84,7 +84,7 @@ export class ExecutivesAdminComponent implements OnInit{
         this.executives = this.executives.filter(e => e.idExecutive !== idExecutive)
       },
       error: (err) => {
-        console.error("Error al eliminar ejecutivo",err);
+        console.error('Error al eliminar ejecutivo',err);
       }
     })
   }

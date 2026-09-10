@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ReportService {
 
-  private apiUrl = environment.apiUrl + '/reports'
+  private apiUrl = environment.apiUrl + '/report'
   constructor(private http:HttpClient) { }
 
     getReports(): Observable<Report[]>{

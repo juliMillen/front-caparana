@@ -38,8 +38,10 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+            <button *ngIf="!createdCategority" type="button" class="btn btn-success"
+            (click)="createCategority()">Guardar</button>
             <button type="button" class="btn btn-primary" (click)="openPlayerModal()">Agregar Jugador</button>
-            <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="submit" class="btn btn-success" (click)="finish()">Finalizar</button>
           </div>
         </form>
       </div>

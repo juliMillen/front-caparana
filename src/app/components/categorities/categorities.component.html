@@ -13,11 +13,11 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
       <div class="col" *ngFor="let player of category.playerList">
         <div class="card player-card h-100 border-0 shadow-sm text-center">
-                    <div class="col-4 col-sm-3 text-center">
+            <div class="player-image-wrapper text-center">
             <img
               *ngIf="player.urlImage"
               [src]="player.urlImage"
-              class="img-fluid rounded-circle"
+              class="player-image"
               alt="Imagen de {{player.name}}"
             />
           </div>

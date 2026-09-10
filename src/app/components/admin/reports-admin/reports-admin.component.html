@@ -1,1 +1,234 @@
-<p>reports-admin works!</p>
+<div class="container-fluid py-4 news-admin">
+
+  <!-- Encabezado -->
+  <div class="admin-header d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+      <h1 class="fw-bold text-danger mb-1">
+        Gestión de Noticias
+      </h1>
+
+      <p class="text-muted mb-0">
+        Administrá las noticias y publicaciones del club
+      </p>
+    </div>
+
+    <button
+      class="btn btn-danger px-4 shadow-sm"
+      (click)="openModal()">
+
+      Agregar noticia
+
+    </button>
+
+  </div>
+
+
+  <!-- Buscadores -->
+  <div class="card search-card border-0 shadow-sm mb-4">
+
+    <div class="card-body p-4">
+
+      <div class="row g-3 align-items-end">
+
+        <!-- Buscar por ID -->
+        <div class="col-12 col-md-5">
+
+          <label
+            for="searchId"
+            class="form-label fw-semibold">
+
+            Buscar por ID
+
+          </label>
+
+          <input
+            type="number"
+            id="searchId"
+            class="form-control"
+            placeholder="Ingrese el ID de la noticia"
+            [(ngModel)]="searchId">
+
+        </div>
+
+
+        <!-- Buscar por título -->
+        <div class="col-12 col-md-5">
+
+          <label
+            for="searchTitle"
+            class="form-label fw-semibold">
+
+            Buscar por título
+
+          </label>
+
+          <input
+            type="text"
+            id="searchTitle"
+            class="form-control"
+            placeholder="Ingrese el título de la noticia"
+            [(ngModel)]="searchTitle">
+
+        </div>
+
+
+        <!-- Botón -->
+        <div class="col-12 col-md-2">
+
+          <button
+            class="btn btn-danger w-100"
+            (click)="filterReports()">
+
+            Buscar
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Tabla -->
+  <div class="card news-table-card border-0 shadow-sm">
+
+    <div class="card-body p-0">
+
+      <div class="table-responsive">
+
+        <table class="table table-hover align-middle mb-0">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th class="ps-4">
+                ID
+              </th>
+
+              <th>
+                Título
+              </th>
+
+              <th>
+                Fecha
+              </th>
+
+              <th class="text-center">
+                Acciones
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr *ngFor="let report of filteredReports">
+
+              <!-- ID -->
+              <td class="ps-4">
+
+                <span class="badge bg-danger-subtle text-danger px-3 py-2">
+                  #{{ report.idReport }}
+                </span>
+
+              </td>
+
+
+              <!-- Título -->
+              <td>
+
+                <span class="fw-semibold">
+                  {{ report.title }}
+                </span>
+
+              </td>
+
+
+              <!-- Fecha -->
+              <td class="text-muted">
+
+                <i class="bi bi-calendar3 me-2"></i>
+                {{ report.publicationDate }}
+
+              </td>
+
+
+              <!-- Acciones -->
+              <td>
+
+                <div class="d-flex justify-content-center gap-2">
+
+                  <!-- Editar -->
+                  <button
+                    class="btn btn-sm btn-outline-danger action-btn"
+                    title="Editar noticia"
+                    (click)="updateReport(report)">
+
+                    <i class="bi bi-pencil"></i>
+
+                  </button>
+
+
+                  <!-- Eliminar -->
+                  <button
+                    class="btn btn-sm btn-danger action-btn"
+                    title="Eliminar noticia"
+                    (click)="deleteReport(report.idReport)">
+
+                    <i class="bi bi-trash"></i>
+
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+
+            <!-- Sin noticias -->
+            <tr *ngIf="filteredReports.length === 0">
+
+              <td
+                colspan="4"
+                class="text-center py-5">
+
+                <div class="empty-state">
+
+                  <i class="bi bi-newspaper text-danger"></i>
+
+                  <h5 class="fw-bold mt-3 mb-2">
+                    No hay noticias disponibles
+                  </h5>
+
+                  <p class="text-muted mb-0">
+                    Las noticias que agregues aparecerán en esta tabla.
+                  </p>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+

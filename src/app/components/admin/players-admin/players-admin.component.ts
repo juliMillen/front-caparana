@@ -31,7 +31,7 @@ getPlayers():void{
       this.filteredPlayers = data;
     },
     error:(err) =>{
-      console.error("Error al obtener jugadores ",err);
+      console.error('Error al obtener jugadores ',err);
     }
   })
 }
