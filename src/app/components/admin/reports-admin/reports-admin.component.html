@@ -230,5 +230,9 @@
 
 </div>
 
+<app-report-form *ngIf="showModal" (reportCreated)="createReport($event)" (closedModal)="closeModal()">
+
+</app-report-form>
+
 
 

@@ -3,10 +3,11 @@ import { ReportService } from '../../../services/report.service';
 import { Report } from '../../../models/report';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ReportFormComponent } from '../formularios/report-form/report-form.component';
 
 @Component({
   selector: 'app-reports-admin',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule, ReportFormComponent],
   templateUrl: './reports-admin.component.html',
   styleUrl: './reports-admin.component.css'
 })
@@ -61,16 +62,24 @@ export class ReportsAdminComponent implements OnInit{
     this.showModal = false;
   }
 
-  createReport(report:Report):void{
-    this.reportService.createReport(report).subscribe({
+  createReport(data:{report:Report, file:File | null}):void{
+    const formData = new FormData();
+    formData.append('title',data.report.title);
+    formData.append('description',data.report.description);
+    formData.append('publicationDate',data.report.publicationDate);
+    if(data.file){
+      formData.append('image',data.file);
+    }
+
+    this.reportService.createReport(formData).subscribe({
       next:(data) => {
         this.reports.push(data);
-        console.log('Noticia creada: ',data);
+        this.showModal = false;
       },
-      error:(err) =>{
-        console.error('Error al crear la noticia',err)
+      error:(err) => {
+        console.error('Error al crear noticia',err);
       }
-    });
+    })
   }
 
   updateReport(report:Report):void{

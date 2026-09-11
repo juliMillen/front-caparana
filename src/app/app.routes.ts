@@ -20,6 +20,7 @@ import { SponsorsAdminComponent } from './components/admin/sponsors-admin/sponso
 import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layout.component';
 import { CategoritiesAdminComponent } from './components/admin/categorities-admin/categorities-admin.component';
 import { ClubAdminComponent } from './components/admin/club-admin/club-admin.component';
+import { SpecificReportComponent } from './components/specific-report/specific-report.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -29,7 +30,7 @@ export const routes: Routes = [
     {path:'discipline',component:DisciplinesComponent},
     {path:'discipline/:id',component:DisciplinesComponent},
     {path:'report',component:ReportsComponent},
-    {path:'report/:id',component:ReportsComponent},
+    {path:'report/:idReport',component:SpecificReportComponent},
     {path:'gallery/id',component:GalleryComponent},
     {path:'executive',component:ExecutivesComponent},
     {path:'executive/:id',component:ExecutivesComponent},

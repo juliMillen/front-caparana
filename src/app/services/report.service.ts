@@ -20,15 +20,15 @@ export class ReportService {
       return this.http.get<Report>(`${this.apiUrl}/${idReport}`);
     }
   
-    createReport(report:Report):Observable<Report>{
-      return this.http.post<Report>(`${this.apiUrl}/`,report);
+    createReport(formData:FormData):Observable<Report>{
+      return this.http.post<Report>(`${this.apiUrl}/create`,formData);
     }
   
     updateReport(idReport:number, report:Report):Observable<Report>{
-      return this.http.patch<Report>(`${this.apiUrl}/${idReport}`,report);
+      return this.http.patch<Report>(`${this.apiUrl}/update/${idReport}`,report);
     }
   
     deleteReport(idReport:number):Observable<Report>{
-      return this.http.delete<Report>(`${this.apiUrl}/${idReport}`);
+      return this.http.delete<Report>(`${this.apiUrl}/delete/${idReport}`);
     }
 }

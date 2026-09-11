@@ -1,0 +1,89 @@
+<section class="container my-5">
+
+  <!-- PASO 1: Crear la Galería -->
+  <div *ngIf="step === 'gallery'" class="row justify-content-center">
+    <div class="col-lg-6 col-12">
+      <h3 class="fw-bold mb-4">Nueva Galería</h3>
+
+      <form [formGroup]="galleryForm" (ngSubmit)="onSubmitGallery()">
+        <div class="mb-3">
+          <label class="form-label">Título</label>
+          <input type="text" class="form-control" formControlName="title">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Fecha de publicación</label>
+          <input type="date" class="form-control" formControlName="publicationDate">
+        </div>
+
+        <div *ngIf="errorGallery" class="alert alert-danger">
+          No se pudo crear la galería. Intentá de nuevo.
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-danger"
+          [disabled]="galleryForm.invalid || loadingGallery"
+        >
+          {{ loadingGallery ? 'Guardando...' : 'Guardar y continuar' }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- PASO 2: Agregar Fotos -->
+  <div *ngIf="step === 'photos'" class="row justify-content-center">
+    <div class="col-lg-8 col-12">
+
+      <h3 class="fw-bold mb-1">{{ gallery?.title }}</h3>
+      <p class="text-muted mb-4">Agregá las fotos de esta galería</p>
+
+      <!-- Fotos ya agregadas -->
+      <div class="row g-3 mb-4" *ngIf="photos.length > 0">
+        <div class="col-4" *ngFor="let photo of photos">
+          <div class="card border-0 shadow-sm">
+            <img [src]="photo.urlImage" [alt]="photo.description" class="card-img-top" style="height: 120px; object-fit: cover;">
+            <div class="card-body p-2">
+              <small>{{ photo.description }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formulario para agregar una foto -->
+      <form [formGroup]="photoForm" (ngSubmit)="onSubmitPhoto()" class="border rounded p-3">
+        <div class="mb-3">
+          <label class="form-label">Descripción</label>
+          <textarea class="form-control" formControlName="description" rows="2"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Imagen</label>
+          <input type="file" accept="image/*" class="form-control" (change)="onFileSelected($event)">
+        </div>
+
+        <div class="mb-3" *ngIf="previewUrl">
+          <img [src]="previewUrl" alt="Preview" style="max-height: 150px;">
+        </div>
+
+        <div *ngIf="errorPhoto" class="alert alert-danger">
+          No se pudo subir la foto. Intentá de nuevo.
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-outline-danger me-2"
+          [disabled]="photoForm.invalid || !selectedFile || loadingPhoto"
+        >
+          {{ loadingPhoto ? 'Subiendo...' : 'Agregar foto' }}
+        </button>
+      </form>
+
+      <button class="btn btn-success mt-4" (click)="finalizar()" [disabled]="photos.length === 0">
+        Finalizar galería
+      </button>
+
+    </div>
+  </div>
+
+</section>

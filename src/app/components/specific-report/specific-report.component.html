@@ -12,13 +12,13 @@
   <div *ngIf="report && !loading" class="row justify-content-center report-detail">
     <div class="col-lg-8 col-12">
 
-      <a routerLink="/reports" class="btn btn-outline-secondary btn-sm btn-back mb-4">
+      <a routerLink="/report" class="btn btn-outline-secondary btn-sm btn-back mb-4">
         &larr; Volver a noticias
       </a>
 
       <div class="report-image-wrapper mb-4" style="height: 400px;">
         <img
-          [src]="report.urlImage || 'assets/img/placeholder-noticia.jpg'"
+          [src]="report.urlImage"
           [alt]="report.title"
           class="report-image"
         >

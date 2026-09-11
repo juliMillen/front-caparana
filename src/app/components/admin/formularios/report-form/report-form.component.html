@@ -1,1 +1,65 @@
-<p>report-form works!</p>
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Noticia</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="reportForm" novalidate (ngSubmit)="createReport()">
+
+            <!--NAME-->
+          <div class="mb-3">
+            <label class="form-label">Titulo: </label>
+            <input type="text" class="form-control" formControlName="title" name="title" [ngClass]="{
+              'is-invalid': reportForm.get('title')?.invalid && reportForm.get('title')?.touched,
+              'is-valid': reportForm.get('title')?.valid && reportForm.get('title')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="reportForm.get('title')?.errors?.['required']">
+              El titulo es obligatorio
+            </div>
+          </div>
+
+          <!--DESCRIPTION-->
+            <div class="mb-3">
+            <label class="form-label">Descripcion: </label>
+            <input type="text" class="form-control" formControlName="description" name="description" [ngClass]="{
+              'is-invalid': reportForm.get('description')?.invalid && reportForm.get('description')?.touched,
+              'is-valid': reportForm.get('description')?.valid && reportForm.get('description')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="reportForm.get('description')?.errors?.['required']">
+              La descripcion es obligatoria
+            </div>
+          </div>
+
+          <!--SHEDULES-->
+            <div class="mb-3">
+            <label class="form-label">Fecha: </label>
+            <input type="date" class="form-control" formControlName="publicationDate" name="publicationDate" [ngClass]="{
+              'is-invalid': reportForm.get('publicationDate')?.invalid && reportForm.get('publicationDate')?.touched,
+              'is-valid': reportForm.get('publicationDate')?.valid && reportForm.get('publicationDate')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="reportForm.get('publicationDate')?.errors?.['required']">
+              Debe ingresar la fecha de publicacion
+            </div>
+          </div>
+
+            <!--IMAGE-->
+            <div class="form-group mb-3">
+            <input type="file" class="form-control" id="urlImage" accept="image/*" (change)="onFileSelected($event)">
+            </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-success">Guardar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
