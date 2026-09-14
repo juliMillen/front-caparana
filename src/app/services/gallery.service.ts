@@ -9,9 +9,13 @@ import { Observable } from 'rxjs';
 })
 export class GalleryService {
 
-  private apiUrl= environment + '/gallery'
+  private apiUrl= environment.apiUrl + '/gallery'
   constructor(private http:HttpClient) { }
 
+
+    getGalleries():Observable<Gallery[]>{
+      return this.http.get<Gallery[]>(`${this.apiUrl}/`);
+    }
 
     getGalleryById(idGallery:number):Observable<Gallery>{
       return this.http.get<Gallery>(`${this.apiUrl}/${idGallery}`);
@@ -23,6 +27,10 @@ export class GalleryService {
   
     updateCategority(idGallery:number, gallery:Gallery):Observable<Gallery>{
       return this.http.patch<Gallery>(`${this.apiUrl}/${idGallery}`,gallery);
+    }
+
+    deleteGallery(idGallery:number):Observable<Gallery>{
+      return this.http.delete<Gallery>(`${this.apiUrl}/delete/${idGallery}`);
     }
 
 }

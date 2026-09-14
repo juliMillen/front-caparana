@@ -23,6 +23,10 @@ export class PhotoService {
     createPhoto(photo:Photo):Observable<Photo>{
       return this.http.post<Photo>(`${this.apiUrl}/`,photo);
     }
+
+    addPhotoGallery(idGallery:number,formData:FormData):Observable<Photo>{
+      return this.http.post<Photo>(`${this.apiUrl}/gallery/${idGallery}`,formData);
+    }
   
     deletePhoto(idPhoto:number):Observable<Photo>{
       return this.http.delete<Photo>(`${this.apiUrl}/${idPhoto}`);

@@ -27,7 +27,7 @@ export class CategoritiesAdminComponent implements OnInit {
         this.categorities = data;
       },
       error: (err) =>{
-        console.error("Error al obtener categorias ",err);
+        console.error('Error al obtener categorias ',err);
       }
     })
   }
@@ -39,7 +39,7 @@ export class CategoritiesAdminComponent implements OnInit {
         this.showModal = false;
       },
       error:(err) => {
-        console.error("Error al crear categoria",err);
+        console.error('Error al crear categoria',err);
       }
     });
   }

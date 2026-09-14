@@ -1,89 +1,62 @@
-<section class="container my-5">
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Crear Galeria</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="galleryForm" novalidate (ngSubmit)="createGallery()">
 
-  <!-- PASO 1: Crear la Galería -->
-  <div *ngIf="step === 'gallery'" class="row justify-content-center">
-    <div class="col-lg-6 col-12">
-      <h3 class="fw-bold mb-4">Nueva Galería</h3>
+          <!--TITULO-->
+          <div class="mb-3">
+            <label class="form-label">Titulo: </label>
+            <input type="text" class="form-control" formControlName="title" name="title" [ngClass]="{
+              'is-invalid': galleryForm.get('title')?.invalid && galleryForm.get('title')?.touched,
+              'is-valid': galleryForm.get('title')?.valid && galleryForm.get('title')?.touched
+            }">
 
-      <form [formGroup]="galleryForm" (ngSubmit)="onSubmitGallery()">
-        <div class="mb-3">
-          <label class="form-label">Título</label>
-          <input type="text" class="form-control" formControlName="title">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Fecha de publicación</label>
-          <input type="date" class="form-control" formControlName="publicationDate">
-        </div>
-
-        <div *ngIf="errorGallery" class="alert alert-danger">
-          No se pudo crear la galería. Intentá de nuevo.
-        </div>
-
-        <button
-          type="submit"
-          class="btn btn-danger"
-          [disabled]="galleryForm.invalid || loadingGallery"
-        >
-          {{ loadingGallery ? 'Guardando...' : 'Guardar y continuar' }}
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- PASO 2: Agregar Fotos -->
-  <div *ngIf="step === 'photos'" class="row justify-content-center">
-    <div class="col-lg-8 col-12">
-
-      <h3 class="fw-bold mb-1">{{ gallery?.title }}</h3>
-      <p class="text-muted mb-4">Agregá las fotos de esta galería</p>
-
-      <!-- Fotos ya agregadas -->
-      <div class="row g-3 mb-4" *ngIf="photos.length > 0">
-        <div class="col-4" *ngFor="let photo of photos">
-          <div class="card border-0 shadow-sm">
-            <img [src]="photo.urlImage" [alt]="photo.description" class="card-img-top" style="height: 120px; object-fit: cover;">
-            <div class="card-body p-2">
-              <small>{{ photo.description }}</small>
+            <div class="invalid-feedback" *ngIf="galleryForm.get('title')?.errors?.['required']">
+              El titulo es obligatorio
             </div>
           </div>
-        </div>
+
+          
+          <!--PUBLICATION DATE-->
+            <div class="mb-3">
+            <label class="form-label">Fecha de publicacion: </label>
+            <input type="text" class="form-control" formControlName="publicationDate" name="publicationDate" [ngClass]="{
+              'is-invalid': galleryForm.get('publicationDate')?.invalid && galleryForm.get('publicationDate')?.touched,
+              'is-valid': galleryForm.get('publicationDate')?.valid && galleryForm.get('publicationDate')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="galleryForm.get('publicationDate')?.errors?.['required']">
+              Debe ingresar la fecha de publicacion
+            </div>
+          </div>
+
+          <!--VIEW ADD PHOTOS-->
+
+          <div class="mb-3" *ngIf="photos.length > 0">
+            <label class="form-label fw-bold">
+              Fotos Agregadas:
+            </label>
+
+            <div *ngFor="let photo of photos" class="border rounded p-2 mb-2">
+              <strong>{{photo.description}}</strong>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+            <button *ngIf="!galleryCreated" type="button" class="btn btn-success"
+            (click)="createGallery()">Guardar</button>
+            <button type="button" class="btn btn-primary" (click)="openPhotoModal()">Agregar Fotos</button>
+            <button type="submit" class="btn btn-success" (click)="finish()">Finalizar</button>
+          </div>
+        </form>
       </div>
-
-      <!-- Formulario para agregar una foto -->
-      <form [formGroup]="photoForm" (ngSubmit)="onSubmitPhoto()" class="border rounded p-3">
-        <div class="mb-3">
-          <label class="form-label">Descripción</label>
-          <textarea class="form-control" formControlName="description" rows="2"></textarea>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Imagen</label>
-          <input type="file" accept="image/*" class="form-control" (change)="onFileSelected($event)">
-        </div>
-
-        <div class="mb-3" *ngIf="previewUrl">
-          <img [src]="previewUrl" alt="Preview" style="max-height: 150px;">
-        </div>
-
-        <div *ngIf="errorPhoto" class="alert alert-danger">
-          No se pudo subir la foto. Intentá de nuevo.
-        </div>
-
-        <button
-          type="submit"
-          class="btn btn-outline-danger me-2"
-          [disabled]="photoForm.invalid || !selectedFile || loadingPhoto"
-        >
-          {{ loadingPhoto ? 'Subiendo...' : 'Agregar foto' }}
-        </button>
-      </form>
-
-      <button class="btn btn-success mt-4" (click)="finalizar()" [disabled]="photos.length === 0">
-        Finalizar galería
-      </button>
 
     </div>
   </div>
-
-</section>
+</div>
