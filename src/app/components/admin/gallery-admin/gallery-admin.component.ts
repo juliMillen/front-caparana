@@ -28,6 +28,18 @@ export class GalleryAdminComponent implements OnInit{
     });
   }
 
+  onGalleryCreated():void{
+    this.galleryService.getGalleries().subscribe({
+      next:(data) => {
+        this.galleries = data;
+        this.closedModal();
+      },
+      error:(err) => {
+        console.error('Error al cargar galerias',err);
+      }
+    });
+  }
+
   openModal():void{
     this.showModal = true;
   }

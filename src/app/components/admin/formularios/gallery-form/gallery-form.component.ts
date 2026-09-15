@@ -5,11 +5,12 @@ import { Photo } from '../../../../models/photo';
 import { GalleryService } from '../../../../services/gallery.service';
 import { PhotoService } from '../../../../services/photo.service';
 import { CommonModule } from '@angular/common';
+import { PhotoFormComponent } from '../photo-form/photo-form.component';
 
 
 @Component({
   selector: 'app-gallery-form',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, PhotoFormComponent],
   templateUrl: './gallery-form.component.html',
   styleUrl: './gallery-form.component.css'
 })
