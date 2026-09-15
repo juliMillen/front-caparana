@@ -28,11 +28,53 @@ export class GalleryFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.galleryForm = this.fb.group({
+      title:['',Validators.required],
+      publicationDate:['',Validators.required]
+    });
   }
 
   createGallery():void{
+    if(this.galleryForm.invalid){
+      this.galleryForm.markAllAsTouched();
+      return;
+    }
 
+    const gallery:Gallery = {
+      idGallery: 0,
+      title:this.galleryForm.value.title,
+      publicationDate:this.galleryForm.value.publicationDate,
+      photos:[]
+    };
+    this.galleryService.createGallery(gallery).subscribe({
+      next:(data) => {
+        this.createdGallery = data;
+        console.log('Galeria creada: ',data);
+      },
+      error:(err) => {
+        console.error('Error al crear la galeria',err);
+      }
+    });
+  }
+
+  addPhoto(data:{photo:Photo,file:File | null}):void{
+    if(!this.createdGallery) return;
+    const formData = new FormData;
+    formData.append('description',data.photo.description);
+    
+    if(data.file){
+      formData.append('image',data.file);
+    }
+    this.photoService.addPhotoGallery(this.createdGallery.idGallery,formData).subscribe({
+      next:(data) => {
+        this.photos.push(data);
+        console.log('Foto agregada: ',data);
+        this.showPhotoModal = false;
+      },
+      error:(err) => {
+        console.error('Error al agregar foto',err);
+      }
+    });
   }
 
   openPhotoModal():void{
