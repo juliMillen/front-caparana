@@ -14,7 +14,7 @@ export class GalleryService {
 
 
     getGalleries():Observable<Gallery[]>{
-      return this.http.get<Gallery[]>(`${this.apiUrl}/`);
+      return this.http.get<Gallery[]>(`${this.apiUrl}`);
     }
 
     getGalleryById(idGallery:number):Observable<Gallery>{
@@ -22,11 +22,11 @@ export class GalleryService {
     }
   
     createGallery(gallery:Gallery):Observable<Gallery>{
-      return this.http.post<Gallery>(`${this.apiUrl}/`,gallery);
+      return this.http.post<Gallery>(`${this.apiUrl}/create`,gallery);
     }
   
-    updateCategority(idGallery:number, gallery:Gallery):Observable<Gallery>{
-      return this.http.patch<Gallery>(`${this.apiUrl}/${idGallery}`,gallery);
+    updateGallery(idGallery:number, gallery:Gallery):Observable<Gallery>{
+      return this.http.patch<Gallery>(`${this.apiUrl}/update/${idGallery}`,gallery);
     }
 
     deleteGallery(idGallery:number):Observable<Gallery>{

@@ -1,0 +1,133 @@
+<div class="container my-5 my-gallery">
+
+  <div class="row justify-content-center">
+
+    <div class="col-lg-8 col-md-10 col-12">
+
+      <!--Titulo de la galeria-->
+      <div *ngIf="gallery" class="text-center mb-4">
+        <h2 class="fw-bold">
+          {{gallery.title}}
+        </h2>
+
+        <p class="text-muted">
+          {{gallery.publicationDate}}
+        </p>
+      </div>
+
+      <div
+        #carouselRef
+        id="carouselGaleriaClub"
+        class="carousel slide shadow rounded overflow-hidden"
+        *ngIf="galleries.length"
+      >
+
+        <!-- Indicadores -->
+        <div class="carousel-indicators">
+
+          <button
+            *ngFor="let photo of gallery?.photosDTO; let i = index"
+            type="button"
+            data-bs-target="#carouselGaleriaClub"
+            [attr.data-bs-slide-to]="i"
+            [class.active]="i === 0"
+            [attr.aria-current]="i === 0 ? 'true' : null"
+            [attr.aria-label]="'Slide ' + (i + 1)"
+          >
+          </button>
+
+        </div>
+
+
+        <!-- Fotos -->
+        <div class="carousel-inner">
+
+          <div
+            *ngFor="let photo of gallery?.photosDTO; let i = index"
+            class="carousel-item"
+            [class.active]="i === 0"
+          >
+
+            <img
+              [src]="photo.urlImage"
+              [alt]="photo.description"
+              class="d-block w-100 img-carousel-fixed"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- Anterior -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselGaleriaClub"
+          data-bs-slide="prev"
+        >
+
+          <span
+            class="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+
+          <span class="visually-hidden">
+            Anterior
+          </span>
+
+        </button>
+
+
+        <!-- Siguiente -->
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselGaleriaClub"
+          data-bs-slide="next"
+        >
+
+          <span
+            class="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+
+          <span class="visually-hidden">
+            Siguiente
+          </span>
+
+        </button>
+
+      </div>
+
+
+      <!-- Sin fotos -->
+      <div
+        *ngIf="gallery && gallery.photosDTO.length === 0"
+        class="text-center py-5"
+      >
+
+        <h4 class="text-muted">
+          No hay fotos disponibles
+        </h4>
+
+        <p class="text-secondary">
+          Las fotos aparecerán aquí cuando sean cargadas.
+        </p>
+
+      </div>
+
+      <!--No hay galerias-->
+      <div *ngIf="!gallery" class="text-center py-5"
+      >
+      <h4 class="text-muted">No hay galerias disponibles</h4>
+      <p class="text-secondary">
+        Las galerias apareceran aqui cuando sean cargadas
+      </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

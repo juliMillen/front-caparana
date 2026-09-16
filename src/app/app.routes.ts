@@ -31,6 +31,7 @@ export const routes: Routes = [
     {path:'discipline/:id',component:DisciplinesComponent},
     {path:'report',component:ReportsComponent},
     {path:'report/:idReport',component:SpecificReportComponent},
+    {path:'gallery',component:GalleryComponent},
     {path:'gallery/id',component:GalleryComponent},
     {path:'executive',component:ExecutivesComponent},
     {path:'executive/:id',component:ExecutivesComponent},

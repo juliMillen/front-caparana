@@ -64,7 +64,7 @@ export class NavbarComponent implements OnInit {
   getGalleryRoute():string{
     return this.isAdmin
     ?'/admin/gallery-admin'
-    :'/gallery/1'
+    :'/gallery'
   }
 
   getExecutivesRoute():string{

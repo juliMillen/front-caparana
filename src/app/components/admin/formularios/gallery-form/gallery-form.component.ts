@@ -45,7 +45,7 @@ export class GalleryFormComponent implements OnInit {
       idGallery: 0,
       title:this.galleryForm.value.title,
       publicationDate:this.galleryForm.value.publicationDate,
-      photos:[]
+      photosDTO:[]
     };
     this.galleryService.createGallery(gallery).subscribe({
       next:(data) => {
@@ -88,7 +88,7 @@ export class GalleryFormComponent implements OnInit {
 
   finish():void{
     if(this.createdGallery){
-      this.createdGallery.photos = this.photos;
+      this.createdGallery.photosDTO = this.photos;
       this.galleryCreated.emit(this.createdGallery);
     }
     this.closeModal();

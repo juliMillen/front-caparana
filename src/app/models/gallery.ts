@@ -4,5 +4,5 @@ export interface Gallery {
     idGallery:number
     title:string
     publicationDate:string
-    photos: Photo[];
+    photosDTO: Photo[];
 }

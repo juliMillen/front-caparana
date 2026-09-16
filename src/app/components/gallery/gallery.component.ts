@@ -1,7 +1,11 @@
+
+
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Gallery } from '../../models/gallery';
 import { GalleryService } from '../../services/gallery.service';
+import * as bootstrap from 'bootstrap';
+
 
 @Component({
   selector: 'app-gallery',
@@ -10,7 +14,10 @@ import { GalleryService } from '../../services/gallery.service';
   styleUrl: './gallery.component.css'
 })
 export class GalleryComponent implements OnInit{
-  gallery!: Gallery;
+  galleries: Gallery[] = [];
+
+
+  @ViewChild('carouselRef') carouselRef!:ElementRef;
 
   constructor(private galleryService:GalleryService){
 
@@ -21,14 +28,15 @@ export class GalleryComponent implements OnInit{
   }
 
   getGallery():void {
-    this.galleryService.getGalleryById(1).subscribe({
+    this.galleryService.getGalleries().subscribe({
       next:(data) => {
-        this.gallery = data;
+        this.galleries = data;
       },
       error: (err) => {
-        console.log("Error al cargar galeria",err);
+        console.log('Error al cargar galerias',err);
       }
   });
  }
+
 
 }

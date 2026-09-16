@@ -1,111 +1,30 @@
 <div class="container my-5 my-gallery">
 
-  <div class="row justify-content-center">
+  <div *ngIf="galleries.length === 0" class="text-center py-5">
+    <h4 class="text-muted">No hay galerías disponibles</h4>
+    <p class="text-secondary">Las galerías aparecerán aquí cuando sean cargadas.</p>
+  </div>
 
-    <div class="col-lg-8 col-md-10 col-12">
+  <div *ngFor="let gallery of galleries" class="mb-5">
 
-      <div
-        id="carouselGaleriaClub"
-        class="carousel slide shadow rounded overflow-hidden"
-        data-bs-ride="carousel"
-        *ngIf="gallery?.photos?.length"
-      >
+    <div class="text-center mb-4">
+      <h2 class="fw-bold">{{ gallery.title }}</h2>
+      <p class="text-muted">{{ gallery.publicationDate }}</p>
+    </div>
 
-        <!-- Indicadores -->
-        <div class="carousel-indicators">
+    <div *ngIf="gallery.photosDTO.length === 0" class="text-center py-3">
+      <p class="text-secondary">No hay fotos en esta galería.</p>
+    </div>
 
-          <button
-            *ngFor="let photo of gallery.photos; let i = index"
-            type="button"
-            data-bs-target="#carouselGaleriaClub"
-            [attr.data-bs-slide-to]="i"
-            [class.active]="i === 0"
-            [attr.aria-current]="i === 0 ? 'true' : null"
-            [attr.aria-label]="'Slide ' + (i + 1)"
-          >
-          </button>
-
-        </div>
-
-
-        <!-- Fotos -->
-        <div class="carousel-inner">
-
-          <div
-            *ngFor="let photo of gallery.photos; let i = index"
-            class="carousel-item"
-            [class.active]="i === 0"
-          >
-
-            <img
-              [src]="photo.urlImage || 'assets/img/placeholder-foto.jpg'"
-              [alt]="photo.description || 'Foto de la galería'"
-              class="d-block w-100 img-carousel-fixed"
-            >
-
+    <div class="row g-3" *ngIf="gallery.photosDTO.length > 0">
+      <div class="col-lg-4 col-md-6 col-12" *ngFor="let photo of gallery.photosDTO">
+        <div class="card shadow-sm h-100">
+          <img [src]="photo.urlImage" [alt]="photo.description" class="card-img-top img-grid-fixed">
+          <div class="card-body">
+            <p class="card-text text-center">{{ photo.description }}</p>
           </div>
-
         </div>
-
-
-        <!-- Anterior -->
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselGaleriaClub"
-          data-bs-slide="prev"
-        >
-
-          <span
-            class="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-
-          <span class="visually-hidden">
-            Anterior
-          </span>
-
-        </button>
-
-
-        <!-- Siguiente -->
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselGaleriaClub"
-          data-bs-slide="next"
-        >
-
-          <span
-            class="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-
-          <span class="visually-hidden">
-            Siguiente
-          </span>
-
-        </button>
-
       </div>
-
-
-      <!-- Sin fotos -->
-      <div
-        *ngIf="gallery && gallery.photos.length === 0"
-        class="text-center py-5"
-      >
-
-        <h4 class="text-muted">
-          No hay fotos disponibles
-        </h4>
-
-        <p class="text-secondary">
-          Las fotos aparecerán aquí cuando sean cargadas.
-        </p>
-
-      </div>
-
     </div>
 
   </div>

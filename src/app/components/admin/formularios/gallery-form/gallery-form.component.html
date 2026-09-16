@@ -26,7 +26,7 @@
           <!--PUBLICATION DATE-->
             <div class="mb-3">
             <label class="form-label">Fecha de publicacion: </label>
-            <input type="text" class="form-control" formControlName="publicationDate" name="publicationDate" [ngClass]="{
+            <input type="date" class="form-control" formControlName="publicationDate" name="publicationDate" [ngClass]="{
               'is-invalid': galleryForm.get('publicationDate')?.invalid && galleryForm.get('publicationDate')?.touched,
               'is-valid': galleryForm.get('publicationDate')?.valid && galleryForm.get('publicationDate')?.touched
             }">
@@ -49,7 +49,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
-            <button *ngIf="!galleryCreated" type="button" class="btn btn-success"
+            <button *ngIf="!createdGallery" type="button" class="btn btn-success"
             (click)="createGallery()">Guardar</button>
             <button type="button" class="btn btn-primary" (click)="openPhotoModal()">Agregar Fotos</button>
             <button type="submit" class="btn btn-success" (click)="finish()">Finalizar</button>

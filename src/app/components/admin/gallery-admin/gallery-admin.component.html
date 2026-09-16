@@ -38,6 +38,6 @@
 
 </section>
 
-<app-gallery-form (galleryCreated)="onGalleryCreated()" (closedModal)="closedModal()"
+<app-gallery-form *ngIf="showModal" (galleryCreated)="onGalleryCreated()" (closedModal)="closedModal()"
 
 ></app-gallery-form>
