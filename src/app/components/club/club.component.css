@@ -91,6 +91,23 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
 }
 
+.detail-image{
+  display: block;
+  width: 100%;
+  object-fit: contain;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.shield-image{
+  height: 220px;
+}
+
+.stadium-image{
+  height: 220px;
+  object-fit: cover;
+}
+
 /* Responsive */
 @media (max-width: 576px) {
 

@@ -42,6 +42,15 @@
               }"></textarea>
           </div>
 
+          <!--Shield Image-->
+            <div class="form-group mb-3">
+            <input type="file" class="form-control" id="urlImageShield" accept="image/*" (change)="onFileSelected($event)">
+            </div>
+
+          <!--Stadium Image-->
+            <div class="form-group mb-3">
+            <input type="file" class="form-control" id="urlImageStadium" accept="image/*" (change)="onFileSelected($event)">
+            </div>
 
           <!-- Modal Footer -->
           <div class="modal-footer">

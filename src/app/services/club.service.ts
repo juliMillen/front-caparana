@@ -17,8 +17,8 @@ export class ClubService {
     return this.http.get<Club>(`${this.apiUrl}/${id}`);
   }
 
-  createClub(club:Club):Observable<Club>{
-    return this.http.post<Club>(`${this.apiUrl}`,club);
+  createClub(formData:FormData):Observable<Club>{
+    return this.http.post<Club>(`${this.apiUrl}`,formData);
   }
 
   updateClub(id:number,club:Club):Observable<Club>{
