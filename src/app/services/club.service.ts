@@ -18,10 +18,10 @@ export class ClubService {
   }
 
   createClub(formData:FormData):Observable<Club>{
-    return this.http.post<Club>(`${this.apiUrl}`,formData);
+    return this.http.post<Club>(`${this.apiUrl}/create`,formData);
   }
 
-  updateClub(id:number,club:Club):Observable<Club>{
-    return this.http.patch<Club>(`${this.apiUrl}/update/${id}`,club);
+  updateClub(id:number,formData:FormData):Observable<Club>{
+    return this.http.patch<Club>(`${this.apiUrl}/update/${id}`,formData);
   }
 }

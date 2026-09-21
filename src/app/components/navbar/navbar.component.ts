@@ -25,6 +25,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  getDashboard():string{
+    return this.isAdmin
+    ? '/admin/dashboard'
+    : '/';
+  }
+
   getCategoriesRoute():string{
     return this.isAdmin
     ? '/admin/categorities-admin'

@@ -2,12 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Discipline } from '../../../models/discipline';
 import { DisciplineService } from '../../../services/discipline.service';
-import { FormsExecutivesComponent } from "../formularios/forms-executives/forms-executives.component";
 import { DisciplineFormComponent } from "../formularios/discipline-form/discipline-form.component";
 
 @Component({
   selector: 'app-disciplines-admin',
-  imports: [CommonModule, FormsExecutivesComponent, DisciplineFormComponent],
+  imports: [CommonModule, DisciplineFormComponent],
   templateUrl: './disciplines-admin.component.html',
   styleUrl: './disciplines-admin.component.css'
 })
@@ -15,6 +14,8 @@ export class DisciplinesAdminComponent implements OnInit {
   disciplines: Discipline[] = [];
 
   showModal: boolean = false;
+
+  selectedDiscipline: Discipline | null = null;
 
   constructor(private disciplineService:DisciplineService){}
 
@@ -34,10 +35,12 @@ export class DisciplinesAdminComponent implements OnInit {
   }
 
   openModal():void{
+    this.selectedDiscipline = null;
     this.showModal = true;
   }
 
-  openEditModal():void{
+  openEditModal(discipline:Discipline):void{
+    this.selectedDiscipline = discipline;
     this.showModal = true;
   }
 
@@ -61,8 +64,11 @@ export class DisciplinesAdminComponent implements OnInit {
   updateDiscipline(discipline:Discipline):void{
     this.disciplineService.updateDiscipline(discipline.idDiscipline,discipline).subscribe({
       next:(data) => {
-        this.disciplines.push(data);
+        this.disciplines = this.disciplines.map(
+          d => d.idDiscipline === data.idDiscipline ? data : d
+        );
         this.showModal = false;
+        this.selectedDiscipline = null;
       },
       error:(err) => {
         console.error('Error al actualizar la disciplina',err);

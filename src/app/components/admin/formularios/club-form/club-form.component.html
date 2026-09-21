@@ -4,17 +4,43 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title">Actualizar Datos:</h5>
+        <h5 class="modal-title">{{club ? 'Actualizar Datos' : 'Crear Club'}}</h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
 
       <div class="modal-body">
 
-        <form [formGroup]="clubForm" novalidate (ngSubmit)="updateClub()">
+        <form [formGroup]="clubForm" novalidate (ngSubmit)="onSubmit()">
+
+            <!--NAME-->
+          <div class="mb-3">
+            <label class="form-label">Nombre Club: </label>
+            <input type="text" class="form-control" formControlName="name" name="name" [ngClass]="{
+              'is-invalid': clubForm.get('name')?.invalid && clubForm.get('name')?.touched,
+              'is-valid': clubForm.get('name')?.valid && clubForm.get('name')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="clubForm.get('name')?.errors?.['required']">
+              El nombre es obligatorio
+            </div>
+          </div>
+
+            <!--FUNDATION DATE-->
+            <div class="mb-3">
+            <label class="form-label">Fecha de fundacion: </label>
+            <input type="date" class="form-control" formControlName="fundationDate" name="fundationDate" [ngClass]="{
+              'is-invalid': clubForm.get('fundationDate')?.invalid && clubForm.get('fundationDate')?.touched,
+              'is-valid': clubForm.get('fundationDate')?.valid && clubForm.get('fundationDate')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="clubForm.get('fundationDate')?.errors?.['required']">
+              Debe ingresar la fecha de fundacion
+            </div>
+          </div>
 
           <!-- History -->
           <div class="mb-3">
-            <label for="form-label">Historia</label>
+            <label class="form-label">Historia</label>
             <textarea class="form-control" formControlName="history" name="history" rows="6" [ngClass]="{
               'is-invalid': clubForm.get('history')?.invalid && clubForm.get('history')?.touched,
               'is-valid': clubForm.get('history')?.valid && clubForm.get('history')?.touched
@@ -42,14 +68,17 @@
               }"></textarea>
           </div>
 
-          <!--Shield Image-->
-            <div class="form-group mb-3">
-            <input type="file" class="form-control" id="urlImageShield" accept="image/*" (change)="onFileSelected($event)">
-            </div>
-
           <!--Stadium Image-->
             <div class="form-group mb-3">
-            <input type="file" class="form-control" id="urlImageStadium" accept="image/*" (change)="onFileSelected($event)">
+            <label class="form-label">Imagen Estadio:</label>
+            <input type="file" class="form-control" id="urlImageStadium" accept="image/*" (change)="onFileSelected($event,'stadium')">
+            </div>
+
+            
+          <!--Shield Image-->
+            <div class="form-group mb-3">
+            <label class="form-label">Imagen Escudo:</label>
+            <input type="file" class="form-control" id="urlImageShield" accept="image/*" (change)="onFileSelected($event,'shield')">
             </div>
 
           <!-- Modal Footer -->

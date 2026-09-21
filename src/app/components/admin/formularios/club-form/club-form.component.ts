@@ -10,34 +10,48 @@ import { Club } from '../../../../models/club';
   styleUrl: './club-form.component.css'
 })
 export class ClubFormComponent implements OnInit{
+  @Input() club:Club | null = null;
 
   clubForm!:FormGroup;
+  selectedShield:File | null = null;
+  selectedStadium:File | null = null;
+  filesMissing = false;
   titles?: String[] = [];
   selectedFile:File | null = null;
 
 
   @Output() clubCreated = new EventEmitter<{club:Club,fileStadium:File | null ,fileShield:File | null }>();
-  @Output() clubUpdated = new EventEmitter<Club>();
+  @Output() clubUpdated = new EventEmitter<{club:Club, fileStadium:File | null, fileShield:File | null}>();
   @Output() closedModal = new EventEmitter<void>();
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.clubForm = this.fb.group({
-      history:['',Validators.required],
-      colorsHistory:['',Validators.required],
-      stadiumHistory:['',Validators.required]
+      name:[this.club?.name ?? '',Validators.required],
+      fundationDate:[this.club?.fundationDate ?? '',Validators.required],
+      history:[this.club?.history ?? '',Validators.required],
+      colorsHistory:[this.club?.colorsHistory ?? '',Validators.required],
+      stadiumHistory:[this.club?.stadiumHistory ?? '',Validators.required]
     });
-    this.clubForm.patchValue({
-      history:this.clubForm.value.history,
-      colorsHistory:this.clubForm.value.colorsHistory,
-      stadiumHistory:this.clubForm.value.stadiumHistory
-    });
+  }
+
+  onSubmit():void{
+    if(this.club){
+      this.updateClub();
+    }else{
+      this.createClub();
+    }
   }
 
   createClub():void{
     if(this.clubForm.invalid){
       this.clubForm.markAllAsTouched();
+      return;
+    }
+
+    if(!this.selectedShield || !this.selectedStadium){
+      this.filesMissing = true;
       return;
     }
 
@@ -76,7 +90,11 @@ export class ClubFormComponent implements OnInit{
       urlImageShield:this.clubForm.value.urlImageShield,
       urlImageStadium:this.clubForm.value.urlImageStadium
     };
-    this.clubUpdated.emit(clubUpdated);
+    this.clubUpdated.emit({
+      club:clubUpdated,
+      fileShield:this.selectedShield,
+      fileStadium:this.selectedStadium
+    });
   }
 
   closeModal():void{
@@ -84,12 +102,16 @@ export class ClubFormComponent implements OnInit{
     this.closedModal.emit();
   }
 
-  onFileSelected(event:Event):void{
+  onFileSelected(event:Event, type:'stadium' | 'shield'):void{
     const input = event.target as HTMLInputElement;
-    if(input.files && input.files.length>0){
-      this.selectedFile = input.files[0];
-      console.log('Archivo seleccionado: ',this.selectedFile);
+    const file= input.files && input.files.length > 0 ? input.files[0] : null;
+
+    if(type === 'shield'){
+      this.selectedShield = file;
+    }else{
+      this.selectedStadium = file;
     }
+    this.filesMissing = false;
   }
 
 }

@@ -3,11 +3,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Crear Disciplina</h5>
+        <h5 class="modal-title">{{isEditMode ? 'Editar Disciplina' : 'Crear Disciplina'}}</h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="disciplineForm" novalidate (ngSubmit)="createDiscipline()">
+        <form [formGroup]="disciplineForm" novalidate (ngSubmit)="onSubmit()">
 
             <!--NAME-->
           <div class="mb-3">
@@ -39,7 +39,7 @@
             <div class="mb-3">
             <label class="form-label">Horarios: </label>
             <input type="text" class="form-control" formControlName="schedule" name="schedule" [ngClass]="{
-              'is-invalid': disciplineForm.get('shedule')?.invalid && disciplineForm.get('schedule')?.touched,
+              'is-invalid': disciplineForm.get('schedule')?.invalid && disciplineForm.get('schedule')?.touched,
               'is-valid': disciplineForm.get('schedule')?.valid && disciplineForm.get('schedule')?.touched
             }">
 

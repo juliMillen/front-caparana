@@ -4,6 +4,13 @@
     Administración del Club
   </h1>
 
+        <button
+        class="btn btn-outline-primary"
+        [disabled]="loading || !!club"
+        (click)="openModal()">
+        Crear club
+      </button>
+
   <div *ngIf="club" class="card shadow">
 
     <div class="card-body">
@@ -57,6 +64,7 @@
 <app-club-form
   *ngIf="showModal"
   [club]="club"
+  (clubCreated)="createClub( $event)"
   (clubUpdated)="updateClub($event)"
   (closedModal)="closeModal()">
 </app-club-form>

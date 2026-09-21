@@ -26,7 +26,7 @@
                     <td>{{disci.professorAsig}}</td>
                     <td>{{disci.ubication}}</td>
                     <td class="text-center">
-                        <button class="btn btn-outline-success" (click)="openEditModal()">Editar</button>
+                        <button class="btn btn-outline-success" (click)="openEditModal(disci)">Editar</button>
                         <button class="btn btn-outline-danger btn-sm" (click)="deleteDiscipline(disci.idDiscipline)">Eliminar</button>
                     </td>
                 </tr>
@@ -35,6 +35,10 @@
     </div>
 </div>
 
-<app-discipline-form *ngIf="showModal" (disciplineCreated)="createDiscipline($event)" (closedModal)="closeModal()">
+<app-discipline-form *ngIf="showModal"
+[discipline]="selectedDiscipline"
+ (disciplineCreated)="createDiscipline($event)"
+ (disciplineUpdated)="updateDiscipline($event)" 
+ (closedModal)="closeModal()">
 
 </app-discipline-form>

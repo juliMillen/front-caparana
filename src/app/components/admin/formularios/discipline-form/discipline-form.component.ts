@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Discipline } from '../../../../models/discipline';
 
@@ -11,6 +11,7 @@ import { Discipline } from '../../../../models/discipline';
 })
 export class DisciplineFormComponent implements OnInit{
 
+  @Input() discipline: Discipline | null = null;
   disciplineForm!: FormGroup;
 
   @Output() disciplineCreated = new EventEmitter<Discipline>();
@@ -19,14 +20,26 @@ export class DisciplineFormComponent implements OnInit{
 
   constructor(private fb:FormBuilder){}
 
+  get isEditMode():boolean{
+    return !!this.discipline;
+  }
+
   ngOnInit():void{
     this.disciplineForm = this.fb.group({
-      nameDiscipline:['',Validators.required],
-      description:['',Validators.required],
-      schedule:['',Validators.required],
-      professorAsig:['',Validators.required],
-      ubication:['',Validators.required]
+      nameDiscipline:[this.discipline?.nameDiscipline ?? '',Validators.required],
+      description:[this.discipline?.description ?? '',Validators.required],
+      schedule:[this.discipline?.schedule ?? '',Validators.required],
+      professorAsig:[this.discipline?.professorAsig ?? '',Validators.required],
+      ubication:[this.discipline?.ubication ?? '',Validators.required]
     });
+  }
+
+  onSubmit():void{
+    if(this.isEditMode){
+      this.updateDiscipline();
+    } else {
+      this.createDiscipline();
+    }
   }
 
   createDiscipline():void{
@@ -47,13 +60,13 @@ export class DisciplineFormComponent implements OnInit{
   }
 
   updateDiscipline():void{
-     if(this.disciplineForm.invalid){
+     if(this.disciplineForm.invalid || !this.discipline){
       this.disciplineForm.markAllAsTouched();
       return;
     }
 
     const disciplineUpdated: Discipline = {
-      idDiscipline: 0,
+      idDiscipline: this.discipline.idDiscipline,
       nameDiscipline:this.disciplineForm.value.nameDiscipline,
       description:this.disciplineForm.value.description,
       schedule:this.disciplineForm.value.schedule,
