@@ -49,6 +49,7 @@ export class NavbarComponent implements OnInit {
     : '/club'
   }
 
+
   getPlayersRoute():string{
     return this.isAdmin
     ? '/admin/players-admin'

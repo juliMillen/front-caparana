@@ -1,3 +1,7 @@
+.navbar{
+    background-color: #dc3535;
+}
+
 .my-navbar .nav-link {
   color: #c81212 !important;
   font-weight: 500;

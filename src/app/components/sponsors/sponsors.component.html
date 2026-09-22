@@ -1,38 +1,31 @@
-<div class="container text-center my-5">
+<div class="sponsor-strip" *ngIf="sponsors.length > 0">
 
-  <h3 class="mb-4 text-muted text-uppercase sponsors-title">
-    Sponsors
-  </h3>
-
-  <div class="row align-items-center justify-content-center g-4">
-
-    <div
-      class="col-6 col-md-3"
-      *ngFor="let sponsor of sponsors"
-    >
-
-      <div class="sponsor-card">
-
-        <img
-          [src]="sponsor.urlImage || 'assets/img/placeholder-sponsor.jpg'"
-          [alt]="'Logo de ' + sponsor.name"
-          class="img-fluid sponsor-image"
-        >
-
-      </div>
-
-    </div>
-
+  <div class="text-center mb-5">
+      <h3 class="text-danger fw-bold">Nuestros Sponsors</h3>
+      <hr class="w-25 mx-auto text-danger" style="height: 3px;">
   </div>
+
+  <div class="sponsors-track-wrapper">
+
+    <div class="sponsors-track">
+
+      <div class="sponsor-logo-wrap" 
+      *ngFor="let sponsor of displaySponsors"
+      >
+
+      <img [src]="sponsor.urlImage" [alt]="'Logo de'  + sponsor.name" 
+      >
+      </div>
+    </div>
+  </div>
+</div>
 
   <div
     *ngIf="sponsors.length === 0"
-    class="py-4"
+    class="py-4 text-center"
   >
     <p class="text-muted mb-0">
       No hay sponsors disponibles.
     </p>
   </div>
-
-</div>
 

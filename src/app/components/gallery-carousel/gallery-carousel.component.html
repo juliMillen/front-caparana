@@ -4,40 +4,12 @@
 
     <div class="col-lg-8 col-md-10 col-12">
 
-      <!--Titulo de la galeria-->
-      <div *ngIf="gallery" class="text-center mb-4">
-        <h2 class="fw-bold">
-          {{gallery.title}}
-        </h2>
-
-        <p class="text-muted">
-          {{gallery.publicationDate}}
-        </p>
-      </div>
-
       <div
         #carouselRef
         id="carouselGaleriaClub"
         class="carousel slide shadow rounded overflow-hidden"
         *ngIf="galleries.length"
       >
-
-        <!-- Indicadores -->
-        <div class="carousel-indicators">
-
-          <button
-            *ngFor="let photo of gallery?.photosDTO; let i = index"
-            type="button"
-            data-bs-target="#carouselGaleriaClub"
-            [attr.data-bs-slide-to]="i"
-            [class.active]="i === 0"
-            [attr.aria-current]="i === 0 ? 'true' : null"
-            [attr.aria-label]="'Slide ' + (i + 1)"
-          >
-          </button>
-
-        </div>
-
 
         <!-- Fotos -->
         <div class="carousel-inner">
@@ -50,7 +22,6 @@
 
             <img
               [src]="photo.urlImage"
-              [alt]="photo.description"
               class="d-block w-100 img-carousel-fixed"
             >
 

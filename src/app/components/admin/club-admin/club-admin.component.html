@@ -41,12 +41,14 @@
 
       <div>   
         <strong>Imagen escudo</strong>
-        {{club.urlImageShield}}
+        <img [src]="club.urlImageShield" class="admin-preview-img" 
+          >
       </div>
 
       <div>
         <strong>Imagen estadio</strong>
-        {{club.urlImageStadium}}
+        <img [src]="club.urlImageStadium" class="admin-preview-img"
+          >
       </div>
 
       <button
