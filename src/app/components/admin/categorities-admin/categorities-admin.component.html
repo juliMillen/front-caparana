@@ -10,6 +10,7 @@
             <thead class="table-danger">
                 <tr>
                     <th scope="col">Categoria</th>
+                    <th scope="col" class="text-center">Jugadores</th>
                     <th scope="col" class="text-center">Acciones</th>
                 </tr>
             </thead>
@@ -17,6 +18,13 @@
             <tbody>
                 <tr *ngFor="let cate of categorities">
                     <td>{{cate.nameCategority}}</td>
+                    <td class="text-center">
+                        <span *ngFor="let player of cate.playerList" class="badge bg-secondary me-1">
+                            {{player.name}} {{player.surname}}
+                        </span>
+                        <span *ngIf="!cate.playerList?.length" ngClass="text-muted">Sin jugadores</span>
+                    </td>
+
                     <td class="text-center">
                         <button class="btn btn-outline-danger btn-sm" (click)="deleteCategority(cate.idCategority)">Eliminar</button>
                     </td>

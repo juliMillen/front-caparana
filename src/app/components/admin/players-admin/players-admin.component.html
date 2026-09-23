@@ -29,7 +29,22 @@
                 [(ngModel)]="searchSurname"
                 >
         </div>
-         <button class="btn btn-success btn-sm" (click)="filterPlayers()">Buscar</button>
+
+        
+        <div class="col-md-6">
+            <label for="searchSurname" class="form-label fw-semibold">
+                Buscar por nombre
+            </label>
+
+            <input
+                type="text"
+                id="searName"
+                class="form-control"
+                placeholder="Ingrese el nombre"
+                [(ngModel)]="searchName"
+                >
+        </div>
+         <button class="btn btn-primary btn-sm" (click)="filterPlayers()">Buscar</button>
 
     </div>
 
@@ -52,11 +67,18 @@
                     <td>{{player.position}}</td>
                     <td>{{player.num}}</td>
                     <td class="text-center">
-                        <button class="btn btn-outline-success">Editar</button>
-                        <button class="btn btn-outline-danger btn-sm">Eliminar</button>
+                        <button class="btn btn-outline-success" (click)="openEditModal(player)">Editar</button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deletePlayer(player.idPlayer)">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<app-player-form *ngIf="showModal"
+[player]="selectedPlayer"
+(playerUpdated)="updatePlayer($event)"
+(closedModal)="closeModal()"
+>
+</app-player-form>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Player } from '../../../../models/player';
 
@@ -11,14 +11,20 @@ import { Player } from '../../../../models/player';
 })
 export class PlayerFormComponent implements OnInit{
 
+  @Input() player: Player | null = null;
+
   playerForm!:FormGroup;
   selectedFile: File | null = null;
 
   @Output() playerCreated= new EventEmitter<{player:Player,file:File | null}>();
-  @Output() playerUpdated = new EventEmitter<Player>();
+  @Output() playerUpdated = new EventEmitter<{player:Player, file:File | null}>();
   @Output() closedModal = new EventEmitter<void>();
 
   constructor(private fb:FormBuilder){}
+
+  get isEditMode():boolean{
+    return this.player != null;
+  }
 
   ngOnInit(): void {
     this.playerForm = this.fb.group({
@@ -26,7 +32,20 @@ export class PlayerFormComponent implements OnInit{
       surname:['',Validators.required],
       position:['',Validators.required],
       num:['',Validators.required]
-    })
+    });
+
+    if(this.player){
+      this.playerForm.patchValue({
+        name: this.player.name,
+        surname: this.player.surname,
+        position: this.player.position,
+        num: this.player.num
+      });
+    }
+  }
+
+  onSubmit():void{
+    this.isEditMode ? this.updatePlayer() : this.createPlayer();
   }
 
   createPlayer(){
@@ -55,15 +74,17 @@ export class PlayerFormComponent implements OnInit{
       return;
     }
 
-    const playerUpdated: Player = {
-      idPlayer:0,
+    const player: Player = {
+      idPlayer:this.player!.idPlayer,
       name:this.playerForm.value.name,
       surname:this.playerForm.value.surname,
       position:this.playerForm.value.position,
       num:this.playerForm.value.num,
-      urlImage:this.playerForm.value.urlImage
+      urlImage:this.player!.urlImage
     };
-    this.playerUpdated.emit(playerUpdated);
+    this.playerUpdated.emit({
+      player, file:this.selectedFile
+    });
   }
 
 

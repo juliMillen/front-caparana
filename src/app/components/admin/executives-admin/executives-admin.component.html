@@ -22,7 +22,7 @@
                     <td>{{executive.surname}}</td>
                     <td>{{executive.position}}</td>
                     <td class="text-center">
-                        <button class="btn btn-outline-success" (click)="openEditModal()">Editar</button>
+                        <button class="btn btn-outline-success" (click)="openEditModal(executive)">Editar</button>
                         <button class="btn btn-outline-danger btn-sm" (click)="deleteExecutive(executive.idExecutive)">Eliminar</button>
                     </td>
                 </tr>
@@ -31,6 +31,9 @@
     </div>
 </div>
 
-<app-forms-executives *ngIf="showModal" (executiveCreated)="createExecutive($event)" (closedModal)="closeModal()">
+<app-forms-executives *ngIf="showModal" 
+[executive]="selectedExecutive"
+(executiveCreated)="createExecutive($event)" 
+(executiveUpdated)="updateExecutive($event)" (closedModal)="closeModal()">
 
 </app-forms-executives>

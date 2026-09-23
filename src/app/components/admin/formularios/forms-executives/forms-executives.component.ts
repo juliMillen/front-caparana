@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Executive } from '../../../../models/executive';
 
@@ -10,15 +10,22 @@ import { Executive } from '../../../../models/executive';
   styleUrl: './forms-executives.component.css'
 })
 export class FormsExecutivesComponent implements OnInit{
+
+  @Input() executive: Executive | null = null;
+
   executiveForm!: FormGroup;
   selectedFile: File | null = null;
 
   @Output() executiveCreated = new EventEmitter<{executive:Executive,file:File | null }>();
-  @Output() executiveUpdated = new EventEmitter<Executive>();
+  @Output() executiveUpdated = new EventEmitter<{executive:Executive,file:File | null}>();
   @Output() closedModal = new EventEmitter<void>()
 
 
   constructor(private fb:FormBuilder){}
+
+  get isEditMode():boolean{
+    return this.executive != null;
+  }
 
   ngOnInit(): void {
     this.executiveForm = this.fb.group({
@@ -26,6 +33,18 @@ export class FormsExecutivesComponent implements OnInit{
       surnameExecutive:['',Validators.required],
       positionExecutive:['',Validators.required]
     });
+
+    if(this.executive){
+      this.executiveForm.patchValue({
+        nameExecutive: this.executive.name,
+        surnameExecutive: this.executive.surname,
+        positionExecutive: this.executive.position
+      });
+    }
+  }
+
+  onSubmit():void{
+    this.isEditMode ? this.updateExecutive() : this.createExecutive();
   }
 
   createExecutive():void{
@@ -54,13 +73,13 @@ export class FormsExecutivesComponent implements OnInit{
     }
 
     const executive: Executive = {
-      idExecutive: 0,
-      name:this.executiveForm.value.nameExecutive,
-      surname:this.executiveForm.value.surnameExecutive,
+      idExecutive: this.executive!.idExecutive,
+      name: this.executiveForm.value.nameExecutive,
+      surname: this.executiveForm.value.surnameExecutive,
       position: this.executiveForm.value.positionExecutive,
-      urlImage: this.executiveForm.value.urlImage
+      urlImage: this.executive!.urlImage
       };
-      this.executiveUpdated.emit(executive);
+      this.executiveUpdated.emit({executive, file:this.selectedFile});
     }
 
   closeModal():void{

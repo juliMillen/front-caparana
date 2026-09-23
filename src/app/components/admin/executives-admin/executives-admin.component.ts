@@ -16,6 +16,8 @@ export class ExecutivesAdminComponent implements OnInit{
 
   showModal: boolean = false;
 
+  selectedExecutive: Executive | null = null;
+
   constructor(private executivesService:ExecutiveService){}
 
   ngOnInit(): void {
@@ -34,10 +36,12 @@ export class ExecutivesAdminComponent implements OnInit{
   }
 
   openModal():void {
+    this.selectedExecutive = null;
     this.showModal = true;
   }
 
-  openEditModal():void {
+  openEditModal(executive:Executive):void {
+    this.selectedExecutive = executive;
     this.showModal = true;
   }
 
@@ -46,15 +50,8 @@ export class ExecutivesAdminComponent implements OnInit{
   }
 
   createExecutive(data: {executive:Executive, file:File | null}):void{
-    const formData = new FormData();
-    formData.append('name', data.executive.name);
-    formData.append('surname',data.executive.surname);
-    formData.append('position',data.executive.position);
-    if(data.file){
-      formData.append('image',data.file);
-    }
 
-    this.executivesService.createExecutive(formData).subscribe({
+    this.executivesService.createExecutive(this.buildFormData(data)).subscribe({
       next:(data) =>{
         this.executives.push(data);
         this.showModal = false;
@@ -66,16 +63,30 @@ export class ExecutivesAdminComponent implements OnInit{
   
   }
 
-  updateExecutive(executive:Executive):void{
-    this.executivesService.updateExecutive(executive.idExecutive,executive).subscribe({
-      next:(data) => {
-        this.executives.push(data);
+  updateExecutive(data:{executive:Executive,file:File | null}):void{
+    this.executivesService.updateExecutive(data.executive.idExecutive,this.buildFormData(data)).subscribe({
+      next:(updated) => {
+        this.executives = this.executives.map(
+          e => e.idExecutive === updated.idExecutive ? updated : e
+        );
         this.showModal = false;
+        this.selectedExecutive = null;
       },
       error:(err) => {
         console.error('Error al actualizar ejecutivo', err);
       }
     })
+  }
+
+  private buildFormData(data:{executive:Executive, file:File | null}){
+    const formData = new FormData();
+    formData.append('name', data.executive.name);
+    formData.append('surname',data.executive.surname);
+    formData.append('position',data.executive.position);
+    if(data.file){
+      formData.append('image',data.file);
+    }
+    return formData;
   }
 
   deleteExecutive(idExecutive:number):void{

@@ -31,11 +31,11 @@ export class PlayerService {
       return this.http.post<Player>(`${this.apiUrl}/create/${idCategority}`,formData);
     }
   
-    updatePlayer(idPlayer:number, player:Player):Observable<Player>{
-      return this.http.patch<Player>(`${this.apiUrl}/${idPlayer}`,player);
+    updatePlayer(idPlayer:number, formData:FormData):Observable<Player>{
+      return this.http.patch<Player>(`${this.apiUrl}/update/${idPlayer}`,formData);
     }
   
     deletePlayer(idPlayer:number):Observable<Player>{
-      return this.http.delete<Player>(`${this.apiUrl}/${idPlayer}`);
+      return this.http.delete<Player>(`${this.apiUrl}/delete/${idPlayer}`);
     }
 }
