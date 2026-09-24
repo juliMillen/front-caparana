@@ -24,8 +24,8 @@ export class ReportService {
       return this.http.post<Report>(`${this.apiUrl}/create`,formData);
     }
   
-    updateReport(idReport:number, report:Report):Observable<Report>{
-      return this.http.patch<Report>(`${this.apiUrl}/update/${idReport}`,report);
+    updateReport(idReport:number, formData:FormData):Observable<Report>{
+      return this.http.patch<Report>(`${this.apiUrl}/update/${idReport}`,formData);
     }
   
     deleteReport(idReport:number):Observable<Report>{

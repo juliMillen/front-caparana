@@ -169,7 +169,7 @@
                   <button
                     class="btn btn-sm btn-outline-danger action-btn"
                     title="Editar noticia"
-                    (click)="updateReport(report)">
+                    (click)="openEditModal(report)">
 
                     <i class="bi bi-pencil"></i>
 
@@ -230,7 +230,11 @@
 
 </div>
 
-<app-report-form *ngIf="showModal" (reportCreated)="createReport($event)" (closedModal)="closeModal()">
+<app-report-form *ngIf="showModal" 
+[report]="selectedReport"
+(reportCreated)="createReport($event)" 
+(reportUpdated)="updateReport($event)"
+(closedModal)="closeModal()">
 
 </app-report-form>
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Report } from '../../../../models/report';
 
@@ -11,21 +11,39 @@ import { Report } from '../../../../models/report';
 })
 export class ReportFormComponent implements OnInit{
 
+  @Input() report: Report | null = null;
+
   reportForm!:FormGroup;
   selectedFile: File | null = null;
 
   @Output() reportCreated = new EventEmitter<{report:Report,file:File | null}>();
-  @Output() reportUpdated = new EventEmitter<Report>();
+  @Output() reportUpdated = new EventEmitter<{report:Report,file:File | null}>();
   @Output() closedModal = new EventEmitter<void>();
 
   constructor(private fb:FormBuilder){}
+
+  get isEditMode():boolean{
+    return this.report != null;
+  }
 
   ngOnInit(): void {
     this.reportForm = this.fb.group({
       title:['',Validators.required],
       description:['',Validators.required],
       publicationDate:['',Validators.required]
-    })
+    });
+
+    if(this.report){
+      this.reportForm.patchValue({
+        title: this.report.title,
+        description: this.report.description,
+        publicationDate: this.report.publicationDate
+      });
+    }
+  }
+
+  onSubmit():void{
+    this.isEditMode ? this.updateReport() : this.createReport();
   }
 
   createReport(){
@@ -52,14 +70,17 @@ export class ReportFormComponent implements OnInit{
       this.reportForm.markAllAsTouched();
       return;
     }
-    const reportUpdate: Report = {
+    const report: Report = {
       idReport:0,
       title:this.reportForm.value.title,
       description:this.reportForm.value.description,
       publicationDate:this.reportForm.value.publicationDate,
       urlImage:this.reportForm.value.urlImage
     };
-    this.reportUpdated.emit(reportUpdate);
+    this.reportUpdated.emit({
+      report,
+      file:this.selectedFile
+    });
   }
 
   closeModal():void{

@@ -3,11 +3,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Crear Noticia</h5>
+        <h5 class="modal-title">{{isEditMode ? 'Editar Noticia' : 'Crear Noticia'}}</h5>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="reportForm" novalidate (ngSubmit)="createReport()">
+        <form [formGroup]="reportForm" novalidate (ngSubmit)="onSubmit()">
 
             <!--NAME-->
           <div class="mb-3">
@@ -22,17 +22,13 @@
             </div>
           </div>
 
-          <!--DESCRIPTION-->
-            <div class="mb-3">
-            <label class="form-label">Descripcion: </label>
-            <input type="text" class="form-control" formControlName="description" name="description" [ngClass]="{
+          <!-- Description -->
+          <div class="mb-3">
+            <label class="form-label">Descripcion</label>
+            <textarea class="form-control" formControlName="description" name="description" rows="6" [ngClass]="{
               'is-invalid': reportForm.get('description')?.invalid && reportForm.get('description')?.touched,
               'is-valid': reportForm.get('description')?.valid && reportForm.get('description')?.touched
-            }">
-
-            <div class="invalid-feedback" *ngIf="reportForm.get('description')?.errors?.['required']">
-              La descripcion es obligatoria
-            </div>
+            }"></textarea>
           </div>
 
           <!--SHEDULES-->

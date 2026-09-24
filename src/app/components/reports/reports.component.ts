@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ReportService } from '../../services/report.service';
 import { Report } from '../../models/report';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class ReportsComponent  implements OnInit{
 
+  @Input() limit?: number;
   reports: Report[] = [];
 
   constructor(private reportsService:ReportService){
@@ -31,6 +32,10 @@ export class ReportsComponent  implements OnInit{
         console.log("Error al obtener las noticias",err)
       }
     })
+  }
+
+  get displayerReports(): Report[]{
+    return this.limit ? this.reports.slice(0,this.limit) : this.reports;
   }
 
 }

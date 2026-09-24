@@ -21,6 +21,8 @@ export class ReportsAdminComponent implements OnInit{
 
   showModal: boolean = false;
 
+  selectedReport: Report | null = null;
+
 
   constructor(private reportService: ReportService) {}
 
@@ -51,10 +53,12 @@ export class ReportsAdminComponent implements OnInit{
   }
 
   openModal():void{
+    this.selectedReport = null;
     this.showModal = true;
   }
 
-  openEditModal():void{
+  openEditModal(report:Report):void{
+    this.selectedReport= report;
     this.showModal = true;
   }
 
@@ -63,15 +67,8 @@ export class ReportsAdminComponent implements OnInit{
   }
 
   createReport(data:{report:Report, file:File | null}):void{
-    const formData = new FormData();
-    formData.append('title',data.report.title);
-    formData.append('description',data.report.description);
-    formData.append('publicationDate',data.report.publicationDate);
-    if(data.file){
-      formData.append('image',data.file);
-    }
 
-    this.reportService.createReport(formData).subscribe({
+    this.reportService.createReport(this.buildFormData(data)).subscribe({
       next:(data) => {
         this.reports.push(data);
         this.showModal = false;
@@ -82,16 +79,30 @@ export class ReportsAdminComponent implements OnInit{
     })
   }
 
-  updateReport(report:Report):void{
-    this.reportService.updateReport(report.idReport,report).subscribe({
-      next:(data) => {
-        this.reports.push(data);
+  updateReport(data:{report:Report,file:File | null}):void{
+    this.reportService.updateReport(data.report.idReport,this.buildFormData(data)).subscribe({
+      next:(updated) => {
+        this.reports = this.reports.map(
+          e => e.idReport === updated.idReport ? updated : e
+        );
         this.showModal = false;
+        this.selectedReport = null;
       },
       error:(err) => {
         console.error('Error al editar noticia',err);
       }
     });
+  }
+
+  private buildFormData(data:{report:Report, file:File | null}){
+    const formData = new FormData();
+    formData.append('title',data.report.title);
+    formData.append('description',data.report.description);
+    formData.append('publicationDate',data.report.publicationDate);
+    if(data.file){
+      formData.append('image',data.file);
+    }
+    return formData;
   }
 
   deleteReport(idReport:number):void{
