@@ -5,10 +5,11 @@ import { NavbarComponent } from "../navbar/navbar.component";
 import { FooterComponent } from "../footer/footer.component";
 import { GalleryCarouselComponent } from '../gallery-carousel/gallery-carousel.component';
 import { SponsorsComponent } from '../sponsors/sponsors.component';
+import { BannerComponent } from '../banner/banner.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ReportsComponent, RouterLink, NavbarComponent, FooterComponent, GalleryCarouselComponent, SponsorsComponent],
+  imports: [ReportsComponent, RouterLink, NavbarComponent, FooterComponent, GalleryCarouselComponent, SponsorsComponent, BannerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

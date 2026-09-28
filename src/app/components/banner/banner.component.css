@@ -1,0 +1,17 @@
+.banner{
+    width: 100%;
+}
+
+.banner-image{
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.banner-linl{
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}

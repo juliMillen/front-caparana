@@ -54,11 +54,10 @@ footer .border-start {
     transform 0.25s ease;
 }
 
-.social-link:hover {
+/*.social-link:hover {
   background-color: #dc3545;
-  color: white;
   transform: translateY(-3px);
-}
+}*/
 
 
 /* Iconos */
