@@ -10,6 +10,8 @@ import { MatchService } from '../../../services/match.service';
   templateUrl: './match-admin.component.html',
   styleUrl: './match-admin.component.css'
 })
+
+
 export class MatchAdminComponent implements OnInit{
   matches:Match[] = [];
 
@@ -21,6 +23,16 @@ export class MatchAdminComponent implements OnInit{
 
   ngOnInit(): void {
     this.getMatches();
+  }
+
+  stateLabels: Record<string,string> = {
+    Schedule: 'Programado',
+    InProgress: 'En curso',
+    Finished: 'Finalizado'
+  };
+
+  getStateLabel(state:string):string{
+    return this.stateLabels[state] ?? state;
   }
 
   getMatches():void{

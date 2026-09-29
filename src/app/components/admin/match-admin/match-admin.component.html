@@ -26,7 +26,7 @@
                     <td>{{m.location}}</td>
                     <td>{{m.teamGoals}}</td>
                     <td>{{m.rivalGoals}}</td>
-                    <td>{{m.state}}</td>
+                    <td>{{getStateLabel(m.state)}}</td>
                     <td class="text-center">
                         <button class="btn btn-outline-success" (click)="openEditModal(m)">Editar</button>
                         <button class="btn btn-outline-danger btn-sm" (click)="deleteMatch(m.idMatch)">Eliminar</button>
