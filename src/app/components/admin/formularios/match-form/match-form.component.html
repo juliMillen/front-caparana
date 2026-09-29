@@ -1,0 +1,110 @@
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{isEditMode ? 'Editar Partido' : 'Crear Partido'}}</h5>
+                <button type="button" class="btn-close" (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="matchForm" novalidate (ngSubmit)="onSubmit()">
+
+                    <!--Rival-->
+                    <div class="mb-3">
+                        <label class="form-label">Rival: </label>
+                        <input type="text" class="form-control" formControlName="rival" name="rival" [ngClass]="{
+              'is-invalid': matchForm.get('rival')?.invalid && matchForm.get('rival')?.touched,
+              'is-valid': matchForm.get('rival')?.valid && matchForm.get('rival')?.touched
+            }">
+
+                        <div class="invalid-feedback" *ngIf="matchForm.get('rival')?.errors?.['required']">
+                            El rival es obligatorio
+                        </div>
+                    </div>
+
+                    <!--DATE TIME-->
+                    <div class="mb-3">
+                        <label class="form-label">Fecha y hora: </label>
+                        <input type="datetime-local" class="form-control" formControlName="dateTime" name="dateTime"
+                            [ngClass]="{
+                            'is-invalid': matchForm.get('dateTime')?.invalid && matchForm.get('dateTime')?.touched,
+                            'is-valid': matchForm.get('dateTime')?.valid && matchForm.get('dateTime')?.touched
+                        }">
+
+                        <div class="invalid-feedback" *ngIf="matchForm.get('dateTime')?.errors?.['required']">
+                            La fecha y hora son obligatorias
+                        </div>
+                    </div>
+
+
+                    <!--LOCATION-->
+                    <div class="mb-3">
+                        <label class="form-label">Lugar de juego: </label>
+                        <input type="text" class="form-control" formControlName="location" name="location" [ngClass]="{
+              'is-invalid': matchForm.get('location')?.invalid && matchForm.get('location')?.touched,
+              'is-valid': matchForm.get('location')?.valid && matchForm.get('location')?.touched
+            }">
+
+                        <div class="invalid-feedback" *ngIf="matchForm.get('location')?.errors?.['required']">
+                            El lugar de juego es obligatorio
+                        </div>
+                    </div>
+
+                    <!--TEAM GOALS-->
+                    <div class="mb-3">
+                        <label class="form-label">Goles del equipo: </label>
+                        <input type="number" class="form-control" formControlName="teamGoals" name="teamGoals" min="0"
+                            [ngClass]="{
+                            'is-invalid': matchForm.get('teamGoals')?.invalid && matchForm.get('teamGoals')?.touched,
+                            'is-valid': matchForm.get('teamGoals')?.valid && matchForm.get('teamGoals')?.touched
+                        }">
+
+                        <div class="invalid-feedback" *ngIf="matchForm.get('teamGoals')?.errors?.['min']">
+                            Los goles no pueden ser negativos
+                        </div>
+                    </div>
+
+                    <!--RIVAL GOALS-->
+                    <div class="mb-3">
+                        <label class="form-label">Goles del rival: </label>
+                        <input type="number" class="form-control" formControlName="rivalGoals" name="rivalGoals" min="0"
+                            [ngClass]="{
+                            'is-invalid': matchForm.get('rivalGoals')?.invalid && matchForm.get('rivalGoals')?.touched,
+                            'is-valid': matchForm.get('rivalGoals')?.valid && matchForm.get('rivalGoals')?.touched
+                        }">
+
+                        <div class="invalid-feedback" *ngIf="matchForm.get('rivalGoals')?.errors?.['min']">
+                            Los goles no pueden ser negativos
+                        </div>
+                    </div>
+
+                    <!--STATE (enum)-->
+                    <div class="mb-3">
+                        <label class="form-label">Estado: </label>
+                        <select class="form-select" formControlName="state" name="state" [ngClass]="{
+                        'is-invalid': matchForm.get('state')?.invalid && matchForm.get('state')?.touched,
+                        'is-valid': matchForm.get('state')?.valid && matchForm.get('state')?.touched
+                        }">
+                            <option value="" disabled selected>Seleccione un estado</option>
+                            <option value="scheduled">Programado</option>
+                            <option value="inProgress">En curso</option>
+                            <option value="finished">Finalizado</option>
+                        </select>
+
+                        <div class="invalid-feedback" *ngIf="matchForm.get('state')?.errors?.['required']">
+                            El estado es obligatorio
+                        </div>
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

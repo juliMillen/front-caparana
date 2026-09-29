@@ -1,0 +1,48 @@
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-danger fw-bold">Administrar Partidos</h1>
+
+        <button class="btn btn-primary" (click)="openModal()">Agregar</button>
+    </div>
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-danger">
+                <tr>
+                    <th scope="col">Rival</th>
+                    <th scope="col">Fecha y Hora</th>
+                    <th scope="col">Lugar</th>
+                    <th scope="col">Goles del equipo</th>
+                    <th scope="col">Goles del rival</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col" class="text-center">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let m of matches">
+                    <td>{{m.rival}}</td>
+                    <td>{{m.dateTime}}</td>
+                    <td>{{m.location}}</td>
+                    <td>{{m.teamGoals}}</td>
+                    <td>{{m.rivalGoals}}</td>
+                    <td>{{m.state}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-outline-success" (click)="openEditModal(m)">Editar</button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteMatch(m.idMatch)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-match-form
+*ngIf="showModal"
+[match]="selectedMatch"
+(matchCreated)="createMatch($event)"
+(matchUpdated)="updateMatch($event)"
+(closedModal)="closeModal()"
+>
+</app-match-form>
+

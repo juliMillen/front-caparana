@@ -21,6 +21,8 @@ import { AdminLayoutComponent } from './components/admin/admin-layout/admin-layo
 import { CategoritiesAdminComponent } from './components/admin/categorities-admin/categorities-admin.component';
 import { ClubAdminComponent } from './components/admin/club-admin/club-admin.component';
 import { SpecificReportComponent } from './components/specific-report/specific-report.component';
+import { MatchAdminComponent } from './components/admin/match-admin/match-admin.component';
+import { MatchComponent } from './components/match/match.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -37,6 +39,8 @@ export const routes: Routes = [
     {path:'executive/:id',component:ExecutivesComponent},
     {path:'player',component:PlayersComponent},
     {path:'player/id',component:PlayersComponent},
+    {path:'match',component:MatchComponent},
+    {path:'match/id',component:MatchComponent},
     {path:'sponsor',component:SponsorsComponent},
     {path:'sponsor/id',component:SponsorsComponent},
     {path:'footer',component:FooterComponent},
@@ -50,7 +54,8 @@ export const routes: Routes = [
     {path:'players-admin',component:PlayersAdminComponent},
     {path:'reports-admin',component:ReportsAdminComponent},
     {path:'sponsors-admin',component:SponsorsAdminComponent},
-    {path:'categorities-admin',component:CategoritiesAdminComponent}
+    {path:'categorities-admin',component:CategoritiesAdminComponent},
+    {path:'match-admin',component:MatchAdminComponent}
     ]}
 
 ];

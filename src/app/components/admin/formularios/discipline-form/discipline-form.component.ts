@@ -65,7 +65,7 @@ export class DisciplineFormComponent implements OnInit{
       return;
     }
 
-    const disciplineUpdated: Discipline = {
+    const discipline: Discipline = {
       idDiscipline: this.discipline.idDiscipline,
       nameDiscipline:this.disciplineForm.value.nameDiscipline,
       description:this.disciplineForm.value.description,
@@ -73,7 +73,7 @@ export class DisciplineFormComponent implements OnInit{
       professorAsig:this.disciplineForm.value.professorAsig,
       ubication:this.disciplineForm.value.ubication
     };
-    this.disciplineUpdated.emit(disciplineUpdated);
+    this.disciplineUpdated.emit(discipline);
   }
 
   closeModal():void{

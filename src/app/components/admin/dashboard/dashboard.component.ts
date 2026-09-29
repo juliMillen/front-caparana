@@ -26,5 +26,6 @@ export class DashboardComponent {
     { title: 'Sponsors',          description: 'Patrocinadores del club',                         icon: 'bi-briefcase',        route: '/admin/sponsors-admin' },
     { title: 'Galería de fotos',  description: 'Imágenes y eventos del club',                     icon: 'bi-images',           route: '/admin/gallery-admin' },
     { title: 'Noticias',          description: 'Publicaciones y novedades',                       icon: 'bi-newspaper',        route: '/admin/reports-admin' },
+    { title: 'Partido',           description:'Nuevos Partidos',                                  icon: 'bi-calendar-check',   route: "/admin/match-admin"}
   ];
 }

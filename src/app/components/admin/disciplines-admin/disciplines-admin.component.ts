@@ -29,7 +29,7 @@ export class DisciplinesAdminComponent implements OnInit {
         this.disciplines = data;
       },
       error:(err)=>{
-        console.error("Error al obtener disciplinas",err);
+        console.error('Error al obtener disciplinas',err);
       }
     })
   }
