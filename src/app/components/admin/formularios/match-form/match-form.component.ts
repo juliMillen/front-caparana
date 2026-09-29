@@ -36,9 +36,9 @@ export class MatchFormComponent implements OnInit{
 
   onSubmit():void{
     if(this.isEditMode){
-      this.matchUpdated;
+      this.updateMatch();
     }else{
-      this.matchCreated;
+      this.createMatch();
     }
   }
 
