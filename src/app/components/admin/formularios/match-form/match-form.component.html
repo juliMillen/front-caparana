@@ -86,9 +86,9 @@
                         'is-valid': matchForm.get('state')?.valid && matchForm.get('state')?.touched
                         }">
                             <option value="" disabled selected>Seleccione un estado</option>
-                            <option value="scheduled">Programado</option>
-                            <option value="inProgress">En curso</option>
-                            <option value="finished">Finalizado</option>
+                            <option value="Schedule">Programado</option>
+                            <option value="InProgress">En curso</option>
+                            <option value="Finished">Finalizado</option>
                         </select>
 
                         <div class="invalid-feedback" *ngIf="matchForm.get('state')?.errors?.['required']">

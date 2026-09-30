@@ -6,10 +6,11 @@ import { FooterComponent } from "../footer/footer.component";
 import { GalleryCarouselComponent } from '../gallery-carousel/gallery-carousel.component';
 import { SponsorsComponent } from '../sponsors/sponsors.component';
 import { BannerComponent } from '../banner/banner.component';
+import { MatchComponent } from '../match/match.component';
 
 @Component({
   selector: 'app-home',
-  imports: [ReportsComponent, RouterLink, NavbarComponent, FooterComponent, GalleryCarouselComponent, SponsorsComponent, BannerComponent],
+  imports: [ReportsComponent, RouterLink, NavbarComponent, FooterComponent, GalleryCarouselComponent, SponsorsComponent, BannerComponent, MatchComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

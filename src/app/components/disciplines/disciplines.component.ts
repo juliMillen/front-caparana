@@ -27,7 +27,7 @@ export class DisciplinesComponent implements OnInit {
         this.disciplines = data;
       },
       error: (err) =>{
-        console.error('Error al cargar disciplinas')
+        console.error('Error al cargar disciplinas',err);
       }
     })
   }

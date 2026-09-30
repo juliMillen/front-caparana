@@ -3,10 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { MatchFormComponent } from '../formularios/match-form/match-form.component';
 import { Match } from '../../../models/match';
 import { MatchService } from '../../../services/match.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-match-admin',
-  imports: [CommonModule,MatchFormComponent],
+  imports: [CommonModule,MatchFormComponent,FormsModule],
   templateUrl: './match-admin.component.html',
   styleUrl: './match-admin.component.css'
 })
@@ -14,6 +15,10 @@ import { MatchService } from '../../../services/match.service';
 
 export class MatchAdminComponent implements OnInit{
   matches:Match[] = [];
+
+  filteredMatches: Match[] = [];
+
+  searchId: number | null = null;
 
   showModal: boolean = false;
 
@@ -33,6 +38,27 @@ export class MatchAdminComponent implements OnInit{
 
   getStateLabel(state:string):string{
     return this.stateLabels[state] ?? state;
+  }
+
+  getMatchById():void{
+    if(this.searchId === null){
+      this.filteredMatches = this.matches;
+      return;
+    }
+
+    this.matchService.getMatchById(this.searchId).subscribe({
+      next:(data) =>{
+        this.filteredMatches = data ? [data] : [];
+      },
+      error: (err)  => {
+        console.error('Error al obtener el partido',err);
+      }
+    })
+  }
+
+  clearSearch():void{
+    this.searchId = null;
+    this.filteredMatches = this.matches;
   }
 
   getMatches():void{

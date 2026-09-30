@@ -1,1 +1,51 @@
-<p>match works!</p>
+
+    <div class="container my-5">
+  <div class="row g-4">
+
+    <div class="col-lg-4 col-md-6" *ngIf="liveMatch">
+      <ng-container *ngTemplateOutlet="matchCard; context: { m: liveMatch, kind: 'live' }"></ng-container>
+    </div>
+
+    <div class="col-lg-4 col-md-6" *ngIf="lastMatch">
+      <ng-container *ngTemplateOutlet="matchCard; context: { m: lastMatch, kind: 'last' }"></ng-container>
+    </div>
+
+    <div class="col-lg-4 col-md-6" *ngFor="let m of nextMatches">
+      <ng-container *ngTemplateOutlet="matchCard; context: { m: m, kind: 'next' }"></ng-container>
+    </div>
+
+    <p class="text-muted" *ngIf="!liveMatch && !lastMatch && nextMatches.length === 0">
+      No hay partidos cargados.
+    </p>
+
+  </div>
+</div>
+
+<ng-template #matchCard let-m="m" let-kind="kind">
+  <div class="match-card">
+
+    <h3 class="match-title">
+      {{ kind === 'live' ? 'En juego' : kind === 'last' ? 'Último resultado' : 'Próximos partidos' }}
+      <span class="live-badge" *ngIf="kind === 'live'">● EN VIVO</span>
+    </h3>
+
+    <div class="match-shields">
+      <!-- Luego reemplazamos estos divs por <img> con los escudos -->
+      <div class="shield-placeholder">{{ club?.name?.charAt(0) }}</div>
+      <span class="match-vs">VS</span>
+      <div class="shield-placeholder">{{ m.rival.charAt(0) }}</div>
+    </div>
+
+    <div class="match-body">
+      <p class="match-teams">
+        <ng-container *ngIf="kind !== 'next'; else upcoming">
+          {{ club?.name }} {{ m.teamGoals }} - {{ m.rivalGoals }} {{ m.rival }}
+        </ng-container>
+        <ng-template #upcoming>{{ club?.name }} vs {{ m.rival }}</ng-template>
+      </p>
+      <p class="match-date">{{ m.dateTime | date:'dd/MM/yyyy - HH:mm' }} hs</p>
+      <p class="match-location">{{ m.location }}</p>
+    </div>
+
+  </div>
+</ng-template>
