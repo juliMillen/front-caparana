@@ -12,9 +12,10 @@ import { Match } from '../../../../models/match';
 export class MatchFormComponent implements OnInit{
   @Input() match:Match | null = null;
   matchForm!:FormGroup;
+  selectedFile: File | null = null;
 
-  @Output() matchCreated = new EventEmitter<Match>();
-  @Output() matchUpdated = new EventEmitter<Match>();
+  @Output() matchCreated = new EventEmitter<{match:Match, file:File | null}>();
+  @Output() matchUpdated = new EventEmitter<{match:Match,file:File | null}>();
   @Output() closedModal = new EventEmitter<void>();
 
   constructor(private fb:FormBuilder){}
@@ -55,9 +56,13 @@ export class MatchFormComponent implements OnInit{
       location:this.matchForm.value.location,
       teamGoals:this.matchForm.value.teamGoals,
       rivalGoals:this.matchForm.value.rivalGoals,
-      state:this.matchForm.value.state
+      state:this.matchForm.value.state,
+      urlShieldRival:''
     };
-    this.matchCreated.emit(match);
+    this.matchCreated.emit({
+      match:match,
+      file:this.selectedFile
+    });
   }
 
   updateMatch():void{
@@ -72,9 +77,13 @@ export class MatchFormComponent implements OnInit{
       location:this.matchForm.value.location,
       teamGoals:this.matchForm.value.teamGoals,
       rivalGoals:this.matchForm.value.rivalGoals,
-      state:this.matchForm.value.state
+      state:this.matchForm.value.state,
+      urlShieldRival:this.match.urlShieldRival
      };
-     this.matchUpdated.emit(match);
+     this.matchUpdated.emit({
+      match,
+      file:this.selectedFile
+     });
 
 
   }
@@ -82,5 +91,13 @@ export class MatchFormComponent implements OnInit{
   closeModal():void{
     this.matchForm.reset();
     this.closedModal.emit();
+  }
+
+  onFileSelected(event:Event):void{
+    const input = event.target as HTMLInputElement;
+    if(input.files && input.files.length > 0){
+      this.selectedFile = input.files[0];
+      console.log('Archivo Seleccionado: ',this.selectedFile);
+    }
   }
 }

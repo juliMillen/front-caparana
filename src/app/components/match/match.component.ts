@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Match } from '../../models/match';
 import { MatchService } from '../../services/match.service';
@@ -7,7 +7,7 @@ import { Club } from '../../models/club';
 
 @Component({
   selector: 'app-match',
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './match.component.html',
   styleUrl: './match.component.css'
 })

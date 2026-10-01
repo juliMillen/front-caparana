@@ -21,12 +21,12 @@ export class MatchService {
     return this.http.get<Match>(`${this.apiUrl}/${idMatch}`);
   }
 
-  createMatch(match:Match):Observable<Match>{
-    return this.http.post<Match>(`${this.apiUrl}/create`,match);
+  createMatch(formData:FormData):Observable<Match>{
+    return this.http.post<Match>(`${this.apiUrl}/create`,formData);
   }
 
-  updateMatch(idMatch:number, match:Match):Observable<Match>{
-    return this.http.patch<Match>(`${this.apiUrl}/update/${idMatch}`,match);
+  updateMatch(idMatch:number, formData:FormData):Observable<Match>{
+    return this.http.patch<Match>(`${this.apiUrl}/update/${idMatch}`,formData);
   }
 
   deleteMatch(idMatch:number):Observable<Match>{

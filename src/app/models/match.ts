@@ -5,5 +5,6 @@ export interface Match{
     location:string,
     teamGoals:number,
     rivalGoals:number,
-    state:string
+    state:string,
+    urlShieldRival:string
 }

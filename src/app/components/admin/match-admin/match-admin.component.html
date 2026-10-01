@@ -10,6 +10,8 @@
             placeholder="Buscar partido por ID"
             [(ngModel)]="searchId"
             (keyup.enter)="getMatchById()">
+            <button class="btn-btn danger" type="button" (click)="getMatchById()">Buscar</button>
+            <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()">Limpiar</button>
         </div>
 
     </div>

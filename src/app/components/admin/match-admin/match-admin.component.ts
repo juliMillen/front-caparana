@@ -86,8 +86,8 @@ export class MatchAdminComponent implements OnInit{
     this.showModal = false;
   }
 
-  createMatch(match:Match):void{
-    this.matchService.createMatch(match).subscribe({
+  createMatch(data: {match:Match, file:File | null}):void{
+    this.matchService.createMatch(this.buildFormData(data)).subscribe({
       next:(data) => {
         this.matches.push(data);
         this.showModal = false;
@@ -98,12 +98,14 @@ export class MatchAdminComponent implements OnInit{
     })
   }
 
-  updateMatch(match:Match):void{
-    this.matchService.updateMatch(match.idMatch,match).subscribe({
+  updateMatch(data:{match:Match,file:File | null}):void{
+    this.matchService.updateMatch(data.match.idMatch,this.buildFormData(data)).subscribe({
       next:(data) => {
         this.matches = this.matches.map(
           m => m.idMatch === data.idMatch ? data : m
         );
+        this.showModal=false;
+        this.selectedMatch=null;
       },
       error:(err) => {
         console.error('Error al editar partido',err);
@@ -122,5 +124,19 @@ export class MatchAdminComponent implements OnInit{
         console.error('Error al eliminar partido',err);
       }
     })
+  }
+
+  private buildFormData(data:{match:Match, file:File|null}){
+    const formData = new FormData();
+    formData.append('rival',data.match.rival);
+    formData.append('dateTime',data.match.dateTime);
+    formData.append('location',data.match.location);
+    formData.append('teamGoals',data.match.teamGoals.toString());
+    formData.append('rivalGoals',data.match.rivalGoals.toString());
+    formData.append('state',data.match.state);
+    if(data.file){
+      formData.append('image',data.file);
+    }
+    return formData;
   }
 }

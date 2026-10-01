@@ -36,12 +36,29 @@
               </small>
             </div>
           </div>
+
+           <!--VISTA DE STAFF AGREGADO-->
+
+          <div class="mb-3" *ngIf="players.length > 0">
+            <label class="form-label fw-bold">
+              Empleados Tecnicos Agregados:
+            </label>
+
+            <div *ngFor="let s of staff" class="border rounded p-2 mb-2">
+              <strong>{{s.name}} {{s.surname}}</strong>
+              <br>
+              <small>
+                {{s.position}}
+              </small>
+            </div>
+          </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
             <button *ngIf="!createdCategority" type="button" class="btn btn-success"
             (click)="createCategority()">Guardar</button>
-            <button type="button" class="btn btn-primary" (click)="openPlayerModal()">Agregar Jugador</button>
-            <button type="submit" class="btn btn-success" (click)="finish()">Finalizar</button>
+            <button type="button" class="btn btn-danger" (click)="openPlayerModal()">Agregar Jugador</button>
+            <button type="button" class="btn btn-danger" (click)="openStaffModal()">Agregar Empleado Tecnico</button>
+            <button type="submit" class="btn btn-danger" (click)="finish()">Finalizar</button>
           </div>
         </form>
       </div>
@@ -50,6 +67,13 @@
   </div>
 </div>
 
-<app-player-form *ngIf="showPlayerModal" (playerCreated)="createPlayer($event)" (closedModal)="closePlayerModal()">
-
+<app-player-form *ngIf="showPlayerModal" 
+(playerCreated)="createPlayer($event)" 
+(closedModal)="closePlayerModal()">
 </app-player-form>
+
+<app-staff-form *ngIf="showStaffModal"
+(staffCreated)="createStaff($event)"
+(closedModal)="closeStaffModal()"
+>
+</app-staff-form>

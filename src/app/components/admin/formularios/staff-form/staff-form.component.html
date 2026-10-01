@@ -1,0 +1,77 @@
+<!-- MODAL -->
+<div class="modal fade show d-block" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{isEditMode ? 'Editar': 'Crear'}}</h5>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="staffForm" novalidate (ngSubmit)="onSubmit()">
+
+            <!--NAME-->
+          <div class="mb-3">
+            <label class="form-label">Nombre: </label>
+            <input type="text" class="form-control" formControlName="name" name="name" [ngClass]="{
+              'is-invalid': staffForm.get('name')?.invalid && staffForm.get('name')?.touched,
+              'is-valid': staffForm.get('name')?.valid && staffForm.get('name')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="staffForm.get('name')?.errors?.['required']">
+              El nombre es obligatorio
+            </div>
+          </div>
+
+            <!--SURNAME-->
+          <div class="mb-3">
+            <label class="form-label">Apellido: </label>
+            <input type="text" class="form-control" formControlName="surname" name="surname" [ngClass]="{
+              'is-invalid': staffForm.get('surname')?.invalid && staffForm.get('surname')?.touched,
+              'is-valid': staffForm.get('surname')?.valid && staffForm.get('surname')?.touched
+            }">
+
+            <div class="invalid-feedback" *ngIf="staffForm.get('surname')?.errors?.['required']">
+              El apellido es obligatorio
+            </div>
+          </div>
+
+
+          
+            <!--STATE (enum)-->
+            <div class="mb-3">
+                <label class="form-label">Posicion: </label>
+                <select class="form-select" formControlName="position" name="position" [ngClass]="{
+                'is-invalid': staffForm.get('position')?.invalid && staffForm.get('position')?.touched,
+                'is-valid': staffForm.get('position')?.valid && staffForm.get('position')?.touched
+                }">
+                <option value="" disabled selected>Seleccione una posicion</option>
+                <option value="HeadCoach">Entrenador</option>
+                <option value="AssistCoach">Entranador asistente</option>
+                <option value="GoalkeeperCoach">Entrenador de arqueros</option>
+                <option value="PhysicalTrainer">Psicologo Deportivo</option>
+                <option value="Kinesiologist">Kinesiologo</option>
+                <option value="SportingDirector">Director Deportivo</option>
+                </select>
+
+                <div class="invalid-feedback" *ngIf="staffForm.get('position')?.errors?.['required']">
+                    El estado es obligatorio
+                </div>
+            </div>
+
+            <!--IMAGE-->
+            <div class="form-group mb-3">
+            <input type="file" class="form-control" id="urlShieldImage" accept="image/*" (change)="onFileSelected($event)">
+            </div>
+
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-success">Aceptar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

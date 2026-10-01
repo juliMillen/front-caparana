@@ -30,10 +30,23 @@
     </h3>
 
     <div class="match-shields">
-      <!-- Luego reemplazamos estos divs por <img> con los escudos -->
+      <!-- Escudo del club -->
+       <img *ngIf="club?.urlImageShield; else teamPlaceholder"
+       class="shield-img" 
+       [src]="club?.urlImageShield" 
+       [alt]="club?.name">
+      <ng-template #teamPlaceholder>
       <div class="shield-placeholder">{{ club?.name?.charAt(0) }}</div>
+      </ng-template>
       <span class="match-vs">VS</span>
-      <div class="shield-placeholder">{{ m.rival.charAt(0) }}</div>
+      <!--Escudo del club rival-->
+      <img *ngIf="m.urlShieldRival;else rivalPlaceholder"
+      class="shield-img"
+      [src]="m.urlShieldRival"
+      [alt]="m.rival">
+      <ng-template #rivalPlaceholder>
+        <div class="shield-placeholder">{{ m.rival.charAt(0) }}</div>
+      </ng-template>
     </div>
 
     <div class="match-body">

@@ -48,7 +48,7 @@ export class PlayerFormComponent implements OnInit{
     this.isEditMode ? this.updatePlayer() : this.createPlayer();
   }
 
-  createPlayer(){
+  createPlayer():void{
     if(this.playerForm.invalid){
       this.playerForm.markAllAsTouched();
       return;
