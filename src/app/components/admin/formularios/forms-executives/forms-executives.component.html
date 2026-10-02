@@ -35,18 +35,26 @@
             </div>
           </div>
 
-          <!--POSITION-->
+          
+           <!--POSICION (enum)-->
             <div class="mb-3">
-            <label class="form-label">Posicion del Ejecutivo: </label>
-            <input type="text" class="form-control" formControlName="positionExecutive" name="positionExecutive" [ngClass]="{
-              'is-invalid': executiveForm.get('positionExecutive')?.invalid && executiveForm.get('positionExecutive')?.touched,
-              'is-valid': executiveForm.get('positionExecutive')?.valid && executiveForm.get('positionExecutive')?.touched
-            }">
+                <label class="form-label">Posicion: </label>
+                <select class="form-select" formControlName="position" name="position" [ngClass]="{
+                'is-invalid': executiveForm.get('position')?.invalid && executiveForm.get('position')?.touched,
+                'is-valid': executiveForm.get('position')?.valid && executiveForm.get('position')?.touched
+                }">
+                <option value="" disabled selected>Seleccione una posicion</option>
+                <option value="President">Presidente</option>
+                <option value="VicePresident">VicePresidente</option>
+                <option value="SecretaryGeneral">Secretario/a General</option>
+                <option value="ProSecretary">Pro Secretario</option>
+                <option value="Treasurer">Tesorero</option>
+                </select>
 
-            <div class="invalid-feedback" *ngIf="executiveForm.get('positionExecutive')?.errors?.['required']">
-              La posicion es obligatoria
+                <div class="invalid-feedback" *ngIf="executiveForm.get('position')?.errors?.['required']">
+                    La posicion es obligatoria
+                </div>
             </div>
-          </div>
 
 
           <!--IMAGE-->

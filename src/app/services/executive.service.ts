@@ -14,7 +14,7 @@ private apiUrl = environment.apiUrl + '/executive'
   constructor(private http:HttpClient) { }
 
     getExecutives(): Observable<Executive[]>{
-      return this.http.get<Executive[]>(`${this.apiUrl}/`);
+      return this.http.get<Executive[]>(`${this.apiUrl}`);
     }
   
     getExecutiveById(idExecutive:number):Observable<Executive>{

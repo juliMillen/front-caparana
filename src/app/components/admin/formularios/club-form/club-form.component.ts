@@ -16,8 +16,8 @@ export class ClubFormComponent implements OnInit{
   selectedShield:File | null = null;
   selectedStadium:File | null = null;
   filesMissing = false;
-  titles?: String[] = [];
-  selectedFile:File | null = null;
+  titles: string[] = [];
+  newTitle: string = '';
 
 
   @Output() clubCreated = new EventEmitter<{club:Club,fileStadium:File | null ,fileShield:File | null }>();
@@ -27,6 +27,7 @@ export class ClubFormComponent implements OnInit{
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.titles = this.club?.titles ? [...this.club.titles] : []
     this.clubForm = this.fb.group({
       name:[this.club?.name ?? '',Validators.required],
       fundationDate:[this.club?.fundationDate ?? '',Validators.required],
@@ -34,6 +35,17 @@ export class ClubFormComponent implements OnInit{
       colorsHistory:[this.club?.colorsHistory ?? '',Validators.required],
       stadiumHistory:[this.club?.stadiumHistory ?? '',Validators.required]
     });
+  }
+
+  addTitle():void{
+    const title = this.newTitle.trim();
+    if(!title) return;
+    this.titles?.push(title);
+    this.newTitle = '';
+  }
+
+  removeTitle(index:number):void{
+    this.titles?.splice(index,1);
   }
 
   onSubmit():void{
@@ -62,14 +74,14 @@ export class ClubFormComponent implements OnInit{
       history:this.clubForm.value.history,
       stadiumHistory:this.clubForm.value.stadiumHistory,
       colorsHistory:this.clubForm.value.colorsHistory,
-      titles:[],
+      titles:this.titles,
       urlImageShield:'',
       urlImageStadium:''
     };
     this.clubCreated.emit({
       club:club,
-      fileShield:this.selectedFile,
-      fileStadium:this.selectedFile
+      fileShield:this.selectedShield,
+      fileStadium:this.selectedStadium
     });
   }
 
@@ -86,9 +98,9 @@ export class ClubFormComponent implements OnInit{
       history:this.clubForm.value.history,
       colorsHistory:this.clubForm.value.colorsHistory,
       stadiumHistory:this.clubForm.value.stadiumHistory,
-      titles: this.clubForm.value.titles,
-      urlImageShield:this.clubForm.value.urlImageShield,
-      urlImageStadium:this.clubForm.value.urlImageStadium
+      titles: this.titles,
+      urlImageShield:this.club!.urlImageShield,
+      urlImageStadium:this.club!.urlImageStadium
     };
     this.clubUpdated.emit({
       club:clubUpdated,

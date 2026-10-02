@@ -46,7 +46,7 @@ export class StaffFormComponent implements OnInit {
       idStaff: 0,
       name:this.staffForm.value.name,
       surname:this.staffForm.value.surname,
-      position:this.staffForm.value.postion,
+      position:this.staffForm.value.position,
       urlImage:''
     };
     this.staffCreated.emit({

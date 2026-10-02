@@ -1,1 +1,81 @@
-<p>staff-admin works!</p>
+<div class="container my-5">
+     <!-- Buscadores -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-6">
+            <label for="searchId" class="form-label fw-semibold">
+                Buscar por ID
+            </label>
+
+            <input
+                type="number"
+                id="searchId"
+                class="form-control"
+                placeholder="Ingrese el ID del jugador"
+                [(ngModel)]="searchId"
+                >
+        </div>
+
+        <div class="col-md-6">
+            <label for="searchSurname" class="form-label fw-semibold">
+                Buscar por apellido
+            </label>
+
+            <input
+                type="text"
+                id="searchSurname"
+                class="form-control"
+                placeholder="Ingrese el apellido"
+                [(ngModel)]="searchSurname"
+                >
+        </div>
+
+        
+        <div class="col-md-6">
+            <label for="searchSurname" class="form-label fw-semibold">
+                Buscar por nombre
+            </label>
+
+            <input
+                type="text"
+                id="searchName"
+                class="form-control"
+                placeholder="Ingrese el nombre"
+                [(ngModel)]="searchName"
+                >
+        </div>
+         <button class="btn btn-primary btn-sm" (click)="filterStaff()">Buscar</button>
+
+    </div>
+
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-danger">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Posicion</th>
+                    <th scope="col" class="text-center">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let s of filteredStaff">
+                    <td>{{s.name}}</td>
+                    <td>{{s.surname}}</td>
+                    <td>{{s.position}}</td>
+                    <td class="text-center">
+                        <button class="btn btn-outline-success" (click)="openEditModal(s)">Editar</button>
+                        <button class="btn btn-outline-danger btn-sm" (click)="deleteStaff(s.idStaff)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<app-staff-form
+*ngIf="showModal"
+[staff]="selectedStaff"
+(staffUpdated)="updateStaff($event)"
+(closedModal)="closeModal()"
+></app-staff-form>

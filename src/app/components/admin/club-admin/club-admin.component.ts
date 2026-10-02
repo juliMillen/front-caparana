@@ -78,6 +78,10 @@ export class ClubAdminComponent implements OnInit {
     formData.append('history',data.club.history);
     formData.append('stadiumHistory',data.club.stadiumHistory);
     formData.append('colorsHistory',data.club.colorsHistory);
+    
+    data.club.titles.forEach(title =>
+      formData.append("titles",title)
+    );
 
     if(data.fileShield){
       formData.append('imageShield',data.fileShield)

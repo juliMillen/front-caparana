@@ -35,18 +35,24 @@
             </div>
           </div>
 
-         <!--POSICION-->
-          <div class="mb-3">
-            <label class="form-label">Posicion: </label>
-            <input type="text" class="form-control" formControlName="position" name="position" [ngClass]="{
-              'is-invalid': playerForm.get('position')?.invalid && playerForm.get('position')?.touched,
-              'is-valid': playerForm.get('position')?.valid && playerForm.get('position')?.touched
-            }">
+           <!--POSICION (enum)-->
+            <div class="mb-3">
+                <label class="form-label">Posicion: </label>
+                <select class="form-select" formControlName="position" name="position" [ngClass]="{
+                'is-invalid': playerForm.get('position')?.invalid && playerForm.get('position')?.touched,
+                'is-valid': playerForm.get('position')?.valid && playerForm.get('position')?.touched
+                }">
+                <option value="" disabled selected>Seleccione una posicion</option>
+                <option value="Goalkeeper">Arquero</option>
+                <option value="Defender">Defensa</option>
+                <option value="Midfielder">Mediocampista</option>
+                <option value="Forward">Delantero</option>
+                </select>
 
-            <div class="invalid-feedback" *ngIf="playerForm.get('position')?.errors?.['required']">
-              La posicion es obligatoria
+                <div class="invalid-feedback" *ngIf="playerForm.get('position')?.errors?.['required']">
+                    La posicion es obligatoria
+                </div>
             </div>
-          </div>
 
 
             <!--NUMERO-->

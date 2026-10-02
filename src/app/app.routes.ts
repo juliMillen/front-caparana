@@ -23,6 +23,7 @@ import { ClubAdminComponent } from './components/admin/club-admin/club-admin.com
 import { SpecificReportComponent } from './components/specific-report/specific-report.component';
 import { MatchAdminComponent } from './components/admin/match-admin/match-admin.component';
 import { MatchComponent } from './components/match/match.component';
+import { StaffAdminComponent } from './components/admin/staff-admin/staff-admin.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
@@ -55,7 +56,8 @@ export const routes: Routes = [
     {path:'reports-admin',component:ReportsAdminComponent},
     {path:'sponsors-admin',component:SponsorsAdminComponent},
     {path:'categorities-admin',component:CategoritiesAdminComponent},
-    {path:'match-admin',component:MatchAdminComponent}
+    {path:'match-admin',component:MatchAdminComponent},
+    {path:'staff-admin',component:StaffAdminComponent}
     ]}
 
 ];

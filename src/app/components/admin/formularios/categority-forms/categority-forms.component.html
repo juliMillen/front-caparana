@@ -39,7 +39,7 @@
 
            <!--VISTA DE STAFF AGREGADO-->
 
-          <div class="mb-3" *ngIf="players.length > 0">
+          <div class="mb-3" *ngIf="staff.length > 0">
             <label class="form-label fw-bold">
               Empleados Tecnicos Agregados:
             </label>
@@ -56,9 +56,9 @@
             <button type="button" class="btn btn-danger" (click)="closeModal()">Cancelar</button>
             <button *ngIf="!createdCategority" type="button" class="btn btn-success"
             (click)="createCategority()">Guardar</button>
-            <button type="button" class="btn btn-danger" (click)="openPlayerModal()">Agregar Jugador</button>
-            <button type="button" class="btn btn-danger" (click)="openStaffModal()">Agregar Empleado Tecnico</button>
-            <button type="submit" class="btn btn-danger" (click)="finish()">Finalizar</button>
+            <button type="button" class="btn btn-danger" (click)="openPlayerModal()" [disabled]="!createdCategority">Agregar Jugador</button>
+            <button type="button" class="btn btn-danger" (click)="openStaffModal()" [disabled]="!createdCategority">Agregar Empleado Tecnico</button>
+            <button type="button" class="btn btn-danger" (click)="finish()">Finalizar</button>
           </div>
         </form>
       </div>

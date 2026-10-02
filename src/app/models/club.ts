@@ -5,7 +5,7 @@ export interface Club {
     history:string;
     stadiumHistory:string;
     colorsHistory:string;
-    titles?: string[];
+    titles: string[];
     urlImageShield:string;
     urlImageStadium:string;
 }
