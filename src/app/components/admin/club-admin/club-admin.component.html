@@ -8,7 +8,15 @@
         class="btn btn-outline-primary"
         [disabled]="loading || !!club"
         (click)="openModal()">
-        Crear club
+        <i class="bi bi-plus-lg">
+          Crear club
+        </i>
+      </button>
+
+        <button
+        class="btn btn-outline-danger action-btn"
+        (click)="openModal()">
+        <i class="bi bi-pencil"></i>
       </button>
 
   <div *ngIf="club" class="card shadow">
@@ -50,15 +58,7 @@
         <img [src]="club.urlImageStadium" class="admin-preview-img"
           >
       </div>
-
-      <button
-        class="btn btn-outline-success"
-        (click)="openModal()">
-        Editar
-      </button>
-
     </div>
-
   </div>
 
 </div>

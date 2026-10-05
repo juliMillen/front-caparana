@@ -1,26 +1,40 @@
 
 <!--GALERIA-->
-<app-gallery-carousel/>
+<section class="section-gray py-5">
+  <app-gallery-carousel/>
+</section>
+
 
 <!--Partidos-->
-<div>
-  <app-match/>
-</div>
+<section class="section-gray-fade py-5">
+  <div>
+    <app-match/>
+  </div>
+</section>
+
 
 <!--NOTICIAS-->
-<app-reports [limit]="3"/>
-<div class="text-center mt-5">
-    <a routerLink="/report" class="btn btn-danger btn-lg px-5 shadow">
-      Ver todas las noticias
-    </a>
+<section class="section-gray-soft py-5">
+  <div class="container">
+    <app-reports [limit]="3"/>
+    <div class="text-center mt-5">
+      <a routerLink="/report" class="btn btn-danger btn-lg px-5 shadow">
+        Ver todas las noticias
+      </a>
+    </div>
   </div>
+</section>
 
-  <div class="text-center mt-5">
-      <!--SPONSORS-->
+
+  <!--SPONSORS-->
+  <section class="section-red-dark py-5">
+    <div class="container">
       <app-sponsors/>
-  </div>
-
-  <div class="text-center mt-5">
+     </div>
+  </section>
     <!--Banner-->
-    <app-banner/>
-  </div>
+    <section class="section-gray py-5">
+      <div class="container">
+        <app-banner/>
+      </div>
+    </section>

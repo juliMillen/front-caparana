@@ -1,3 +1,33 @@
-*{
+/**{
     background-color: #FBF9F6;
+}*/
+
+:root {
+    --club-red: #d71920;
+    --bg-main: #FBF9F6;
+    --bg-gray:#eeeeee;
+    --bg-gray-soft:#f4f4f4;
+    --red-soft: #ff5552;
+    --red-dark:#a31217;
 }
+
+body { background-color: var(--bg-main); }
+
+/* GRIS PLANO (BANNER)*/
+.section-gray{
+    background-color: var(--bg-gray);
+}
+
+/*GRIS DEGRADADO para la galeria */
+.section-gray-fade{
+    background: linear-gradient(to bottom, #ffffff 0%, var(--bg-gray) 100%);
+}
+
+.section-gray-soft{
+    background-color: var(--bg-gray-soft);
+}
+
+.section-red-soft {background-color: var(--red-soft);}
+
+.section-red-dark {background-color: var(--red-dark);}
+

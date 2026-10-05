@@ -1,6 +1,6 @@
 <div *ngFor="let position of positions" class="mb-5 pb-4 border-bottom">
 <h2 class="text-danger fw-bold mb-4 text-uppercase fs-3">
-  {{position}}s
+  {{getPositionLabel(position)}}s
 </h2>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
     <div class="col" *ngFor="let player of getPlayersByPosition(position)">
@@ -17,7 +17,7 @@
           </h5>
 
           <p class="card-text text-muted small mb-0">
-            {{ player.position }}
+            {{ getSingularLabel(player.position) }}
           </p>
         </div>
       </div>

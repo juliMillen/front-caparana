@@ -12,12 +12,12 @@
             <!--NAME-->
           <div class="mb-3">
             <label class="form-label">Nombre del Ejecutivo: </label>
-            <input type="text" class="form-control" formControlName="nameExecutive" name="nameExecutive" [ngClass]="{
-              'is-invalid': executiveForm.get('nameExecutive')?.invalid && executiveForm.get('nameExecutive')?.touched,
-              'is-valid': executiveForm.get('nameExecutive')?.valid && executiveForm.get('nameExecutive')?.touched
+            <input type="text" class="form-control" formControlName="name" name="name" [ngClass]="{
+              'is-invalid': executiveForm.get('name')?.invalid && executiveForm.get('name')?.touched,
+              'is-valid': executiveForm.get('name')?.valid && executiveForm.get('name')?.touched
             }">
 
-            <div class="invalid-feedback" *ngIf="executiveForm.get('nameExecutive')?.errors?.['required']">
+            <div class="invalid-feedback" *ngIf="executiveForm.get('name')?.errors?.['required']">
               El nombre es obligatorio
             </div>
           </div>
@@ -25,12 +25,12 @@
           <!--SURNAME-->
             <div class="mb-3">
             <label class="form-label">Apellido del Ejecutivo: </label>
-            <input type="text" class="form-control" formControlName="surnameExecutive" name="surnameExecutive" [ngClass]="{
-              'is-invalid': executiveForm.get('surnameExecutive')?.invalid && executiveForm.get('surnameExecutive')?.touched,
-              'is-valid': executiveForm.get('surnameExecutive')?.valid && executiveForm.get('surnameExecutive')?.touched
+            <input type="text" class="form-control" formControlName="surname" name="surname" [ngClass]="{
+              'is-invalid': executiveForm.get('surname')?.invalid && executiveForm.get('surname')?.touched,
+              'is-valid': executiveForm.get('surname')?.valid && executiveForm.get('surname')?.touched
             }">
 
-            <div class="invalid-feedback" *ngIf="executiveForm.get('surnameExecutive')?.errors?.['required']">
+            <div class="invalid-feedback" *ngIf="executiveForm.get('surname')?.errors?.['required']">
               El apellido es obligatorio
             </div>
           </div>

@@ -1,4 +1,6 @@
+
 .sponsors-track-wrapper {
+  position: relative;
   width: 100%;
   overflow: hidden;
 }
@@ -30,6 +32,9 @@
   width: auto;
   height: auto;
   object-fit: contain;
+  background-color: #fff;
+  padding: 8px;
+  border-radius: 10px;
 }
 
 .sponsors-strip::before, 
@@ -45,12 +50,12 @@
 
 .sponsors-strip::before{
   left: 0;
-  background: linear-gradient(to righ, #c00000, rgba(192,0,0,0));
+  background: linear-gradient(to righ, var(--red-dark), transparent);
 }
 
 .sponsors-strip::after{
   right: 0;
-  background: linear-gradient(to left, #c00000, rgba(192,0,0,0));
+  background: linear-gradient(to left, var(--red-dark), transparent);
 }
 
 @media (max-width:576px){

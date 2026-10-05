@@ -1,9 +1,11 @@
 .navbar{
-    background-color: #dc3535;
+    background-color: var(--club-red)
 }
 
-.my-navbar .nav-link {
-  color: #c81212 !important;
+.my-navbar .nav-link,
+.my-navbar .navbar-brand,
+.my-navbar .dropdown-toggle {
+  color: #fff !important;
   font-weight: 500;
   padding: 0.5rem 1rem;
   margin: 0 0.15rem;
@@ -13,6 +15,18 @@
 
 .my-navbar .nav-link:hover,
 .my-navbar .nav-link:focus {
-  color: #a10e0e !important;
-  background-color: rgba(200, 18, 18, 0.08);
+  color: #fff !important;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.my-navbar .navbar-toggler{
+  border-color: rgba(255,255,255,0.6);
+}
+
+.my-navbar .navbar-toggler-icon{
+  filter: invert(1);
+}
+
+.my-navbar .dropdown-menu .dropdown-item{
+  color:#222 !important
 }

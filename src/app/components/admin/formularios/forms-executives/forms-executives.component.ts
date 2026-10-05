@@ -29,16 +29,16 @@ export class FormsExecutivesComponent implements OnInit{
 
   ngOnInit(): void {
     this.executiveForm = this.fb.group({
-      nameExecutive: ['', Validators.required],
-      surnameExecutive:['',Validators.required],
-      positionExecutive:['',Validators.required]
+      name: ['', Validators.required],
+      surname:['',Validators.required],
+      position:['',Validators.required]
     });
 
     if(this.executive){
       this.executiveForm.patchValue({
-        nameExecutive: this.executive.name,
-        surnameExecutive: this.executive.surname,
-        positionExecutive: this.executive.position
+        name: this.executive.name,
+        surname: this.executive.surname,
+        position: this.executive.position
       });
     }
   }
@@ -55,9 +55,9 @@ export class FormsExecutivesComponent implements OnInit{
 
     const executive: Executive = {
       idExecutive: 0,
-      name:this.executiveForm.value.nameExecutive,
-      surname:this.executiveForm.value.surnameExecutive,
-      position: this.executiveForm.value.positionExecutive,
+      name:this.executiveForm.value.name,
+      surname:this.executiveForm.value.surname,
+      position: this.executiveForm.value.position,
       urlImage: ''
     };
     this.executiveCreated.emit({
@@ -74,9 +74,9 @@ export class FormsExecutivesComponent implements OnInit{
 
     const executive: Executive = {
       idExecutive: this.executive!.idExecutive,
-      name: this.executiveForm.value.nameExecutive,
-      surname: this.executiveForm.value.surnameExecutive,
-      position: this.executiveForm.value.positionExecutive,
+      name: this.executiveForm.value.name,
+      surname: this.executiveForm.value.surname,
+      position: this.executiveForm.value.position,
       urlImage: this.executive!.urlImage
       };
       this.executiveUpdated.emit({executive, file:this.selectedFile});

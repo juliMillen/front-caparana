@@ -14,6 +14,20 @@ export class CategoritiesComponent implements OnInit {
 
  categorities: Categority[] = []
 
+ positions: string[] = [
+  'Goalkeeper',
+  'Defender',
+  'Midfielder',
+  'Forward'
+ ]
+
+ private singularLabels: Record<string,string> = {
+  Goalkeeper:'Arquero',
+  Defender:'Defensa',
+  Midfielder:'Mediocampista',
+  Forward:'Delantero'
+ }
+
  constructor(private categorityService:CategorityService){
   
  }
@@ -33,6 +47,10 @@ export class CategoritiesComponent implements OnInit {
       console.error('Error al cargar las categorias',err);
     }
   })
+ }
+
+ getSingularLabel(position:string):string{
+  return this.singularLabels[position] ?? position;
  }
 
 

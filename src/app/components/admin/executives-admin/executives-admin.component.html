@@ -21,9 +21,9 @@
                     <td>{{executive.name}}</td>
                     <td>{{executive.surname}}</td>
                     <td>{{executive.position}}</td>
-                    <td class="text-center">
-                        <button class="btn btn-outline-success" (click)="openEditModal(executive)">Editar</button>
-                        <button class="btn btn-outline-danger btn-sm" (click)="deleteExecutive(executive.idExecutive)">Eliminar</button>
+                    <td class="d-flex justify-content-center gap-2">
+                        <button class="btn btn-sm btn-outline-danger action-btn" (click)="openEditModal(executive)"><i class="bi bi-pencil"></i></button>
+                        <button class="btn btn-sm btn-danger action-btn " (click)="deleteExecutive(executive.idExecutive)"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
