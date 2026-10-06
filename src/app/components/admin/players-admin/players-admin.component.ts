@@ -23,10 +23,28 @@ selectedPlayer: Player | null = null;
 
 showModal: boolean = false;
 
+position:string[] = [
+  'Goalkeeper',
+  'Defender',
+  'Midfielder',
+  'Forward'
+]
+
+private singularLabels:Record<string,string> = {
+  Goalkeeper: 'Arquero',
+  Defender: 'Defensa',
+  Midfielder: 'Mediocampista',
+  Forward: 'Delantero'
+}
+
 constructor(private playerService:PlayerService){}
 
 ngOnInit(): void {
   this.getPlayers();
+}
+
+getSingularPlayers(position:string):string{
+  return this.singularLabels[position] ?? position;
 }
 
 openEditModal(player:Player):void{

@@ -22,10 +22,32 @@ export class StaffAdminComponent implements OnInit {
 
   showModal:boolean = false;
 
+  positions: string[] =[
+    'HeadCoach',
+    'AssistantCoach',
+    'GoalkeeperCoach',
+    'PhysicalTrainer',
+    'Kinesiologist',
+    'SportingDirector'
+  ]
+
+  private singularLabels:Record<string,string> = {
+    HeadCoach: 'Director Tecnico',
+    AssistantCoach: 'Entrenador Asistente',
+    GoalkeeperCoach: 'Entrenador de Arqueros',
+    PhysicalTrainer: 'Preparador Fisico',
+    Kinesiologist: 'Kinesiologo/a',
+    SportingDirector: 'Director Deportivo'
+  }
+
   constructor(private staffService:StaffService){}
 
   ngOnInit(): void {
     this.getStaff();
+  }
+
+  getSingularLabels(position:string):string{
+    return this.singularLabels[position] ?? position;
   }
 
   openEditModal(staff:Staff):void{

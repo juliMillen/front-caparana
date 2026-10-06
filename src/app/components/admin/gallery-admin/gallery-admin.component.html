@@ -21,7 +21,7 @@
 
   <!-- Acá después va el listado de galerías -->
   <div class="card shadow-sm border-0">
-    <div class="card-body">
+    <div class="card-body" *ngIf="galleries.length === 0">
       <p class="text-muted mb-0">
         Todavía no hay galerías cargadas.
       </p>
@@ -31,8 +31,8 @@
         <div *ngFor="let gallery of galleries">
           <h5>{{ gallery.title }}</h5>
           <p>{{ gallery.publicationDate }}</p>
+          <button class="btn btn-sm btn-danger action-btn" (click)="deleteGallery(gallery.idGallery)"><i class="bi bi-trash"></i></button>
         </div>
-
       </div>
   </div>
 

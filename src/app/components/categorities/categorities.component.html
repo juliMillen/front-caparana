@@ -30,6 +30,29 @@
         </div>
       </div>
     </div>
+
+    <!--STAFF TECNICO-->
+    <div class="mt-4" *ngIf="category.technicalStaff.length">
+      <h5 class="text-danger fw-bold text-uppercase mb-3">Cuerpo Técnico</h5>
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        <div class="col" *ngFor="let staff of category.technicalStaff">
+          <div class="card player-card h-100 border-0 shadow-sm text-center">
+            <div class="player-image-wrapper text-center">
+              <img *ngIf="staff.urlImage"
+              [src]="staff.urlImage"
+              class="player-image"
+              alt="Imagen de {{staff.name}}"
+              >
+            </div>
+            <div class="card-body">
+              <h5 class="fw-bold mb-1">{{staff.name}} {{staff.surname}}</h5>
+              <p class="text-muted small mb-0" >{{getSingularLabel(staff.position)}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- Estado vacío -->
   <div *ngIf="categorities.length === 0" class="text-center py-5">

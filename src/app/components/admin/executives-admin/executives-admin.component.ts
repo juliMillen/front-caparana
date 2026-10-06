@@ -18,10 +18,30 @@ export class ExecutivesAdminComponent implements OnInit{
 
   selectedExecutive: Executive | null = null;
 
+  positions: string[] = [
+    'President',
+    'VicePresident',
+    'SecretaryGeneral',
+    'ProSecretary',
+    'Treasurer'
+  ]
+
+  private singularLabels:Record<string,string> = {
+    President: 'Presidente',
+    VicePresident: 'VicePresidente',
+    SecretaryGeneral: 'Secretario/a General',
+    ProSecretary: 'Pro Secretario/a',
+    Treasurer: 'Tesorero/a'
+  }
+
   constructor(private executivesService:ExecutiveService){}
 
   ngOnInit(): void {
     this.getExecutives();
+  }
+
+  getSingularLabel(position:string):string{
+    return this.singularLabels[position] ?? position;
   }
 
   getExecutives():void{

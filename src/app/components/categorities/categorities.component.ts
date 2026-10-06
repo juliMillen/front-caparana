@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Categority } from '../../models/categority';
 import { CategorityService } from '../../services/categority.service';
@@ -6,7 +6,7 @@ import { CategorityService } from '../../services/categority.service';
 
 @Component({
   selector: 'app-categorities',
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './categorities.component.html',
   styleUrl: './categorities.component.css'
 })

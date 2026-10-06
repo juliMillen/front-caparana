@@ -17,11 +17,43 @@
           </h5>
 
           <p class="card-text text-muted small mb-0">
-            {{ getSingularLabel(player.position) }}
+            {{getSingularLabel(player.position) }}
           </p>
         </div>
       </div>
 
     </div>
+  </div>
+</div>
+
+<!--STAFF TECNICO-->
+<div class="mb-5 pb-4" *ngIf="categority?.technicalStaff?.length">
+  <h2 class="text-danger fw-bold mb-4 text-uppercase fs-3">
+    Cuerpo Técnico
+  </h2>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <div class="col" *ngFor="let staff of categority?.technicalStaff">
+      <div class="card h-100 shadow-sm border-0 text-center">
+        <div class="p-3 bg-light text-center">
+          <img *ngIf="staff.urlImage" [src]="staff.urlImage"
+          [alt]="staff.name + ' ' + staff.surname "
+          class="img-fluid rounded-circle border border-2 border-danger mx-[autofocus]="
+          style="width: 120px;height: 120px;object-fit: cover;"
+          >
+        </div>
+        <div class="card-body pt-0">
+          <h5 class="card-title fw-bold mb-1">
+            {{staff.name}} {{staff.surname}}
+          </h5>
+          <p class="card-text text-muted small mb-0">
+            {{getSingularLabelStaff(staff.position)}}
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 </div>

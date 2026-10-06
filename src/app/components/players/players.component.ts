@@ -4,6 +4,7 @@ import { PlayerService } from '../../services/player.service';
 import { Categority } from '../../models/categority';
 import { CategorityService } from '../../services/categority.service';
 import { CommonModule } from '@angular/common';
+import { Staff } from '../../models/staff';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PlayersComponent implements OnInit {
   categority?: Categority;
+  technicalStaff?: Staff[];
 
   positions: string[] = [
     'Goalkeeper',
@@ -21,6 +23,15 @@ export class PlayersComponent implements OnInit {
     'Midfielder',
     'Forward'
   ];
+
+  positionsStaff: string[] = [
+    'HeadCoach',
+    'AssistantCoach',
+    'GoalkeeperCoach',
+    'PhysicalTrainer',
+    'Kinesiologist',
+    'SportingDirector'
+  ]
 
   private positionLabels: Record<string,string> = {
     Goalkeeper: 'Arqueros',
@@ -36,11 +47,19 @@ export class PlayersComponent implements OnInit {
     Forward:'Delantero'
   };
 
+  private singularLabelsStaff: Record<string,string>={
+    HeadCoach:'Director Tecnico',
+    AssistantCoach:'Entrenador Asistente',
+    GoalkeeperCoach: 'Entrenador de Arqueros',
+    PhysicalTrainer: 'Preparador Fisico',
+    Kinesiologist: 'Kinesiologo/a',
+    SportingDirector:'Director Deportivo'
+  }
+
   constructor(private categorityService:CategorityService){
-    this.getCategorityProfessional();
   }
   ngOnInit(): void {
-    this.getCategorityProfessional()
+    this.getCategorityProfessional();
   }
 
 
@@ -50,6 +69,10 @@ export class PlayersComponent implements OnInit {
 
   getSingularLabel(position:string):string{
     return this.singularLabels[position] ?? position;
+  }
+
+  getSingularLabelStaff(positionsStaff:string):string{
+    return this.singularLabelsStaff[positionsStaff] ?? positionsStaff;
   }
 
   getCategorityProfessional():void{
@@ -74,8 +97,4 @@ export class PlayersComponent implements OnInit {
       player => player.position === position
     ) ?? [];
   }
-
-  
-
-
 }

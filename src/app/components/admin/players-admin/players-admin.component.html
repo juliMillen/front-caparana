@@ -64,7 +64,7 @@
                 <tr *ngFor="let player of filteredPlayers">
                     <td>{{player.name}}</td>
                     <td>{{player.surname}}</td>
-                    <td>{{player.position}}</td>
+                    <td>{{getSingularPlayers(player.position)}}</td>
                     <td>{{player.num}}</td>
                     <td class="d-flex justify-content-center gap-2">
                         <button class="btn btn-sm btn-outline-danger action-btn" (click)="openEditModal(player)"> <i class="bi bi-pencil"></i>  </button>
