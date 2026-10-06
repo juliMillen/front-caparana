@@ -12,6 +12,22 @@ import { ExecutiveService } from '../../services/executive.service';
 export class ExecutivesComponent implements OnInit {
  executives: Executive[] = [];
 
+ positions: string[] = [
+  'President',
+  'VicePresident',
+  'SecretaryGeneral',
+  'ProSecretary',
+  'Treasurer'
+ ]
+
+ private singularLabels:Record<string,string> = {
+  President:'Presidente',
+  VicePresident:'VicePresidente',
+  SecretaryGeneral:'Secretario/a General',
+  ProSecretary:'Pro Secretario/a',
+  Treasurer:'Tesorero/a'
+ }
+
  constructor(private executiveService: ExecutiveService){
 
  }
@@ -20,10 +36,16 @@ export class ExecutivesComponent implements OnInit {
    this.getExecutives();
  }
 
+ getSingularLabel(position:string):string{
+  return this.singularLabels[position] ?? position;
+ }
+
  getExecutives():void{
   this.executiveService.getExecutives().subscribe({
     next:(data) => {
-      this.executives = data;
+      this.executives = [...data].sort(
+        (a,b) => this.positions.indexOf(a.position) - this.positions.indexOf(b.position)
+      );
     },
     error: (err) =>{
       console.error('Error al obtener ejecutivos',err);
