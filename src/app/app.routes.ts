@@ -24,9 +24,12 @@ import { SpecificReportComponent } from './components/specific-report/specific-r
 import { MatchAdminComponent } from './components/admin/match-admin/match-admin.component';
 import { MatchComponent } from './components/match/match.component';
 import { StaffAdminComponent } from './components/admin/staff-admin/staff-admin.component';
+import { NotFoundComponent } from './components/pages/not-found/not-found.component';
+import { ContactComponent } from './components/pages/contact/contact.component';
 
 export const routes: Routes = [
     {path:'',component:HomeComponent},
+    {path:'contact',component:ContactComponent},
     {path: 'club', component:ClubComponent},
     {path:'categority',component:CategoritiesComponent},
     {path:'categority/:id',component:CategoritiesComponent},
@@ -58,6 +61,7 @@ export const routes: Routes = [
     {path:'categorities-admin',component:CategoritiesAdminComponent},
     {path:'match-admin',component:MatchAdminComponent},
     {path:'staff-admin',component:StaffAdminComponent}
-    ]}
+    ]},
+    {path: '**',component:NotFoundComponent}
 
 ];

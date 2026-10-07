@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink,CommonModule],
+  imports: [RouterLink,RouterLinkActive,CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -29,6 +29,10 @@ export class NavbarComponent implements OnInit {
     return this.isAdmin
     ? '/admin/dashboard'
     : '/';
+  }
+
+  getContactRoute():string{
+    return '/contact';
   }
 
   getCategoriesRoute():string{

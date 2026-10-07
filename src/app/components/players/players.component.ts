@@ -48,10 +48,10 @@ export class PlayersComponent implements OnInit {
   };
 
   private singularLabelsStaff: Record<string,string>={
-    HeadCoach:'Director Tecnico',
+    HeadCoach:'Director Técnico',
     AssistantCoach:'Entrenador Asistente',
     GoalkeeperCoach: 'Entrenador de Arqueros',
-    PhysicalTrainer: 'Preparador Fisico',
+    PhysicalTrainer: 'Preparador Físico',
     Kinesiologist: 'Kinesiologo/a',
     SportingDirector:'Director Deportivo'
   }

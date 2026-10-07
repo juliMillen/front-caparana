@@ -1,0 +1,18 @@
+<section class="contact">
+    <h2>Contacto</h2>
+    <ul class="contact-list">
+        <li>
+            <span class="label">Teléfono</span>
+            <a [href]="contact.phoneHref">{{contact.phone}}</a>
+        </li>
+        <li>
+            <span class="label">Email</span>
+            <a [href]="'mailto:' + contact.email">{{contact.email}}</a>
+        </li>
+        <li>
+            <span class="label">Ubicacion</span>
+            <span>{{contact.address}}</span>
+            <!--<a [href]="mapsLink" target="_blank" rel="noopener"> Como llegar</a>!-->
+        </li>
+    </ul>
+</section>

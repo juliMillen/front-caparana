@@ -21,11 +21,29 @@ export class CategoritiesComponent implements OnInit {
   'Forward'
  ]
 
+   positionsStaff: string[] = [
+    'HeadCoach',
+    'AssistantCoach',
+    'GoalkeeperCoach',
+    'PhysicalTrainer',
+    'Kinesiologist',
+    'SportingDirector'
+  ]
+
  private singularLabels: Record<string,string> = {
   Goalkeeper:'Arquero',
   Defender:'Defensa',
   Midfielder:'Mediocampista',
   Forward:'Delantero'
+ }
+
+ private singularLabelsStaff: Record<string,string>  = {
+  HeadCoach:'Director Técnico',
+  AssistantCoach: 'Entrenador Asistente',
+  GoalkeeperCoach: 'Entrenador de Arqueros',
+  PhysicalTrainer: 'Preparador Físico',
+  Kinesiologist: 'Kinesiologo/a',
+  SportingDirector: 'Director Deportivo'
  }
 
  constructor(private categorityService:CategorityService){
@@ -51,6 +69,10 @@ export class CategoritiesComponent implements OnInit {
 
  getSingularLabel(position:string):string{
   return this.singularLabels[position] ?? position;
+ }
+
+ getSingularLabelStaff(position:string):string{
+  return this.singularLabelsStaff[position] ?? this.positionsStaff;
  }
 
 
