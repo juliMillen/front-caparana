@@ -71,11 +71,11 @@ export class ReportFormComponent implements OnInit{
       return;
     }
     const report: Report = {
-      idReport:0,
+      idReport:this.report!.idReport,
       title:this.reportForm.value.title,
       description:this.reportForm.value.description,
       publicationDate:this.reportForm.value.publicationDate,
-      urlImage:this.reportForm.value.urlImage
+      urlImage:this.report!.urlImage
     };
     this.reportUpdated.emit({
       report,
